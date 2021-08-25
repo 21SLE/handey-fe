@@ -5,7 +5,6 @@ class SideBar extends React.Component {
     
     render() {
         const currentUrl = window.location.pathname;
-        console.log(currentUrl);
 
         return (currentUrl === "/home" || currentUrl === "/history") 
         ? <div className="sideBar">
