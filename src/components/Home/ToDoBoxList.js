@@ -19,12 +19,16 @@ function ToDoBoxList() {
             .catch((error) => {
                 console.error("ERROR: " + error);
             });
+
+
     
-    
+        
     };
 
+    console.log(toDoBoxListData);
+
     return <div className="toDoBoxList">
-        {
+        {            
             toDoBoxListData.map(toDoBox => {
                 return <ToDoBox 
                     key = {toDoBox.id}
