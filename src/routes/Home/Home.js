@@ -9,18 +9,12 @@ class Home extends React.Component {
 
         return <div className = "home-layout">
             <ToDoBoxList />
-            <span>this is home xcreen</span>
+            <span>this is home screen</span>
 
         </div>;
     }
 }
 
 
-// function Home() {
-
-//     ToDoBoxList();
-
-//     return <span>This is Handey HomeScreen.</span>;
-// }
 
 export default Home;
