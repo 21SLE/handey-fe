@@ -1,9 +1,10 @@
 import React from "react";
 import { BrowserRouter, HashRouter, Route, Switch } from "react-router-dom";
 import Login from "./routes/Login";
-import Home from "./routes/Home";
+import Home from "./routes/Home/Home";
 import History from "./routes/History";
-import SideBar from "./components/common/Side-bar"
+import SideBar from "./components/common/Side-bar";
+import "./App.css";
 
 function App() {
   return (
