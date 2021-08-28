@@ -4,7 +4,8 @@ import "./ToDoBox.css";
 
 function ToDoBox({id, title, fixed}) {
     return <div className="toDoBox">
-        <input className="toDoBox__title" type="text" value={title}/>
+        {/* <input className="toDoBox__title" type="text" value={title}/> */}
+        <span>{title}</span>
 
         
     </div>;
