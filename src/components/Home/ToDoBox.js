@@ -3,12 +3,10 @@ import PropTypes from "prop-types";
 import "./ToDoBox.css";
 
 function ToDoBox({id, title, fixed}) {
-
-    
-
-
     return <div className="toDoBox">
+        <input className="toDoBox__title" type="text" value={title}/>
 
+        
     </div>;
 }
 
