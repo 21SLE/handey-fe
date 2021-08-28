@@ -5,7 +5,7 @@ function Home() {
 
     ToDoBoxList();
 
-    return <span>This is HomeScreen.</span>;
+    return <span>This is Handey HomeScreen.</span>;
 }
 
 export default Home;
