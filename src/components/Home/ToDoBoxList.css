@@ -1,0 +1,7 @@
+.toDoBoxList {
+    overflow-y: scroll;
+    overflow:visible;
+    width: 660px;
+    height: 460px;
+    z-index: 2;
+}

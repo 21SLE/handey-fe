@@ -12,7 +12,7 @@ function ToDoBox({id, title, fixed, toDoElmList}) {
 
         
     </div>;
-}
+};
 
 ToDoBox.propTypes = {
     id: PropTypes.number.isRequired,
