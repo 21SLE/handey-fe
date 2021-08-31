@@ -1,6 +1,7 @@
-.toDoBox {
+.weeklyBoxList {
     width: 300px;
-    height: 136px;
+    height: 460px;
     box-shadow: 10px 10px 25px 10px #e8e8e8 ; /*x-position y-position blur spread color*/
     border-radius: 10px;
+    z-index: 3;
 }
