@@ -10,6 +10,7 @@
 }
 
 .home-layout__wrap__left {
+    margin-right: 30px;
     position: relative;
     z-index: 1;
 }

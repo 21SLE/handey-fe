@@ -1,7 +1,84 @@
 .toDoBox {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 30px 30px 21px 30px;
+    margin-bottom: 25px;
+    margin-right: 20px;
+    background-color: white;
     width: 320px;
+    min-height: fit-content;
     height: 146px;
     box-shadow: 5px 10px 25px 10px #e8e8e8 ; /*x-position y-position blur spread color*/
     border-radius: 10px;
     z-index: 3;
+}
+
+/* .toDoBox__title-tag {
+    margin-right: 11px;
+    display: block;
+    height: 25px;
+    width:6px;
+    background:#f5bc0f;
+    position:absolute;
+    top: 30px;
+    bottom:0;
+} */
+
+.toDoBox__title {
+    margin-bottom: 30px;
+}
+
+.toDoBox__title input {
+    width: 220px;
+    display: block;
+    padding-left: 11px;
+    padding-top: 0;
+    padding-bottom: 0;
+    outline:none;
+    border: none;
+    font-size: 18pt;
+    border-left: 6px solid #f5bc0f;
+}
+
+.toDoBox__elm-list li {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.toDoBox__elm-list li:not(:last-child) { 
+    margin-bottom: 33px;  
+ }
+
+.checkBtn {
+    position: absolute;
+    outline: inherit;
+    border: 2px solid lightgrey;
+    background-color: white;
+    height: 26px;
+    width: 26px;
+    border-radius: 13px; 
+
+}
+
+.toDoBox__elm-list .faCheck {
+    position: absolute;
+    width: 20px;
+    height:24px;
+    left: 3px;
+    color:#FDDC42;
+    /* color:#f5bc0f; */
+}
+
+.toDoBox__elm-list input {
+    width: 220px;
+    height: 14pt;
+    overflow: visible;
+    color: #7d7d7d;
+    position: absolute;
+    padding-left: 11px;
+    left: 30px;
+    outline:none;
+    border: none;
+    font-size: 14pt;
 }

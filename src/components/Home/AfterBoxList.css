@@ -1,6 +1,5 @@
 .afterBoxList {
     margin-top: 25px;
-    margin-right: 30px;
     width: 300px;
     height: 200px;
     box-shadow: 2px 10px 25px 10px #e8e8e8 ; /*x-position y-position blur spread color*/
