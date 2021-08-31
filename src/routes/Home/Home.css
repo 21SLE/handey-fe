@@ -1,3 +1,21 @@
 .home-layout {
-    padding-left: 280px;
+    margin-left: 280px;
+    padding: 40px;
+}
+
+.home-layout__wrap {
+    display:flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.home-layout__wrap__left {
+    margin-right: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.home-layout__wrap__right {
+    position: relative;
+
 }
