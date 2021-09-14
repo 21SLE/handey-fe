@@ -11,18 +11,13 @@ function ToDoBox({id, title, fixed, toDoElmList}) {
     const baseUrl = "http://localhost:8080";
 
     const [titleTxt, setTitleTxt] = useState(title);
-    const [fixedYn, setFixedYn] = useState(fixed);
+    const [fixedColor, setFixedColor] = useState('#4b4b4b');
     const inputTitle = useRef();
     const fixedIcon = useRef();
 
     function changeTitleTxt(e) {
         e.preventDefault();
         setTitleTxt(e.target.value);
-    }
-
-    function changeFixedYn(e) {
-        e.preventDefault();
-        setFixedYn(!fixedYn);
     }
 
     const updateFixedYn = () => {
@@ -46,8 +41,7 @@ function ToDoBox({id, title, fixed, toDoElmList}) {
                 await axios
                     .put(baseUrl + "/toDoBox/" + id, 
                         {
-                            title: titleTxt,
-                            fixed: fixedYn
+                            title: titleTxt
                         })
                         .then((response) => {
                             console.log(response.data);
@@ -66,7 +60,7 @@ function ToDoBox({id, title, fixed, toDoElmList}) {
         <form>
             <div className="toDoBox_menu">
                 <FontAwesomeIcon className={fixed ? "fa faThumbtack fixed" : "fa faThumbtack"} icon={faThumbtack} 
-                    ref={fixedIcon} onClick={()=> updateFixedYn()}/>
+                    ref={fixedIcon} onClick={()=> {updateFixedYn(); setFixedColor(fixedColor == '#f5bc0f' ? '#4b4b4b' : '#f5bc0f');}} style={{color: `${fixedColor}`}}/>
                 <FontAwesomeIcon className="fa faList" icon={faList} />
                 <FontAwesomeIcon className="fa faPlus" icon={faPlus} />
                 <FontAwesomeIcon className="fa faTrash" icon={faTrash} />
