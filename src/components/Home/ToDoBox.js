@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState} from "react";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faList, faPlus, faThumbtack, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 // import autosize from 'autosize';
@@ -28,9 +28,16 @@ function ToDoBox({id, title, fixed, toDoElmList}) {
 
     return <div className="toDoBox">
         <form>
+            <div className="toDoBox_menu">
+                <FontAwesomeIcon className="fa faThumbtack" icon={faThumbtack} />
+                <FontAwesomeIcon className="fa faList" icon={faList} />
+                <FontAwesomeIcon className="fa faPlus" icon={faPlus} />
+                <FontAwesomeIcon className="fa faTrash" icon={faTrash} />
+            </div>
             <div className="toDoBox__title">
                 {/* <div className="toDoBox__title-tag"></div> */}
                 <input type="text" value={ title }/>
+                
             </div>
             <ul className="toDoBox__elm-list">
                 {toDoElmList.map(elm => {
