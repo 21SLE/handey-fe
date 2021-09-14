@@ -61,6 +61,10 @@
     color:#4b4b4b;
 }
 
+.toDoBox_menu .fixed {
+    color: #f5bc0f;
+}
+
 .toDoBox__elm-list li {
     display: flex;
     align-items: center;

@@ -4,52 +4,91 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 // import autosize from 'autosize';
 import "./ToDoBox.css";
+import axios from "axios";
+import ToDoBoxList from "./ToDoBoxList";
 
 function ToDoBox({id, title, fixed, toDoElmList}) {
+    const baseUrl = "http://localhost:8080";
 
-    // function handleKeyDown(e) {
-    //     // Reset field height
-    // e.target.style.height = 'inherit';
+    const [titleTxt, setTitleTxt] = useState(title);
+    const [fixedYn, setFixedYn] = useState(fixed);
+    const inputTitle = useRef();
+    const fixedIcon = useRef();
 
-    // // Get the computed styles for the element
-    // const computed = window.getComputedStyle(e.target);
+    function changeTitleTxt(e) {
+        e.preventDefault();
+        setTitleTxt(e.target.value);
+    }
 
-    // // Calculate the height
-    // const height = parseInt(computed.getPropertyValue('border-top-width'), 10)
-    //              + parseInt(computed.getPropertyValue('padding-top'), 10)
-    //              + e.target.scrollHeight
-    //              + parseInt(computed.getPropertyValue('padding-bottom'), 10)
-    //              + parseInt(computed.getPropertyValue('border-bottom-width'), 10);
+    function changeFixedYn(e) {
+        e.preventDefault();
+        setFixedYn(!fixedYn);
+    }
 
-    // e.target.style.height = `${height}px`;
-    //     // In case you have a limitation
-    //     // e.target.style.height = `${Math.min(e.target.scrollHeight, limit)}px`;
-    // };
+    const updateFixedYn = () => {
+        const updateFixedYn = async () => {
+            await axios
+                    .patch(baseUrl + "/toDoBox/" + id, {})
+                    .then((response) => {
+                        console.log(response.data);
+
+                    })
+                    .catch((error) => {console.error(error);});
+        }
+        updateFixedYn();
+        console.log("고정 상태가 변경되었습니다.");
+    }
+
+    const updateToDoBoxTitle = (e) => {
+        // e.preventDefault();
+        if(e.key == 'Enter') {
+            const updateToDoBoxTitle = async () => {
+                await axios
+                    .put(baseUrl + "/toDoBox/" + id, 
+                        {
+                            title: titleTxt,
+                            fixed: fixedYn
+                        })
+                        .then((response) => {
+                            console.log(response.data);
+                        })
+                        .catch((error) => {console.error(error);});
+            }
+            updateToDoBoxTitle();
+            inputTitle.current.blur();
+            console.log("타이틀이 수정되었습니다.");
+        } else {
+            setTitleTxt(e.target.value);
+        }
+    }
 
     return <div className="toDoBox">
         <form>
             <div className="toDoBox_menu">
-                <FontAwesomeIcon className="fa faThumbtack" icon={faThumbtack} />
+                <FontAwesomeIcon className={fixed ? "fa faThumbtack fixed" : "fa faThumbtack"} icon={faThumbtack} 
+                    ref={fixedIcon} onClick={()=> updateFixedYn()}/>
                 <FontAwesomeIcon className="fa faList" icon={faList} />
                 <FontAwesomeIcon className="fa faPlus" icon={faPlus} />
                 <FontAwesomeIcon className="fa faTrash" icon={faTrash} />
             </div>
             <div className="toDoBox__title">
                 {/* <div className="toDoBox__title-tag"></div> */}
-                <input type="text" value={ title }/>
+                <input type="text" value={ titleTxt } ref={inputTitle} onChange={changeTitleTxt} onKeyPress={updateToDoBoxTitle}/>
+                {/* <input type="text" value={ titleTxt } onChange={changeTitleTxt} onKeyPress={updateToDoBoxTitle}/> */}
                 
             </div>
             <ul className="toDoBox__elm-list">
                 {toDoElmList.map(elm => {
-                   return <li>
+                    if(elm.content == null) elm.content = "";
+                    
+
+                    return <li>
                         <button className="checkBtn" type="button">
                             
                         </button>
                         <FontAwesomeIcon className="faCheck" icon={faCheck} />
-                        {/* <textarea type="text" value = {elm.content} name="text" 
-                            oninput='this.style.height = "";this.style.height = this.scrollHeight + 30+ "px"'></textarea> */}
-                        {/* <textarea type="text" value = {elm.content} onKeyDown={handleKeyDown} /> */}
-                        <input type="text" value = {elm.content}/>
+                    
+                        <input type="text" value = {elm.content} />
                         
                     </li>;
                 })}
