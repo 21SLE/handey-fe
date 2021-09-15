@@ -7,14 +7,13 @@ const baseUrl = "http://localhost:8080";
 
 export const ToDoContext = React.createContext();
 
-function ToDoBoxList(renderYn) {
+function ToDoBoxList() {
 
     // const [input, setInput] = useState(""); //input 초기값이 ""
     const [toDoBoxListData, setToDoBoxListData] = useState([]); //todos 빈 객체 배열로 만들어줌
 
     useEffect(() => {
-        if(renderYn)
-            getToDoBoxList();
+        getToDoBoxList();
     }, []);
 
     async function getToDoBoxList() {
@@ -28,8 +27,12 @@ function ToDoBoxList(renderYn) {
             });
     };
     
+    const deleteToDoBoxOnScreen = (toDoBoxId) => {
+        setToDoBoxListData(toDoBoxListData.filter((toDoBox)=> toDoBox.id !== toDoBoxId));
+    }
 
-    return <div className="toDoBoxList">
+    return <ToDoContext.Provider value = {toDoBoxListData}>
+        <div className="toDoBoxList">
             {            
                 toDoBoxListData.map(toDoBox => {
                     return <ToDoBox 
@@ -38,12 +41,13 @@ function ToDoBoxList(renderYn) {
                         title = {toDoBox.title}
                         fixed = {toDoBox.fixed}
                         toDoElmList = {toDoBox.toDoElmList}
-                        getToDoBoxList = {getToDoBoxList}
+                        deleteToDoBoxOnScreen = {deleteToDoBoxOnScreen}
                     />;
                 })
             }
 
-        </div>;
+        </div>
+    </ToDoContext.Provider>;
 }
 
 export default ToDoBoxList;

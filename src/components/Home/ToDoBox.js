@@ -2,32 +2,19 @@ import React, { forwardRef, useContext, useRef, useState} from "react";
 import { faCheck, faList, faPlus, faThumbtack, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
-// import autosize from 'autosize';
 import "./ToDoBox.css";
 import axios from "axios";
-import ToDoBoxList, { ToDoContext } from "./ToDoBoxList";
-// import {updateTodoBoxFixedYn, deleteToDoBox} from "./ToDoBoxList";
 
 const Input = forwardRef((props, ref) => {
     return <input type="text" ref={ref} {...props}/>;
 });
 
-
-function ToDoBox({id, title, fixed, toDoElmList}) {
+function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
     const baseUrl = "http://localhost:8080";
 
     const [titleTxt, setTitleTxt] = useState(title);
     const [fixedColor, setFixedColor] = useState(fixed ? '#f5bc0f' : '#4b4b4b');
     const inputTitle = useRef();
-
-    const toDoBoxListData = useContext(ToDoContext);
-
-    const renderToDoBoxList = ToDoBoxList(false);
-
-    function refreshPage() {
-        window.location.reload(false);
-      }
-
 
     function changeTitleTxt(e) {
         e.preventDefault();
@@ -76,18 +63,12 @@ function ToDoBox({id, title, fixed, toDoElmList}) {
                     .delete(baseUrl + "/toDoBox/" + id)
                     .then((response) => {
                         console.log(response.data);
-                        // ToDoBoxList();
+                        deleteToDoBoxOnScreen(id);
                     })
                     .catch((error) => {console.error(error);});
         }
         deleteToDoBox();
-        // console.log(toDoBoxListData);
-        refreshPage();
-        // getToDoBoxList();
-        // renderToDoBoxList();
-        // ToDoBoxList(false);
-        // deleteToDoBox(id);
-        console.log("ToDoBox: " + id + "deleted.");
+        console.log("ToDoBox: " + id + " deleted.");
     }
 
     return <div className="toDoBox">
@@ -103,10 +84,7 @@ function ToDoBox({id, title, fixed, toDoElmList}) {
             </div>
             <div className="toDoBox__title">
                 {/* <div className="toDoBox__title-tag"></div> */}
-                {/* <input type="text" value={ titleTxt } ref={inputTitle} onChange={changeTitleTxt} onKeyPress={onUpdateToDoBoxTitle}/> */}
-                <Input ref = {inputTitle} value={ titleTxt } onChange={changeTitleTxt} onKeyPress={onUpdateToDoBoxTitle}/>
-                {/* <input type="text" value={ titleTxt } onChange={changeTitleTxt} onKeyPress={updateToDoBoxTitle}/> */}
-                
+                <Input ref = {inputTitle} value={ titleTxt } onChange={changeTitleTxt} onKeyPress={onUpdateToDoBoxTitle}/>         
             </div>
             <ul className="toDoBox__elm-list">
                 {toDoElmList.map(elm => {
@@ -124,9 +102,6 @@ function ToDoBox({id, title, fixed, toDoElmList}) {
                 })}
             </ul>
         </form>
-
-
-        
     </div>;
 };
 

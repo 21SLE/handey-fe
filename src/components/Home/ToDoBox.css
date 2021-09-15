@@ -1,7 +1,7 @@
 .toDoBox {
     display: inline-block;
     box-sizing: border-box;
-    padding: 30px 15px 30px 30px; /*top right bottom left*/
+    padding: 30px 15px 35px 30px; /*top right bottom left*/
     margin-bottom: 25px;
     margin-right: 20px;
     background-color: white;
