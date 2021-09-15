@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import AfterBoxList from "../../components/Home/AfterBoxList";
 import ToDoBoxList from "../../components/Home/ToDoBoxList";
 import Memo from "../../components/Home/Memo";
@@ -17,7 +17,7 @@ class Home extends React.Component {
                     <AfterBoxList />
                 </div>
                 <div className = "home-layout__wrap__right">
-                    <ToDoBoxList />
+                    <ToDoBoxList renderYn={true}/>
                     <Memo />
                 </div>
             </div>

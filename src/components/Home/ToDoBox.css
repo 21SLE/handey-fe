@@ -7,7 +7,8 @@
     background-color: white;
     width: 320px;
     min-height: fit-content;
-    height: auto;
+    height:fit-content;
+    max-height: fit-content;
     box-shadow: 5px 10px 25px 10px #e8e8e8 ; /*x-position y-position blur spread color*/
     border-radius: 10px;
     z-index: 3;
