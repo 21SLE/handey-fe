@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useState} from "react";
+import React, { forwardRef, useState} from "react";
 import { faCheck, faList, faPlus, faThumbtack, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
@@ -18,12 +18,17 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
 
     const [titleTxt, setTitleTxt] = useState(title);
     const [fixedColor, setFixedColor] = useState(fixed ? '#f5bc0f' : '#4b4b4b');
-    
-    const inputTitle = useRef();
+    const [toDoElms, setToDoElms] = useState(toDoElmList);
 
     function changeTitleTxt(e) {
         e.preventDefault();
         setTitleTxt(e.target.value);
+    }
+
+    function changeElmTxt(e, id) {
+        e.preventDefault();
+        setToDoElms(toDoElms.map(elm=>
+            elm.id === id ? { ...elm, content: e.target.value } : elm));
     }
 
     const updateFixedYn = async () => {
@@ -49,7 +54,7 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                         console.log(response.data);
                     })
                     .catch((error) => {console.error(error);});
-            inputTitle.current.blur();
+            e.target.blur();
             console.log("타이틀이 수정되었습니다.");
         }
     }
@@ -77,6 +82,22 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
         console.log("todo elm 객체가 생성되었습니다.");
     }
 
+    const onUpdateToDoElm = async (e, toDoElmId) => {
+        if(e.key === 'Enter') {
+            await axios
+                    .put(baseUrl + "/toDoElm/" + toDoElmId, 
+                    {
+                        content: e.target.value
+                    })
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+                    .catch((error) => {console.error(error);});
+            e.target.blur();
+            console.log("투두가 수정되었습니다.");
+        }
+    }
+
     return <div className="toDoBox">
         <form>
             <div className="toDoBox_menu">
@@ -90,21 +111,17 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                     onClick={()=> {onDeleteToDoBox();}}  />
             </div>
             <div className="toDoBox__title">
-                {/* <div className="toDoBox__title-tag"></div> */}
-                <Input ref = {inputTitle} value={ titleTxt } onChange={changeTitleTxt} onKeyPress={onUpdateToDoBoxTitle}/>         
+                <input type="text" value={ titleTxt } onChange={changeTitleTxt} onKeyPress={onUpdateToDoBoxTitle}/>         
             </div>
             <ul className="toDoBox__elm-list">
-                {toDoElmList.map(elm => {
+                {toDoElms.map(elm => {
                     if(elm.content == null) elm.content = "";
                 
                     return <li key={elm.id}>
-                        <button className="checkBtn" type="button">
-                            
-                        </button>
-                        <FontAwesomeIcon className="faCheck" icon={faCheck} />
+                        <button className="checkBtn" type="button"></button>
+                        <FontAwesomeIcon className={elm.completed ? "faCheck completed" : "faCheck"} icon={faCheck} />
                     
-                        <input type="text" value = {elm.content} onChange={()=>{}}/>
-                        
+                        <input type="text" value = {elm.content} onChange={(e)=>changeElmTxt(e, elm.id)} onKeyPress={(e)=>onUpdateToDoElm(e, elm.id)}/> 
                     </li>;
                 })}
             </ul>

@@ -14,17 +14,6 @@
     z-index: 3;
 }
 
-/* .toDoBox__title-tag {
-    margin-right: 11px;
-    display: block;
-    height: 25px;
-    width:6px;
-    background:#f5bc0f;
-    position:absolute;
-    top: 30px;
-    bottom:0;
-} */
-
 .toDoBox__title {
     margin-bottom: 30px;
     display:flex;
@@ -88,12 +77,17 @@
 }
 
 .toDoBox__elm-list .faCheck {
+    visibility: hidden;
     position: absolute;
     width: 20px;
     height:24px;
     left: 3px;
     color:#FDDC42;
     /* color:#f5bc0f; */
+}
+
+.toDoBox__elm-list .completed {
+    visibility: visible;
 }
 
 .toDoBox__elm-list input {
