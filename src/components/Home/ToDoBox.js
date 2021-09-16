@@ -75,11 +75,17 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
         await axios
             .post(baseUrl + "/toDoBox/" + id, {})
             .then((response) => {
-                console.log(response.data);
-                refreshPage();
+                // response.data로 새로 생성된 todo element의 id가 옴
+                console.log("todo elm " + response.data + "가 생성되었습니다.");
+                const elm = {
+                    id: response.data,
+                    content: "",
+                    completed: false
+                };
+
+                setToDoElms([...toDoElms, elm]);
             })
             .catch((error) => {console.error(error);});
-        console.log("todo elm 객체가 생성되었습니다.");
     }
 
     const onUpdateToDoElm = async (e, toDoElmId) => {
