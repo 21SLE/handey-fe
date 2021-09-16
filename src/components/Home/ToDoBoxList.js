@@ -4,8 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import ToDoBox from "./ToDoBox";
 import "./ToDoBoxList.css";
-import { faGooglePlusSquare } from "@fortawesome/free-brands-svg-icons";
-import { faPlusSquare } from "@fortawesome/free-regular-svg-icons";
 
 const baseUrl = "http://localhost:8080";
 
