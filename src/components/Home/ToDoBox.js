@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useRef, useState} from "react";
+import React, { forwardRef, useRef, useState} from "react";
 import { faCheck, faList, faPlus, faThumbtack, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
@@ -9,11 +9,16 @@ const Input = forwardRef((props, ref) => {
     return <input type="text" ref={ref} {...props}/>;
 });
 
+function refreshPage() {
+    window.location.reload(false);
+}
+
 function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
     const baseUrl = "http://localhost:8080";
 
     const [titleTxt, setTitleTxt] = useState(title);
     const [fixedColor, setFixedColor] = useState(fixed ? '#f5bc0f' : '#4b4b4b');
+    
     const inputTitle = useRef();
 
     function changeTitleTxt(e) {
@@ -21,54 +26,55 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
         setTitleTxt(e.target.value);
     }
 
-    const updateFixedYn = () => {
-        const updateFixedYn = async () => {
-            await axios
-                    .patch(baseUrl + "/toDoBox/" + id, {})
-                    .then((response) => {
-                        console.log(response.data);
+    const updateFixedYn = async () => {
+        await axios
+        .patch(baseUrl + "/toDoBox/" + id, {})
+        .then((response) => {
+            console.log(response.data);
 
-                    })
-                    .catch((error) => {console.error(error);});
-        }
-        updateFixedYn();
+        })
+        .catch((error) => {console.error(error);});
         console.log("고정 상태가 변경되었습니다.");
     }
 
-    const onUpdateToDoBoxTitle = (e) => {
+    const onUpdateToDoBoxTitle = async (e) => {
         // e.preventDefault();
         if(e.key === 'Enter') {
-            const updateToDoBoxTitle = async () => {
-                await axios
+            await axios
                     .put(baseUrl + "/toDoBox/" + id, 
                         {
                             title: titleTxt
-                        })
-                        .then((response) => {
-                            console.log(response.data);
-                        })
-                        .catch((error) => {console.error(error);});
-            }
-            updateToDoBoxTitle();
+                    })
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+                    .catch((error) => {console.error(error);});
             inputTitle.current.blur();
             console.log("타이틀이 수정되었습니다.");
-        } else {
-            setTitleTxt(e.target.value);
         }
     }
 
-    const onDeleteToDoBox = () => {
-        const deleteToDoBox = async () => {
-            await axios
-                    .delete(baseUrl + "/toDoBox/" + id)
-                    .then((response) => {
-                        console.log(response.data);
-                        deleteToDoBoxOnScreen(id);
-                    })
-                    .catch((error) => {console.error(error);});
-        }
-        deleteToDoBox();
+    const onDeleteToDoBox = async () => {
+        await axios
+            .delete(baseUrl + "/toDoBox/" + id)
+            .then((response) => {
+                console.log(response.data);
+                deleteToDoBoxOnScreen(id);
+            })
+            .catch((error) => {console.error(error);});
+
         console.log("ToDoBox: " + id + " deleted.");
+    }
+
+    const createToDoElmObj = async () => {
+        await axios
+            .post(baseUrl + "/toDoBox/" + id, {})
+            .then((response) => {
+                console.log(response.data);
+                refreshPage();
+            })
+            .catch((error) => {console.error(error);});
+        console.log("todo elm 객체가 생성되었습니다.");
     }
 
     return <div className="toDoBox">
@@ -78,7 +84,8 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                     onClick={()=> {updateFixedYn(); setFixedColor(fixedColor === '#f5bc0f' ? '#4b4b4b' : '#f5bc0f');}} 
                     style={{color: `${fixedColor}`}}/>
                 <FontAwesomeIcon className="fa faList" icon={faList} />
-                <FontAwesomeIcon className="fa faPlus" icon={faPlus} />
+                <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
+                    onClick={()=>{createToDoElmObj();}}/>
                 <FontAwesomeIcon className="fa faTrash" icon={faTrash}
                     onClick={()=> {onDeleteToDoBox();}}  />
             </div>
