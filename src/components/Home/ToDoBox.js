@@ -16,7 +16,7 @@ function refreshPage() {
 function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
     const baseUrl = "http://localhost:8080";
 
-    const [titleTxt, setTitleTxt] = useState(title);
+    const [titleTxt, setTitleTxt] = useState(title === null ? "" : title);
     const [fixedColor, setFixedColor] = useState(fixed ? '#f5bc0f' : '#4b4b4b');
     const [toDoElms, setToDoElms] = useState(toDoElmList);
 
@@ -43,7 +43,7 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
     }
 
     const onUpdateToDoBoxTitle = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         if(e.key === 'Enter') {
             await axios
                     .put(baseUrl + "/toDoBox/" + id, 
@@ -82,7 +82,6 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                     content: "",
                     completed: false
                 };
-
                 setToDoElms([...toDoElms, elm]);
             })
             .catch((error) => {console.error(error);});

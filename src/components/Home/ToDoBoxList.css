@@ -4,13 +4,20 @@
     overflow-x: hidden;
     padding: 20px;
     margin: -20px;
-    
     margin-bottom: 25px;
     width: 700px;
     height: 435px;
     z-index: 2;
     display: flex;
     flex-wrap: wrap;
+}
+
+.createToDoBoxBtn {
+    position:absolute;
+    float: right;
+    top: 0;
+    right: 0;
+    margin-right: -24px;
 }
 
 /* 스크롤바 너비 설정 */ 

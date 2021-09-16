@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import ToDoBox from "./ToDoBox";
 import "./ToDoBoxList.css";
+import { faGooglePlusSquare } from "@fortawesome/free-brands-svg-icons";
+import { faPlusSquare } from "@fortawesome/free-regular-svg-icons";
 
 const baseUrl = "http://localhost:8080";
 
@@ -26,13 +30,33 @@ function ToDoBoxList() {
                 console.error("ERROR: " + error);
             });
     };
+
+    const createToDoBoxObj = async () => {
+        await axios
+        .post(baseUrl + "/toDoBox", {})
+        .then((response) => {
+            // response.data로 새로 생성된 todo element의 id가 옴
+            console.log("todo box " + response.data + "가 생성되었습니다.");
+            const box = {
+                id: response.data,
+                title: "",
+                fixed: false,
+                toDoElmList: []
+            };
+
+            setToDoBoxListData([...toDoBoxListData, box]);
+        })
+        .catch((error) => {console.error(error);});
+    }
     
     const deleteToDoBoxOnScreen = (toDoBoxId) => {
         setToDoBoxListData(toDoBoxListData.filter((toDoBox)=> toDoBox.id !== toDoBoxId));
     }
 
     return <ToDoContext.Provider value = {toDoBoxListData}>
+        <FontAwesomeIcon className="fa faPlus createToDoBoxBtn" icon={faPlus} onClick={()=>{createToDoBoxObj();}}/>
         <div className="toDoBoxList">
+        
             {            
                 toDoBoxListData.map(toDoBox => {
                     return <ToDoBox 
