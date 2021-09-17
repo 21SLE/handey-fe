@@ -28,7 +28,6 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
     const [editingYn, setEditingYn] = useState(false);
 
     function changeTitleTxt(e) {
-        console.log(e.target.value);
         e.preventDefault();
         setTitleTxt(e.target.value);
     }
@@ -51,20 +50,18 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
     }
 
     const onUpdateToDoBoxTitle = async (e) => {
-        // e.preventDefault();
-        if(e.key === 'Enter') {
-            await axios
-                    .put(baseUrl + "/toDoBox/" + id, 
-                        {
-                            title: titleTxt
-                    })
-                    .then((response) => {
-                        console.log(response.data);
-                    })
-                    .catch((error) => {console.error(error);});
-            e.target.blur();
-            console.log("타이틀이 수정되었습니다.");
-        }
+        e.preventDefault();
+        await axios
+            .put(baseUrl + "/toDoBox/" + id, 
+                {
+                    title: titleTxt
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {console.error(error);});
+        // e.target.blur();
+        console.log("타이틀이 수정되었습니다.");
     }
 
     const onDeleteToDoBox = async () => {
@@ -105,7 +102,7 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                 console.log(response.data);
             })
             .catch((error) => {console.error(error);});
-        e.target.blur();
+        // e.target.blur();
         console.log("투두가 수정되었습니다.");
     }
 
@@ -141,14 +138,18 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                 <FontAwesomeIcon className={fixed ? "fa faThumbtack fixed" : "fa faThumbtack"} icon={faThumbtack} 
                     onClick={()=> {onUpdateFixedYn();}} style={{color: `${fixedColor}`}}/>
                 <FontAwesomeIcon className="fa faList" icon={faList} 
-                    onClick={() => {setEditingYn(!editingYn); console.log(editingYn);}}/>
+                    onClick={() => {if(toDoElms.length !== 0) setEditingYn(!editingYn);}}/>
                 <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
                     onClick={()=>{onCreateToDoElmObj();}}/>
                 <FontAwesomeIcon className="fa faTrash" icon={faTrash}
                     onClick={()=> {onDeleteToDoBox();}}  />
             </div>
             <div className="toDoBox__title">
-                <input type="text" value={ titleTxt } onChange={changeTitleTxt} onKeyPress={onUpdateToDoBoxTitle}/>         
+                <input type="text" value={ titleTxt } 
+                onChange={changeTitleTxt} 
+                onKeyPress={onEnterKeyPressBlur}
+                onBlur={(e)=>onUpdateToDoBoxTitle(e)}
+                />         
             </div>
             <ul className="toDoBox__elm-list">
                 {toDoElms.map(elm => {
