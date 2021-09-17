@@ -21,6 +21,7 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
     const [toDoElms, setToDoElms] = useState(toDoElmList);
 
     function changeTitleTxt(e) {
+        console.log(e.target.value);
         e.preventDefault();
         setTitleTxt(e.target.value);
     }
@@ -43,7 +44,7 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
     }
 
     const onUpdateToDoBoxTitle = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         if(e.key === 'Enter') {
             await axios
                     .put(baseUrl + "/toDoBox/" + id, 
