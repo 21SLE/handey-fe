@@ -1,3 +1,11 @@
+.invisible {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}
+
 .toDoBox {
     display: inline-block;
     box-sizing: border-box;
@@ -65,29 +73,42 @@
     margin-bottom: 33px;  
  }
 
-.checkBtn {
+.circleBorderBtn {
     position: absolute;
     outline: inherit;
     border: 2px solid lightgrey;
     background-color: white;
     height: 26px;
     width: 26px;
-    border-radius: 13px; 
-
+    border-radius: 13px;
 }
 
 .toDoBox__elm-list .faCheck {
-    visibility: hidden;
     position: absolute;
     width: 20px;
     height:24px;
     left: 3px;
-    color:#FDDC42;
-    /* color:#f5bc0f; */
+    color: #fddb4200;
 }
 
 .toDoBox__elm-list .completed {
-    visibility: visible;
+    color: #FDDC42;
+}
+
+.toDoBox__elm-list .elmInputCompleted {
+    color: #FDDC42;
+}
+
+.toDoBox__elm-list .editingCircleBorderBtn {
+    border: 2px solid rgba(151, 53, 40, 0.7);
+}
+
+.toDoBox__elm-list .faMinus {
+    position: absolute;
+    width: 20px;
+    height:24px;
+    left: 3px;
+    color: rgba(151, 53, 40, 0.7);
 }
 
 .toDoBox__elm-list input {
