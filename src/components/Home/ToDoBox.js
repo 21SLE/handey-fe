@@ -13,6 +13,12 @@ function refreshPage() {
     window.location.reload(false);
 }
 
+function onEnterKeyPressBlur(e) {
+    if(e.key === 'Enter') {
+        e.target.blur();
+    }
+}
+
 function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
     const baseUrl = "http://localhost:8080";
 
@@ -90,23 +96,31 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
     }
 
     const onUpdateToDoElm = async (e, toDoElmId) => {
-        if(e.key === 'Enter') {
-            await axios
-                    .put(baseUrl + "/toDoElm/" + toDoElmId, 
-                    {
-                        content: e.target.value
-                    })
-                    .then((response) => {
-                        console.log(response.data);
-                    })
-                    .catch((error) => {console.error(error);});
-            e.target.blur();
-            console.log("투두가 수정되었습니다.");
-        }
+        await axios
+            .put(baseUrl + "/toDoElm/" + toDoElmId, 
+            {
+                content: e.target.value
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {console.error(error);});
+        e.target.blur();
+        console.log("투두가 수정되었습니다.");
     }
 
     const onDeleteToDoElm = async (toDoElmId) => {
+        if(editingYn){
+            await axios
+            .delete(baseUrl + "/toDoElm/" + toDoElmId)
+            .then((response) => {
+                console.log(response.data);
+                setToDoElms(toDoElms.filter((elm) => elm.id !== toDoElmId));
+            })
+            .catch((error) => {console.error(error);});
 
+        console.log("ToDo Element: " + toDoElmId + " deleted.");
+        }
     }
     
     const onClickCompleteBtn = async (toDoElmId) => {
@@ -149,10 +163,11 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                             } icon={faCheck} onClick={()=>onClickCompleteBtn(elm.id)}/>
                         <FontAwesomeIcon className={editingYn ? "faMinus visible" : "faMinus invisible"} icon={faMinus} 
                             onClick={()=>onDeleteToDoElm(elm.id)}/>
-                        
 
                         <input type="text" className={ elm.completed ? "elmInputCompleted" : null } value = {elm.content} 
-                            onChange={(e)=>changeElmTxt(e, elm.id)} onKeyPress={(e)=>onUpdateToDoElm(e, elm.id)}/> 
+                            onChange={(e) => changeElmTxt(e, elm.id)} 
+                            onKeyPress={onEnterKeyPressBlur}
+                            onBlur={(e) => onUpdateToDoElm(e, elm.id)}/> 
                     </li>;
                 })}
             </ul>
