@@ -17,8 +17,7 @@ function Memo({id, content}) {
         // TODO 회원가입 완성시 수정
         await axios.get(baseUrl + "/memo/1")
             .then((response) => {
-                console.log(response.data);
-                setMemoTxt(response.data.content);
+                setMemoTxt(response.data.content === null ? "" : response.data.content);
             })
             .catch((error) => {
                 console.error("ERROR: " + error);
@@ -26,7 +25,8 @@ function Memo({id, content}) {
     }
 
     const onUpdateMemo = async (e) => {
-        if(e.key === 'Enter') {
+        if(e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
             // TODO 회원가입 완성시 수정
             await axios
                     .put(baseUrl + "/memo/1", 
@@ -45,8 +45,6 @@ function Memo({id, content}) {
     useEffect(() => {
         getMemo();
     }, []);
-
-
 
     return <div className="memo">
         <textarea value = {memoTxt} onChange={changeMemoTxt} onKeyPress={onUpdateMemo} />
