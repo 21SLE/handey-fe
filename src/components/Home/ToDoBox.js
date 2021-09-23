@@ -15,6 +15,7 @@ function refreshPage() {
 
 function onEnterKeyPressBlur(e) {
     if(e.key === 'Enter') {
+        e.preventDefault();
         e.target.blur();
     }
 }
@@ -50,7 +51,6 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
     }
 
     const onUpdateToDoBoxTitle = async (e) => {
-        e.preventDefault();
         await axios
             .put(baseUrl + "/toDoBox/" + id, 
                 {
@@ -60,7 +60,6 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                 console.log(response.data);
             })
             .catch((error) => {console.error(error);});
-        // e.target.blur();
         console.log("타이틀이 수정되었습니다.");
     }
 
