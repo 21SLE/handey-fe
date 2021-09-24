@@ -140,7 +140,7 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                     onClick={() => {if(toDoElms.length !== 0) setEditingYn(!editingYn);}}/>
                 <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
                     onClick={()=>{onCreateToDoElmObj();}}/>
-                <FontAwesomeIcon className="fa faTrash" icon={faTrash}
+                <FontAwesomeIcon className={editingYn ? "fa faTrash visible" : "fa faTrash invisible"} icon={faTrash}
                     onClick={()=> {onDeleteToDoBox();}}  />
             </div>
             <div className="toDoBox__title">
