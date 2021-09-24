@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./routes/Login";
 import Home from "./routes/Home/Home";
-import History from "./routes/History";
+import History from "./routes/History/History";
 import SideBar from "./components/common/Side-bar";
 import "./App.css";
 
