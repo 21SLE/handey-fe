@@ -137,7 +137,7 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                 <FontAwesomeIcon className={fixed ? "fa faThumbtack fixed" : "fa faThumbtack"} icon={faThumbtack} 
                     onClick={()=> {onUpdateFixedYn();}} style={{color: `${fixedColor}`}}/>
                 <FontAwesomeIcon className="fa faList" icon={faList} 
-                    onClick={() => {if(toDoElms.length !== 0) setEditingYn(!editingYn);}}/>
+                    onClick={() => setEditingYn(!editingYn)}/>
                 <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
                     onClick={()=>{onCreateToDoElmObj();}}/>
                 <FontAwesomeIcon className={editingYn ? "fa faTrash visible" : "fa faTrash invisible"} icon={faTrash}
