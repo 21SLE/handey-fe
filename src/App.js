@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./routes/Login";
 import Home from "./routes/Home/Home";
 import History from "./routes/History/History";
+import Trash from "./routes/Trash/Trash"
 import SideBar from "./components/common/Side-bar";
 import "./App.css";
 
@@ -16,6 +17,7 @@ function App() {
       <Switch>
         <Route path="/home" component={Home} />
         <Route path="/history" component={History} />
+        <Route path="/trash" component={Trash} />
         {/* <Route component={PageNotFound} /> */}
       </Switch>
     </BrowserRouter>
