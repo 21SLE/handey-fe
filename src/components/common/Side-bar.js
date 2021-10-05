@@ -12,6 +12,7 @@ class SideBar extends React.Component {
             <ul>
                 <li><Link to="/home">Home</Link></li>
                 <li><Link to="/history">History</Link></li>
+                <li><Link to="/trash">휴지통</Link></li>
             </ul>
         </div>
         : null;
