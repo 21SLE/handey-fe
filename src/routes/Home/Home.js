@@ -1,8 +1,8 @@
 import React from "react";
-import AfterBoxList from "../../components/History/AfterBoxList";
+import AfterBoxList from "../../components/history/AfterBoxList";
 import ToDoBoxList from "../../components/Home/ToDoBoxList";
 import Memo from "../../components/Home/Memo";
-import WeeklyBoxList from "../../components/History/WeeklyBoxList";
+import WeeklyBoxList from "../../components/history/WeeklyBoxList";
 import "./Home.css";
 
 class Home extends React.Component {

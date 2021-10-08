@@ -1,87 +1,45 @@
-import React from "react";
-import { withRouter,Redirect} from "react-router";
+import { useState, useEffect } from "react";
+import {Redirect} from "react-router-dom";
 import "./Login.css";
 
-class Login extends React.Component{
+function Login({ authenticated, login, location }) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    state = {
-        userEmail : "",
-        userPw : "",
-        idCheck : false,
-        pwCheck : false,
-        btnColor :"#ffffff"
-    };
-
-    //이동 위치
-    move = () => {
-        this.props.history.push("/home");
-    };
-
-    //아이디 체크
-    idChecked = (event) => {
-        this.setState({userEmail : event.target.value});
-        if(event.target.value.includes("@")){
-            this.setState({idCheck : true}, () => this.btnChangeColor());
-        } else{
-            this.setState({idCheck : false}, () => this.btnChangeColor());
+    const handleClick = () => {
+        try{
+            login({email, password});
+        } catch(e){
+            alert("Failed");
+            setEmail("");
+            setPassword("");
         }
     };
 
-    //비밀번호 체크
-    passwordChecked = (event) => {
-        this.setState({userPw : event.target.value});
-        if(event.target.value.length >= 8){
-            this.setState({userEmail : event.target.value , pwCheck : true}, () => this.btnChangeColor());
-        } else{
-            this.setState({pwCheck : false}, () => this.btnChangeColor());
-        }
-    };
-
-    //버튼 색 변화
-    btnChangeColor = () => {
-        if(this.state.idCheck && this.state.pwCheck){
-            this.setState({btnColor: "#F9A825"});
-        }
-        else{
-            this.setState({btnColor: "#ffffff"})
-        }
-    };
-
-    //버튼 클릭
-    btnClick = () => {
-        this.move();
+    const {from} = location.state || {from : {pathname: "/"}};
+    if (authenticated) {
+        return <Redirect to = {from} />;
     }
 
-    render() {
-        return(
-            <div className = "Login">
-                <div className = "LoginForm">
-                    <p className = "Logo">Sign in</p>
-                    <input
-                    className = "userId"
-                    type = "text"
-                    placeholder = "Email"
-                    onChange = {this.idChecked}
-                    />
-                     <input
-                    className = "userPw"
-                    type = "text"
-                    placeholder = "PW"
-                    onChange = {this.passwordChecked}
-                    />
-                    <button
-                    className = "loginBTN"
-                    type = "button"
-                    style = {{backgroundColor : this.state.btnColor}}
-                    onClick = {this.btnClick}
-                    >Login</button>
-
-                </div>
-            </div>
-
-        )
-    }
-
+    return(
+        <div className = "InputBox">
+            <h1 className = "title">Sign in</h1>
+            <input className = "email"
+            value={email}
+            onChange={({target: {value}}) => setEmail(value)}
+            type = "text"
+            placeholder = "id"
+            />
+            <input className = "password"
+            value={password}
+            onChange={({target: {value}}) => setPassword(value)}
+            type = "text"
+            placeholder = "password"
+            />
+            <button onClick = {handleClick}>Login</button>
+        </div>
+    )
 }
 
-export default withRouter(Login);
+
+export default Login;
