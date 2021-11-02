@@ -1,4 +1,5 @@
 import React from "react";
+import "./WeeklyBox";
 import "./AfterBoxList.css";
 
 function AfterBoxList() {

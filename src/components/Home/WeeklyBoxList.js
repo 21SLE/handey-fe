@@ -56,7 +56,7 @@ function WeeklyBoxList() {
                         title = {weeklyBox.title}
                         fixed = {weeklyBox.fixed}
                         weeklyElmList = {weeklyBox.weeklyElmList}
-                        //deleteWeeklyBoxOnScreen = {deleteWeeklyBoxOnScreen}
+                        //위클리는 no box
                     />;
                 })
             }
