@@ -14,6 +14,20 @@ function WeeklyBox({id, title}) {
     </div>;
 }
 
+const updateClear = async() => {
+    await axios
+            .put(baseUrl + "/weeklyElm/" + weeklyElmId, 
+            {
+                content: e.target.value
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {console.error(error);});
+        // e.target.blur();
+        console.log("위클리 클리어.");
+}
+
 WeeklyBox.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string
