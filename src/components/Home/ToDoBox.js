@@ -128,7 +128,6 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                 setToDoElms(toDoElms.map(elm=> elm.id === toDoElmId ? { ...elm, completed: !elm.completed } : elm));
             })
             .catch((error) => {console.error(error);});
-
     }
 
     return <div className="toDoBox">
