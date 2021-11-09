@@ -152,7 +152,6 @@ function WeeklyBoxList({id, title, weeklyElmList}) {
     }
 
     return <WeeklyContext.Provider value = {weeklyBoxListData}>
-
         <div className="weeklyBox_menu">
             <FontAwesomeIcon className="fa faList" icon={faList} 
                 onClick={() => setEditingYn(!editingYn)}/>
@@ -168,26 +167,6 @@ function WeeklyBoxList({id, title, weeklyElmList}) {
         </div>  
     <FontAwesomeIcon className="fa faPlus createWeeklyBoxBtn" icon={faPlus} onClick={()=>{createWeeklyBoxObj();}}/>
         <div className="weeklyList">
-        <ul className="weeklyBox__elm-list">
-            {weeklyElms.map(elm => {
-                if(elm.content == null) elm.content = "";
-                return <li key={elm.id}>
-                    <button className={editingYn ? "circleBorderBtn editingCircleBorderBtn" : "circleBorderBtn"} type="button"></button>
-                    <FontAwesomeIcon className={
-                            editingYn
-                             ? "faCheck invisible"
-                             : elm.completed ? "faCheck completed" : "faCheck"
-                        } icon={faCheck} onClick={()=>onClickClearBtn(elm.id)}/>
-                    <FontAwesomeIcon className={editingYn ? "faMinus visible" : "faMinus invisible"} icon={faMinus} 
-                        onClick={()=>onDeleteWeeklyElm(elm.id)}/>
-
-                    <input type="text" className={ elm.completed ? "elmInputCompleted" : null } value = {elm.content} 
-                        onChange={(e) => changeElmTxt(e, elm.id)} 
-                        onKeyPress={onEnterKeyPressBlur}
-                        onBlur={(e) => onUpdateWeeklyElm(e, elm.id)}/> 
-                </li>;
-            })}
-        </ul>
         </div>
     </WeeklyContext.Provider>;
 }
