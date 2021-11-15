@@ -10,6 +10,7 @@ import SideBar from "./components/common/Side-bar";
 import "./App.css";
 
 function App() {
+
   return (
     <BrowserRouter>
       <Route path="/" exact={true} component={Login} />
@@ -26,6 +27,8 @@ function App() {
       </Switch>
     </BrowserRouter>
   );
+
+
 }
 
 export default App;

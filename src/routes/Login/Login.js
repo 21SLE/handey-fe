@@ -33,13 +33,13 @@ import "./Login.css";
                 localStorage.jwtAuthToken = res.headers['ACCESS_TOKEN'];
                 console.log(res.data);
 
-                if(localStorage.jwtAuthToken.ACCESS_TOKEN == null){
-                    alert("fail");
-                    console.log("fail");
-                }
-                else{
-                    console.log("success")
-                }
+                // if(localStorage.jwtAuthToken.ACCESS_TOKEN == null){
+                //     alert("fail");
+                //     console.log("fail");
+                // }
+                // else{
+                //     console.log("success")
+                // }
             }       
     return(
         <div className = "InputBox">
