@@ -16,8 +16,10 @@ function onEnterKeyPressBlur(e) {
     }
 }
 
+const baseUrl = "http://localhost:8080";
+
 function WeeklyBox({id, title, weeklyElmList}) {
-    const baseUrl = "http://localhost:8080";
+    
 
     const [titleTxt, setTitleTxt] = useState(title === null ? "" : title);
     const [weeklyElms, setWeeklyElms] = useState(weeklyElmList);
@@ -73,7 +75,6 @@ function WeeklyBox({id, title, weeklyElmList}) {
         await axios
             .post(baseUrl + "/weeklyBox/" + id, {})
             .then((response) => {
-                // response.data로 새로 생성된 weekly element의 id가 옴
                 console.log("weekly elm " + response.data + "가 생성되었습니다.");
                 const elm = {
                     id: response.data,

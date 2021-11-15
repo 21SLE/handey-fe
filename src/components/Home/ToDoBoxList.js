@@ -6,7 +6,7 @@ import ToDoBox from "./ToDoBox";
 import "./ToDoBoxList.css";
 
 const baseUrl = "http://localhost:8080";
-
+axios.defaults.baseURL = "http://localhost:8080/";
 export const ToDoContext = React.createContext();
 
 function ToDoBoxList() {
@@ -19,6 +19,7 @@ function ToDoBoxList() {
     }, []);
 
     async function getToDoBoxList() {
+        
         await axios.get(baseUrl + "/toDoBoxList")
             .then((response) => {
                 console.log(response.data);

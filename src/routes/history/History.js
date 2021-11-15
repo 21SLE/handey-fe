@@ -10,7 +10,7 @@ class History extends React.Component {
         return <div className = "history-layout" style={{paddingLeft: "280px"}}>
         
             <span>this is history screen</span>
-
+           
         </div>;
     }
 }
