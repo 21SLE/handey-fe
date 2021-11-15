@@ -8,7 +8,7 @@ const Input = forwardRef((props, ref) => {
 class Search extends React.Component {
     render() {
         return <div className = "Search-layout">
-            <span>Search</span>
+            < input type="text" className = "Search_input"/> 
         </div>;
     }
 }

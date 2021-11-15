@@ -48,11 +48,3 @@
     left: 3px;
     color: #fddb4200;
 }
-
-.weeklyBox__elm-list .completed {
-    color: #FDDC42;
-}
-
-.weeklyBox__elm-list .elmInputCompleted {
-    color: #FDDC42;
-}

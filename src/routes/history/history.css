@@ -1,6 +1,8 @@
 .history-layout {
     margin-left: 280px;
     padding: 40px;
+    vertical-align: baseline;
+    background: transparent;
 }
 
 .history-layout__wrap {
@@ -10,18 +12,17 @@
 }
 
 .history-layout__wrap__search {
-    margin-top: 40px;
-    margin-left: 320px;
+    margin-top: 0px;
+    margin-left: 0px;
     position: absolute;
     z-index: 1;
 }
 
 .history-layout__wrap__main {
     margin-top: 120px;
-    margin-left: 320px;
+    margin-left: 0px;
     display: inline-flex;
     position: absolute;
-    min-height: fit-content;
-    height:fit-content;
+    height: 600;
     flex-direction: column;
 }
