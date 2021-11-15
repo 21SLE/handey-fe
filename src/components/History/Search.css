@@ -1,13 +1,16 @@
-.Search {
-    border: 2px solid var(--deep-yellow);
-    text-align: left;
+.Search {    
+    box-sizing: border-box;
     display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1140px;
-    height: 40px;
+    position: relative;
+    background-color: white;
+    box-shadow: 5px 10px 25px 10px #e8e8e8 ; /*x-position y-position blur spread color*/
+    border-radius: 10px;
+    vertical-align: center;
+    width: 920px;
+    height: 50px;
     margin-left: 40px;
-    margin-right: 40px;
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 3;
 }
