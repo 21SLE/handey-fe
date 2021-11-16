@@ -1,0 +1,15 @@
+.trashBox {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 30px 15px 35px 30px; /*top right bottom left*/
+    margin-bottom: 25px;
+    margin-right: 20px;
+    background-color: white;
+    width: 320px;
+    min-height: fit-content;
+    height:fit-content;
+    max-height: fit-content;
+    box-shadow: 5px 10px 25px 10px #e8e8e8 ; /*x-position y-position blur spread color*/
+    border-radius: 10px;
+    z-index: 3;
+}
