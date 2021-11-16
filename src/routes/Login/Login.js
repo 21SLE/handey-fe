@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {useHistory} from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 
@@ -6,6 +7,8 @@ import "./Login.css";
 
         function Login() {
             
+            const history = useHistory();
+
             const [email, setEmail] = useState("");
             const [password, setPassword] = useState("");
         
@@ -18,29 +21,47 @@ import "./Login.css";
                 e.preventDefault();
                 setPassword(e.target.value)
             }
-
             
             const onsubmit = async() => {
-                
+
                 const User= {
                     email: email,
                     password: password
                 };
 
-            const res = 
                 await axios
-                .post(baseUrl+"/login",User)    
-                localStorage.jwtAuthToken = res.headers['ACCESS_TOKEN'];
-                console.log(res.data);
+                .post(baseUrl+"/login",User)
+                
+                .then(function(response){
+                    localStorage.jwtAuthToken = response.headers['ACCESS_TOKEN'];
+                    console.log(response.data);
+                     
+                    if(response.data.success === true){
+                        console.log("success");
+                        history.push("/home");
+                     }
+                     else{
+                        console.log("fail");
+                         alert("아이디나 비밀번호가 틀렸습니다");
+                         this.setState({
+                             email: "",
+                             password: ""
+                         })
+                     }
 
-                // if(localStorage.jwtAuthToken.ACCESS_TOKEN == null){
-                //     alert("fail");
-                //     console.log("fail");
-                // }
-                // else{
-                //     console.log("success")
-                // }
-            }       
+                })
+                .catch(function(error){
+                    console.log("error");
+                })   
+            } 
+
+                const KeyPress = (e) => { 
+                    if(e.key === 'Enter') {
+                       onsubmit();
+                    }
+                }
+
+
     return(
         <div className = "InputBox">
             <h1 className = "title">Sign in</h1>
@@ -62,6 +83,7 @@ import "./Login.css";
             type = "text"
             required={true}
             placeholder = "password"
+            onKeyPress={KeyPress}
             />
             </div>
             <button type = "button" onClick={onsubmit}>Login</button>
@@ -71,7 +93,5 @@ import "./Login.css";
             </div>
         </div>
     )
-}
-
-
+        }
 export default Login;

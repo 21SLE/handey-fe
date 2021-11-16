@@ -37,10 +37,6 @@ function Join(props){
     })
 
         .then(res => {
-
-            const {accessToken} = res.data;
-            axios.defaults.headers.common['Authorization'] = 'Bearer ${accessToken}';
-          
     })
     .catch(error =>{
 
