@@ -96,7 +96,6 @@ function WeeklyBox({id, title, weeklyElmList}) {
                 console.log(response.data);
             })
             .catch((error) => {console.error(error);});
-        // e.target.blur();
         console.log("위클리내용이 수정됨.");
     }
 
