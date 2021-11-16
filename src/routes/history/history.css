@@ -1,0 +1,28 @@
+.history-layout {
+    margin-left: 280px;
+    padding: 40px;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+.history-layout__wrap {
+    display:flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.history-layout__wrap__search {
+    margin-top: 0px;
+    margin-left: 0px;
+    position: absolute;
+    z-index: 1;
+}
+
+.history-layout__wrap__main {
+    margin-top: 120px;
+    margin-left: 0px;
+    display: inline-flex;
+    position: absolute;
+    height: 600;
+    flex-direction: column;
+}
