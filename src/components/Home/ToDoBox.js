@@ -166,7 +166,7 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                         <input type="text" className={ elm.completed ? "elmInputCompleted" : null } value = {elm.content} 
                             onChange={(e) => changeElmTxt(e, elm.id)} 
                             onKeyPress={onEnterKeyPressBlur}
-                            onBlur={(e) => onUpdateToDoElm(e, elm.id)}/> 
+                            onBlur={(e) => onUpdateToDoElm(e, elm.id)}/>
                     </li>;
                 })}
             </ul>

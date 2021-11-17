@@ -41,7 +41,7 @@
 }
 
 .search_input input[type=text]:focus {
-    outline:none;
+    outline: none;
     text-decoration: none;
     box-shadow: none;
     border-bottom: none;
