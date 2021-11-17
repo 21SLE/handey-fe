@@ -1,7 +1,7 @@
 import React from "react";
 import HstBoxList from "../../components/History/HstBoxList";
 import Search from "../../components/History/Search";
-import "./History.css";
+import "./history.css";
 
 
 class History extends React.Component {   
