@@ -1,34 +1,33 @@
-.Search {    
-    position: relative;
+.Search__layout {
     display: flex;
-}
-
-.Search-layout {
-    box-align: left;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-align: center;
     box-sizing: border-box;
-    display: inline-block;
-    position: relative;
     background-color: white;
     box-shadow: 5px 10px 25px 10px #e8e8e8 ; /*x-position y-position blur spread color*/
     border-radius: 10px;
-    width: 1000px;
+    width: 1200px;
     height: 70px;
     margin-left: 0px;
+    margin-right: 20px;
     margin-top: 20px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     z-index: 3;
 }
 
-.Search-layout>span {
+.Search__layout>span {
     font-size: large;
     transform: skew(-0.03deg);
     display: inline-block;
     padding: 4.5px;
 }
 
-.search_input input[type=text] {
-    width: 80%;
+.search__input input[type=text] {
+    width: 600px;
     text-decoration: none;
+    margin-top: 20px;
     margin-right: 1px;
     margin-bottom: 1px;
     border: none;
@@ -40,9 +39,20 @@
     background: none;
 }
 
-.search_input input[type=text]:focus {
+.search__input input[type=text]:focus {
     outline: none;
     text-decoration: none;
     box-shadow: none;
     border-bottom: none;
+}
+
+.search__date {
+    margin-right: 20px;
+}
+
+.search__date .faCalendarAlt{
+    position: relative;
+    width: 40px;
+    height:30px;
+    color: rgba(151, 53, 40, 0.7);
 }

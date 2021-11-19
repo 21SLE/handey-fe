@@ -115,6 +115,19 @@ function WeeklyBox({id, title, weeklyElmList}) {
 
     return <div className="weeklyBox">
     <form>
+        <div className="weeklyBox_menu">
+                    <FontAwesomeIcon className="fa faList" icon={faList} 
+                        onClick={() => setEditingYn(!editingYn)}/>
+                    <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
+                        onClick={()=>{onCreateWeeklyElmObj();}}/>  />
+                </div>
+                <div className="weeklyBox__title">
+                    <input type="text" value={ titleTxt } 
+                    onChange={changeTitleTxt} 
+                    onKeyPress={onEnterKeyPressBlur}
+                    onBlur={(e)=>onUpdateWeeklyBoxTitle(e)}
+                    />         
+        </div>
         <ul className="weeklyBox__elm-list">
             {weeklyElms.map(elm => {
                 if(elm.content == null) elm.content = "";

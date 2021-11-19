@@ -1,7 +1,7 @@
 import React from "react";
 import HstBoxList from "../../components/History/HstBoxList";
 import Search from "../../components/History/Search";
-import "./History.css";
+import "./history.css";
 
 
 class History extends React.Component {   
@@ -15,7 +15,7 @@ class History extends React.Component {
                     <div className = "history-layout__wrap__main">
                         <HstBoxList/>
                     </div>
-                </div>
+            </div>
         </div>;
     }
 }

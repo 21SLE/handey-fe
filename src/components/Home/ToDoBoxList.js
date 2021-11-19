@@ -6,7 +6,6 @@ import ToDoBox from "./ToDoBox";
 import "./ToDoBoxList.css";
 
 const baseUrl = "http://localhost:8080";
-axios.defaults.baseURL = "http://localhost:8080/";
 export const ToDoContext = React.createContext();
 
 function ToDoBoxList() {
