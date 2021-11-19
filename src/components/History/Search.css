@@ -14,6 +14,7 @@
     margin-right: 20px;
     margin-top: 20px;
     flex-wrap: nowrap;
+    padding: 20px 20px;
     z-index: 3;
 }
 
@@ -47,7 +48,6 @@
 }
 
 .search__date {
-    margin-right: 20px;
 }
 
 .search__date .faCalendarAlt{
