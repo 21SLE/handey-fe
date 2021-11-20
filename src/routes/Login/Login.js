@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useHistory} from "react-router-dom";
+import {useNavigate, Navigate} from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 
@@ -7,7 +7,8 @@ import "./Login.css";
 
         function Login() {
             
-            const history = useHistory();
+            const navigate = useNavigate();
+            //const history = useHistory();
 
             const [email, setEmail] = useState("");
             const [password, setPassword] = useState("");
@@ -36,18 +37,18 @@ import "./Login.css";
                     localStorage.jwtAuthToken = response.headers['ACCESS_TOKEN'];
                     console.log(response.data);
                      
-                    if(response.data.success === true){
-                        console.log("success");
-                        history.push("/home");
-                     }
-                     else{
-                        console.log("fail");
-                         alert("아이디나 비밀번호가 틀렸습니다");
-                         this.setState({
-                             email: "",
-                             password: ""
-                         })
-                     }
+                    // if(response.data.success === true){
+                    //     console.log("success");
+                    //     Navigate("/home");
+                    //  }
+                    //  else{
+                    //     console.log("fail");
+                    //      alert("아이디나 비밀번호가 틀렸습니다");
+                    //      this.setState({
+                    //          email: "",
+                    //          password: ""
+                    //      })
+                    //  }
 
                 })
                 .catch(function(error){
