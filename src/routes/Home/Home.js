@@ -37,7 +37,6 @@ class Home extends React.Component {
     
 
     render() {
-
         return <div className = "home-layout">
             <div className = "home-layout__wrap">
                 <div className = "home-layout__wrap__left">

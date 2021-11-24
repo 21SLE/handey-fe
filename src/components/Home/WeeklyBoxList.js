@@ -13,8 +13,7 @@ export const WeeklyContext = React.createContext();
 
 function WeeklyBoxList() {
 
-    // const [input, setInput] = useState(""); //input 초기값이 ""
-    const [weeklyBoxListData, setWeeklyBoxListData] = useState([]); //weekly 빈 객체 배열로 만들어줌
+    const [weeklyBoxListData, setWeeklyBoxListData] = useState([]);
 
     useEffect(() => {
         getWeeklyBoxList();
@@ -22,10 +21,10 @@ function WeeklyBoxList() {
 
     async function getWeeklyBoxList() {
         
-        await axios.get(baseUrl + "/weeklyBoxList")
+        await axios.get(baseUrl + "/user/1/weeklyBoxList")
             .then((response) => {
                 console.log(response.data);
-                setWeeklyBoxListData(response.data);
+                //setWeeklyBoxListData(response.data);
             })
             .catch((error) => {
                 console.error("ERROR: " + error);
@@ -34,14 +33,14 @@ function WeeklyBoxList() {
 
     const createWeeklyBoxObj = async () => {
         await axios
-        .post(baseUrl + "/weeklyBox", {})
+        .post(baseUrl + "/user/1/weeklyBox", {})
         .then((response) => {
             // response.data로 새로 생성된 weekly element의 id가 옴
             console.log("weekly box " + response.data + "가 생성되었습니다.");
             const box = {
                 id: response.data,
                 title: "",
-                fixed: false,
+                clear: false,
                 weeklyElmList: []
             };
 
@@ -66,7 +65,8 @@ function WeeklyBoxList() {
                         clear = {weeklyBox.clear}
                         weeklyElmList = {weeklyBox.weeklyElmList}
                         deleteWeeklyBoxOnScreen = {deleteWeeklyBoxOnScreen}
-                    />;
+                    />; 
+                    
                 })
             }
 

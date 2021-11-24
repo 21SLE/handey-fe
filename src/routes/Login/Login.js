@@ -1,14 +1,30 @@
 import React, { useState, useEffect } from "react";
-import {useNavigate, Navigate} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
+import customAxios from "../../customAxios";
 
     const baseUrl = "http://localhost:8080"
 
         function Login() {
+              // IP주소 변수 선언
+            const [ip, setIp] = useState('');
+
+            // IP주소 값을 설정합니다.
+            function callback(data) {
+                setIp(data);
+            }
+
+            // 첫번째 렌더링을 다 마친 후 실행합니다.
+            useEffect(
+                () => {
+                // 클라이언트의 IP주소를 알아내는 백엔드의 함수를 호출합니다.
+                customAxios('/ip', callback);
+                }, []
+            );
             
-            const navigate = useNavigate();
-            //const history = useHistory();
+            //const navigate = useNavigate();
+            const history = useHistory();
 
             const [email, setEmail] = useState("");
             const [password, setPassword] = useState("");
@@ -37,18 +53,18 @@ import "./Login.css";
                     localStorage.jwtAuthToken = response.headers['ACCESS_TOKEN'];
                     console.log(response.data);
                      
-                    // if(response.data.success === true){
-                    //     console.log("success");
-                    //     Navigate("/home");
-                    //  }
-                    //  else{
-                    //     console.log("fail");
-                    //      alert("아이디나 비밀번호가 틀렸습니다");
-                    //      this.setState({
-                    //          email: "",
-                    //          password: ""
-                    //      })
-                    //  }
+                    if(response.data.success === true){
+                        console.log("success");
+                        history.push("/home");
+                     }
+                     else{
+                        console.log("fail");
+                         alert("아이디나 비밀번호가 틀렸습니다");
+                         this.setState({
+                             email: "",
+                             password: ""
+                         })
+                     }
 
                 })
                 .catch(function(error){
