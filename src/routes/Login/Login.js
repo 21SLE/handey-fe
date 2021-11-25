@@ -6,7 +6,7 @@ import customAxios from "../../customAxios";
     const baseUrl = "http://localhost:8080"
 
         function Login() {
-
+/*
               // IP주소 변수 선언
             const [ip, setIp] = useState('');
 
@@ -25,6 +25,7 @@ import customAxios from "../../customAxios";
             
             //const navigate = useNavigate();
             const history = useHistory();
+            */
             const [email, setEmail] = useState("");
             const [password, setPassword] = useState("");
         

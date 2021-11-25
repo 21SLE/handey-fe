@@ -11,23 +11,6 @@ import SideBar from "./components/common/Side-bar";
 import customAxios from './customAxios';
 import "./App.css";
 
-
-function App() {
-  
-// const initialState = {
-//   authenticated: false,
-//   token: null
-// }
-
-// function reducer(state, action) {
-//   switch(action.type) {
-//       case 'SET_TOKEN':
-//           return {...state, token: action.token, authenticated: action.result};
-//       default:
-//           return state;
-//   }
-// }
-
 function App() {
 
 //   const [state, dispatch] = useReducer(reducer, initialState);
