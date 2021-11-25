@@ -15,7 +15,7 @@ class History extends React.Component {
                     <div className = "history-layout__wrap__main">
                         <HstBoxList/>
                     </div>
-                </div>
+            </div>
         </div>;
     }
 }

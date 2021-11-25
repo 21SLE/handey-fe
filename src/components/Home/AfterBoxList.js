@@ -12,9 +12,12 @@ export const AfterContext = React.createContext();
 function AfterBoxList() {
     const [afterBoxListData, setAfterBoxListData] = useState([]);
 
-    const deleteAfterObj = async () => {
-
+    const deleteAfterObj = (weeklyBoxId) => {
+        setAfterBoxListData(afterBoxListData.filter((weeklyBox)=> weeklyBox.id !== weeklyBoxId));
     }
+
+
+
     return <AfterContext.Provider value = {afterBoxListData}>
         <FontAwesomeIcon className="fa faMinus deleteAfter" icon={faMinus} onClick={()=>{deleteAfterObj();}}/>
         <div className="afterList">
@@ -24,7 +27,7 @@ function AfterBoxList() {
                         key = {weeklyBox.id}
                         id = {weeklyBox.id}
                         title = {weeklyBox.title}
-                        fixed = {weeklyBox.fixed}
+                        clear = {weeklyBox.clear}
                         weeklyElmList = {weeklyBox.weeklyElmList}
                     />;
                 })

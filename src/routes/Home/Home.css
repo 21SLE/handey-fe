@@ -1,21 +1,25 @@
 .home-layout {
+    position: sticky;
     margin-left: 280px;
     padding: 40px;
 }
 
 .home-layout__wrap {
+    position: sticky;
     display:flex;
     align-items: flex-start;
     justify-content: flex-start;
 }
 
 .home-layout__wrap__left {
+    position: sticky;
     margin-right: 30px;
-    position: relative;
+    display: flex;
+    flex-direction: column;
     z-index: 1;
 }
 
 .home-layout__wrap__right {
-    position: relative;
+    position: sticky;
 
 }
