@@ -8,7 +8,10 @@ import "./ToDoBoxList.css";
 const baseUrl = "http://localhost:8080";
 export const ToDoContext = React.createContext();
 
-function ToDoBoxList() {
+function ToDoBoxList({accessToken, userId}) {
+    var config = {
+        headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
+      };
 
     // const [input, setInput] = useState(""); //input 초기값이 ""
     const [toDoBoxListData, setToDoBoxListData] = useState([]); //todos 빈 객체 배열로 만들어줌
@@ -18,13 +21,13 @@ function ToDoBoxList() {
     }, []);
 
     async function getToDoBoxList() {
-
+        console.log(accessToken);
+        console.log(userId)
         await axios
-            .get(baseUrl + "/user/33/toDoBoxList")
+            .get(baseUrl + "/user/" + userId + "/toDoBoxList", config)
             .then(response => {
-
                 console.log(response.data);
-                //setToDoBoxListData(response.data);
+                setToDoBoxListData(response.data['data']);
             })
             .catch((error) => {
                 console.error("ERROR: " + error);
