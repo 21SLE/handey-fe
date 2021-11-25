@@ -11,7 +11,17 @@ import SideBar from "./components/common/Side-bar";
 import customAxios from './customAxios';
 import "./App.css";
 
+// import { useLocation } from "react-router";
+
+ 
+
+
 function App() {
+//   const location = useLocation();
+
+//  const accessToken = location.state.accessToken;
+//  const userId = location.state.userId;
+//  const userName = location.state.userName;
 
 //   const [state, dispatch] = useReducer(reducer, initialState);
 //   const { authenticated } = state;

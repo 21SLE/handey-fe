@@ -1,79 +1,108 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 import customAxios from "../../customAxios";
+import Home from "../Home/Home";
+import { BrowserRouter, Route, Switch} from "react-router-dom";
 
-    const baseUrl = "http://localhost:8080"
+const baseUrl = "http://localhost:8080"
 
-        function Login() {
+function Login() {
 /*
-              // IP주소 변수 선언
-            const [ip, setIp] = useState('');
+        // IP주소 변수 선언
+    const [ip, setIp] = useState('');
 
-            // IP주소 값을 설정합니다.
-            function callback(data) {
-                setIp(data);
-            }
+    // IP주소 값을 설정합니다.
+    function callback(data) {
+        setIp(data);
+    }
 
-            // 첫번째 렌더링을 다 마친 후 실행합니다.
-            useEffect(
-                () => {
-                // 클라이언트의 IP주소를 알아내는 백엔드의 함수를 호출합니다.
-                customAxios('/ip', callback);
-                }, []
-            );
+    // 첫번째 렌더링을 다 마친 후 실행합니다.
+    useEffect(
+        () => {
+        // 클라이언트의 IP주소를 알아내는 백엔드의 함수를 호출합니다.
+        customAxios('/ip', callback);
+        }, []
+    );
+    
+    //const navigate = useNavigate();
+    const history = useHistory();
+    */
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    var token;
+    var userId;
+    var userName;
+
+    const history = useHistory();
+
+    const routeChange = () =>{ 
+        return (
+            <BrowserRouter>
+              
+                <Route path="/home" component={Home(token, userId, userName)}/>
+                
+            </BrowserRouter>
+          );
+      }
+
+    const handleID = (e) => {
+        e.preventDefault();
+        setEmail(e.target.value)
+    }
+
+    const handlePW = (e) =>{
+        e.preventDefault();
+        setPassword(e.target.value)
+    }
+    
+    const onsubmit = async() => {
+        await axios
+        .post(baseUrl+"/login",{
+            email,
+            password
+        })
+        .then((response) => {
+            // const token = response.headers['ACCESS_TOKEN'];
+            token = response.data['data']['accessToken'];
+            userId = response.data['data']['userId'];
+            userName = response.data['data']['userName'];
+            console.log(token);
+            console.log(userId);
+            console.log(userName);
+            localStorage.setItem('token',token);
+            localStorage.setItem('userId',userId);
+            localStorage.setItem('userName',userName);
+            // localStorage.setItem('authenticatedUser', response.data);
             
-            //const navigate = useNavigate();
-            const history = useHistory();
-            */
-            const [email, setEmail] = useState("");
-            const [password, setPassword] = useState("");
-        
-            const handleID = (e) => {
-                e.preventDefault();
-                setEmail(e.target.value)
-            }
-        
-            const handlePW = (e) =>{
-                e.preventDefault();
-                setPassword(e.target.value)
-            }
-            
-            const onsubmit = async() => {
-                await axios
-                .post(baseUrl+"/login",{
-                    email,
-                    password
-                })
-                .then((response) => {
-                    const token = response.headers['ACCESS_TOKEN'];
-                    localStorage.setItem('token',token);
-                    localStorage.setItem('authenticatedUser', response.data);
-                    
-                    axios.interceptors.request.use(
-                        config => {
-                            const token = localStorage.getItem('token');
-                            if(token){
-                                config.headers['Authorization'] = 'ACCESS_TOKEN' + token;
-                            }
-            
-                            return config;
-                        },
-                        error => {
-                            Promise.reject(error)
-                        });
+            // axios.interceptors.request.use(
+            //     config => {
+            //         const token = localStorage.getItem('token');
+            //         if(token){
+            //             config.headers['Authorization'] = 'ACCESS_TOKEN' + token;
+            //         }
+    
+            //         return config;
+            //     },
+            //     error => {
+            //         Promise.reject(error)
+            //     });
 
-                    window.location.href = "/home";
-                })
-                .catch(() => {
+            window.location.href = "/home";
+            
+            // routeChange();
+        })
+        .catch(() => {
 
-                })
-            }
-                const KeyPress = (e) => { 
-                    if(e.key === 'Enter') {
-                       onsubmit();
-                    }
-                }
+        })
+    }
+
+    const KeyPress = (e) => { 
+        if(e.key === 'Enter') {
+            onsubmit();
+        }
+    }
 
 
     return(
@@ -113,6 +142,6 @@ import customAxios from "../../customAxios";
             <button type = "button" onClick={onsubmit}>Log in</button>
         
         </div>
-    )
+    );
 }
 export default Login;
