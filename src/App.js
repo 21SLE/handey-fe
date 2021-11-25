@@ -1,3 +1,4 @@
+
 import React, {useReducer , useState, useEffect} from "react";
 import { BrowserRouter, Route, Switch} from "react-router-dom";
 import Login from "./routes/Login/Login";
@@ -11,6 +12,8 @@ import customAxios from './customAxios';
 import "./App.css";
 
 
+function App() {
+  
 // const initialState = {
 //   authenticated: false,
 //   token: null

@@ -63,7 +63,7 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
         console.log("타이틀이 수정되었습니다.");
     }
 
-    const onDeleteToDoBox = async () => {
+    const onDeleteToDoBox = async (e) => {
         await axios
             .delete(baseUrl + "/toDoBox/" + id)
             .then((response) => {
