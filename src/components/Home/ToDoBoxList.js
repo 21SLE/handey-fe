@@ -19,19 +19,20 @@ function ToDoBoxList() {
     }, []);
 
     async function getToDoBoxList() {
-        await axios.get(baseUrl + "/toDoBoxList")
-            .then((response) => {
+        await axios
+            .get(baseUrl + "/user/33/toDoBoxList")
+            .then(response => {
                 console.log(response.data);
                 setToDoBoxListData(response.data);
             })
             .catch((error) => {
                 console.error("ERROR: " + error);
-            });
+            })
     };
 
     const createToDoBoxObj = async () => {
         await axios
-        .post(baseUrl + "/toDoBox", {})
+        .post(baseUrl + "/user/33/toDoBox", {})
         .then((response) => {
             // response.data로 새로 생성된 todo element의 id가 옴
             console.log("todo box " + response.data + "가 생성되었습니다.");
@@ -53,11 +54,9 @@ function ToDoBoxList() {
 
     return <ToDoContext.Provider value = {toDoBoxListData}>
         <FontAwesomeIcon className="fa faPlus createToDoBoxBtn" icon={faPlus} onClick={()=>{createToDoBoxObj();}}/>
-        <div className="toDoBoxList">
-        
-            {            
-                toDoBoxListData.map(toDoBox => {
-                    return <ToDoBox 
+        <div className="toDoBoxList">  
+            {toDoBoxListData.map((toDoBox) => {
+                 return <ToDoBox 
                         key = {toDoBox.id}
                         id = {toDoBox.id}
                         title = {toDoBox.title}

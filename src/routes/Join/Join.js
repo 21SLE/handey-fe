@@ -1,9 +1,12 @@
 import React,  { useState } from "react";
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 function Join(props){
 
-    const baseUrl = "http://localhost:8080/join"; 
+    const baseUrl = "http://localhost:8080"; 
+
+    const history = useHistory();
  
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -11,60 +14,106 @@ function Join(props){
     const [rePassword, setrePassword] = useState("");
 
     const handleName = (e) => {
-        setUsername(e.Target.value)
+        e.preventDefault();
+        setUsername(e.target.value)
     }
     
     const handleEmail =(e) => {
-        setEmail(e.Target.value)
+        e.preventDefault();
+        setEmail(e.target.value)
     }
 
     const handlePW = (e) => {
-        setPassword(e.Target.value)
+        e.preventDefault();
+        setPassword(e.target.value)
     }
 
     const handleRepw = (e) => {
-        setrePassword(e.Target.value)
+        e.preventDefault();
+        setrePassword(e.target.value)
     }
 
-    const submitClick = () => {
-        console.log("click")
+    const onsubmit = async() => {
 
-        axios.post(baseUrl, {
-            "userid" :email,
-            "userpw" :password,
-            "username":username,
-            "userrepw": rePassword    
-    })
+        if(password !== rePassword){
+            alert("비밀번호와 비밀번호 확인은 같아야합니다.")
+        }
 
-        .then(res => {
-    })
-    .catch(error =>{
+        const User= {
 
-    });
+            username:username,
+            userid: email,
+            password: password,
+            userrepw: rePassword
+        };
+
+        await axios
+        .post(baseUrl+"/register", User)
+        
+        .then(function(response){
+            localStorage.jwtAuthToken = response.headers['ACCESS_TOKEN'];
+            console.log(response.data);
+
+            if(response.data.success === true){
+                console.log("success");
+                history.push("/login");
+             }
+             else{
+                console.log("fail");
+                 alert("fail");
+             }
+        })
+        .catch(function(error){
+            console.log("error");
+        });  
 }
-
+const KeyPress = (e) => { 
+    if(e.key === 'Enter') {
+       onsubmit();
+    }
+}
 
     return (
         <div className = "InputBox">
-
-                <label>Name</label>
-                <input type="name" value={username} onChange={handleName} />
-
-                <label>Email</label>
-                <input type="email" value={email} onChange={handleEmail} />
-
-                <label>Password</label>
-                <input type="password" value={password} onChange={handlePW} />
-
-                <label>Confirm Password</label>
-                <input type="password" value={rePassword} onChange={handleRepw} />
-
-                <button type="submit" onClick = {submitClick}>Join</button>
+            <h1 className = "title">Join</h1>
+            <div>
+                <label>Name: </label>
+                <input type="name" 
+                value={username} 
+                onChange={handleName}
+                required={true}
+                placeholder = "username" />
+            </div>
+            <div>
+                <label>Id: </label>
+                <input type="email"
+                value={email}
+                onChange={handleEmail}
+                required={true}
+                placeholder = "abc@email.com" />
+                <button type="submit" onClick = {onclick}>인증</button>
+            </div>
+            <div>
+                <label>Password: </label>
+                <input type="password"
+                value={password}
+                onChange={handlePW}
+                required={true}
+                placeholder = "password" />
+            </div>
+            <div>
+                <label>Confirm Password: </label>
+                <input type="password" 
+                value={rePassword}
+                onChange={handleRepw}
+                required={true}
+                placeholder = "repassword"
+                onKeyPress={KeyPress}/>
+            </div>
+                <button type="submit" onClick = {onsubmit}>Join</button>
         </div>
     )
   }
-
-
 
 export default Join;
 

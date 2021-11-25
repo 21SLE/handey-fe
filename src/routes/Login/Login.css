@@ -1,5 +1,62 @@
-body{
+*{
     margin: 0;
     padding: 0;
-    
+    box-sizing: border-box;
 }
+
+.InputBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-form{
+    position: relative;
+    z-index: 2;
+}
+
+
+.InputBox h1 {
+    color: dimgray;
+    font-weight: bold;
+    font-size: 32px;
+    text-align: center;
+ }
+
+.findpw{
+    text-decoration: none;
+    color: black;
+}
+
+
+ .caption{
+     color: darkgray;
+     font-size: smaller;
+ }
+
+ .login-form-field { 
+     width: 100%; border: none; 
+     border-bottom: 1px solid #3a3a3a; 
+     margin-bottom: 10px; 
+     border-radius: 3px; 
+     outline: none; 
+     padding: 0px 0px 5px 5px; 
+ }
+
+.input_id{
+    margin-top: 20px;
+    width: 80%;
+  }
+  
+.input_id input {
+    width: 100%;
+    height: 50px;
+    border-radius: 30px;
+    margin-top: 10px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+  }
+
+  

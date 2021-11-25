@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
-import {useHistory} from "react-router-dom";
+import React, { useState } from "react";
 import axios from "axios";
 import "./Login.css";
 
     const baseUrl = "http://localhost:8080"
 
         function Login() {
-            
-            const history = useHistory();
 
             const [email, setEmail] = useState("");
             const [password, setPassword] = useState("");
@@ -23,38 +20,35 @@ import "./Login.css";
             }
             
             const onsubmit = async() => {
-
-                const User= {
-                    email: email,
-                    password: password
-                };
-
                 await axios
-                .post(baseUrl+"/login",User)
-                
-                .then(function(response){
-                    localStorage.jwtAuthToken = response.headers['ACCESS_TOKEN'];
-                    console.log(response.data);
-                     
-                    if(response.data.success === true){
-                        console.log("success");
-                        history.push("/home");
-                     }
-                     else{
-                        console.log("fail");
-                         alert("아이디나 비밀번호가 틀렸습니다");
-                         this.setState({
-                             email: "",
-                             password: ""
-                         })
-                     }
+                .post(baseUrl+"/login",{
+                    email,
+                    password
+                })
+                .then((response) => {
+                    const token = response.headers['ACCESS_TOKEN'];
+                    localStorage.setItem('token',token);
+                    localStorage.setItem('authenticatedUser', response.data);
+                    
+                    axios.interceptors.request.use(
+                        config => {
+                            const token = localStorage.getItem('token');
+                            if(token){
+                                config.headers['Authorization'] = 'ACCESS_TOKEN' + token;
+                            }
+            
+                            return config;
+                        },
+                        error => {
+                            Promise.reject(error)
+                        });
+
+                    window.location.href = "/home";
+                })
+                .catch(() => {
 
                 })
-                .catch(function(error){
-                    console.log("error");
-                })   
-            } 
-
+            }
                 const KeyPress = (e) => { 
                     if(e.key === 'Enter') {
                        onsubmit();
@@ -63,34 +57,41 @@ import "./Login.css";
 
     return(
         <div className = "InputBox">
-            <h1 className = "title">Sign in</h1>
-            <div>
-            <label htmlFor="input_id">Id: </label>
+    
+            <h1>HANDEY</h1>
+           
+            <div className = "caption">
+            <a href = "/join">회원가입</a>
+            <a>/</a>
+            <a href = "/findPw">비밀번호찾기</a>
+            </div>
+            
+            <div className = "login-form">
+            
+            <div className = "ID">
+            <label htmlFor="input_id">ID</label>
             <input className = "email"
             value={email}
             onChange={handleID}
-            type = "text"
             required={true}
-            placeholder = "id"
             />
             </div>
-            <div>
-             <label htmlFor="input_pw">Password: </label>
+
+            <div className = "PASSWORD">
+             <label htmlFor="input_pw">PASSWORD</label>
             <input className = "password"
             value={password}
             onChange={handlePW}
-            type = "text"
             required={true}
-            placeholder = "password"
             onKeyPress={KeyPress}
             />
             </div>
-            <button type = "button" onClick={onsubmit}>Login</button>
-            <div className = "findpw">
-                <a href = "/findPw">Forget Password?</a>
-                <a href = "/join"> / Join</a>
-            </div>
+
+        </div>
+
+            <button type = "button" onClick={onsubmit}>Log in</button>
+        
         </div>
     )
-        }
+}
 export default Login;
