@@ -6,7 +6,6 @@ import ToDoBox from "./ToDoBox";
 import "./ToDoBoxList.css";
 
 const baseUrl = "http://localhost:8080";
-
 export const ToDoContext = React.createContext();
 
 function ToDoBoxList() {
@@ -19,11 +18,13 @@ function ToDoBoxList() {
     }, []);
 
     async function getToDoBoxList() {
+
         await axios
             .get(baseUrl + "/user/33/toDoBoxList")
             .then(response => {
+
                 console.log(response.data);
-                setToDoBoxListData(response.data);
+                //setToDoBoxListData(response.data);
             })
             .catch((error) => {
                 console.error("ERROR: " + error);
@@ -32,7 +33,9 @@ function ToDoBoxList() {
 
     const createToDoBoxObj = async () => {
         await axios
+
         .post(baseUrl + "/user/33/toDoBox", {})
+
         .then((response) => {
             // response.data로 새로 생성된 todo element의 id가 옴
             console.log("todo box " + response.data + "가 생성되었습니다.");
@@ -65,6 +68,9 @@ function ToDoBoxList() {
                         deleteToDoBoxOnScreen = {deleteToDoBoxOnScreen}
                     />;
                 })
+                // toDoElmList.map(toDoBox => {
+                //     
+                // })
             }
 
         </div>

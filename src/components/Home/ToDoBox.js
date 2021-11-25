@@ -128,7 +128,6 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                 setToDoElms(toDoElms.map(elm=> elm.id === toDoElmId ? { ...elm, completed: !elm.completed } : elm));
             })
             .catch((error) => {console.error(error);});
-
     }
 
     return <div className="toDoBox">
@@ -167,7 +166,7 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
                         <input type="text" className={ elm.completed ? "elmInputCompleted" : null } value = {elm.content} 
                             onChange={(e) => changeElmTxt(e, elm.id)} 
                             onKeyPress={onEnterKeyPressBlur}
-                            onBlur={(e) => onUpdateToDoElm(e, elm.id)}/> 
+                            onBlur={(e) => onUpdateToDoElm(e, elm.id)}/>
                     </li>;
                 })}
             </ul>

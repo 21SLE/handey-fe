@@ -1,0 +1,70 @@
+.invisible {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.WeeklyBox {
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.weeklyBox__title {
+    margin-bottom: 10px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.weeklyBox__title input {
+    width: 180px;
+    display: block;
+    padding-left: 11px;
+    padding-top: 0;
+    padding-bottom: 0;
+    outline:none;
+    border: none;
+    font-size: 15pt;
+}
+
+.weeklyBox_menu {
+    width: 50px;
+    float: right;
+    top: 0;
+    right: 10px;
+    padding-bottom: 10px; 
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.weeklyBox__elm-list li {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.weeklyBox__elm-list li:not(:last-child) { 
+    margin-bottom: 33px;  
+ }
+
+.circleBorderBtn {
+    position: absolute;
+    outline: inherit;
+    border: 2px solid lightgrey;
+    background-color: white;
+    height: 26px;
+    width: 26px;
+    border-radius: 13px;
+}
+
+.weeklyBox__elm-list .faCheck {
+    position: absolute;
+    width: 20px;
+    height:24px;
+    left: 3px;
+    color: #fddb4200;
+}
+
+
