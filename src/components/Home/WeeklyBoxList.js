@@ -54,9 +54,14 @@ function WeeklyBoxList() {
     }
 
     return <WeeklyContext.Provider value = {weeklyBoxListData}>
-        <FontAwesomeIcon className="fa faPlus createWeeklyBoxBtn" icon={faPlus} onClick={()=>{createWeeklyBoxObj();}}/>
-        <div className="weeklyBoxList">
-            {            
+        <div className="weeklyBoxList">        
+            <div className="weekly_part">    
+                <span> weekly </span> 
+                <hr border="solid" width="294px" color="grey"/>
+                <FontAwesomeIcon className="fa faPlus createWeeklyBoxBtn" icon={faPlus} onClick={()=>{createWeeklyBoxObj();}}/>
+            </div>
+            <div className="w_box_list">  
+            {          
                 weeklyBoxListData.map(weeklyBox => {
                     return <WeeklyBox 
                         key = {weeklyBox.id}
@@ -68,7 +73,7 @@ function WeeklyBoxList() {
                     />; 
                     
                 })
-            }
+            }</div>
 
         </div>
     </WeeklyContext.Provider>;

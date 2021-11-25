@@ -49,7 +49,7 @@ function WeeklyBox({id, title, weeklyElmList}) {
 
     const onUpdateWeeklyBoxTitle = async (e) => {
         await axios
-            .put(baseUrl + "/weeklyBox/" + id, 
+            .put(baseUrl + "/user/1/weeklyBox/" + id, 
                 {
                     title: titleTxt
             })
@@ -62,7 +62,7 @@ function WeeklyBox({id, title, weeklyElmList}) {
 
     const onDeleteWeeklyBox = async () => {
         await axios
-            .delete(baseUrl + "/weeklyBox/" + id)
+            .delete(baseUrl + "/user/1/weeklyBox/" + id)
             .then((response) => {
                 console.log(response.data);
             })
@@ -73,7 +73,7 @@ function WeeklyBox({id, title, weeklyElmList}) {
 
     const onCreateWeeklyElmObj = async () => {
         await axios
-            .post(baseUrl + "/weeklyBox/" + id, {})
+            .post(baseUrl + "/user/1/weeklyBox/" + id, {})
             .then((response) => {
                 console.log("weekly elm " + response.data + "가 생성되었습니다.");
                 const elm = {
@@ -81,7 +81,7 @@ function WeeklyBox({id, title, weeklyElmList}) {
                     content: "",
                     completed: false
                 };
-                setWeeklyElms([...weeklyElms, elm]);
+                //setWeeklyElms([...weeklyElms, elm]);
             })
             .catch((error) => {console.error(error);});
     }
@@ -119,14 +119,14 @@ function WeeklyBox({id, title, weeklyElmList}) {
                     <FontAwesomeIcon className="fa faList" icon={faList} 
                         onClick={() => setEditingYn(!editingYn)}/>
                     <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
-                        onClick={()=>{onCreateWeeklyElmObj();}}/>  />
-                </div>
-                <div className="weeklyBox__title">
-                    <input type="text" value={ titleTxt } 
-                    onChange={changeTitleTxt} 
-                    onKeyPress={onEnterKeyPressBlur}
-                    onBlur={(e)=>onUpdateWeeklyBoxTitle(e)}
-                    />         
+                        onClick={()=>{onCreateWeeklyElmObj();}}  />
+        </div>   
+        <div className="weeklyBox__title">
+            <input type="text" value={ titleTxt } 
+            onChange={changeTitleTxt} 
+            onKeyPress={onEnterKeyPressBlur}
+            onBlur={(e)=>onUpdateWeeklyBoxTitle(e)}
+            />          
         </div>
         <ul className="weeklyBox__elm-list">
             {weeklyElms.map(elm => {
