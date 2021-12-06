@@ -6,12 +6,13 @@ class SideBar extends React.Component {
     
     render() {
         const currentUrl = window.location.pathname;
+        const userName = localStorage.getItem('userName');
 
         return (currentUrl === "/home" || currentUrl === "/history") 
         ? <div className="sideBar">
             <h1 className = "logo">HANDEY</h1>
             <h2 className = "date">2021-12-06</h2>
-            <h3 className = "welcomeMessage">홍길동님 환영합니다.</h3>
+            <h3 className = "welcomeMessage">{userName}님 환영합니다.</h3>
             <div className = "calendar"></div>
             <ul className = "sidebarList">
                 <li><Link to="/home">HOME</Link></li>

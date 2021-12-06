@@ -20,8 +20,10 @@ function onEnterKeyPressBlur(e) {
     }
 }
 
-function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
-    const baseUrl = "http://localhost:8080";
+function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
+    var config = {
+        headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
+      };
 
     const [titleTxt, setTitleTxt] = useState(title === null ? "" : title);
     const [fixedColor, setFixedColor] = useState(fixed ? '#f5bc0f' : '#4b4b4b');
@@ -41,9 +43,9 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
 
     const onUpdateFixedYn = async () => {
         await axios
-        .patch(baseUrl + "/toDoBox/" + id, {})
+        .patch("/user/toDoBox/" + id, {}, config)
         .then((response) => {
-            console.log(response.data);
+            console.log(response.data['data']);
             setFixedColor(fixedColor === '#f5bc0f' ? '#4b4b4b' : '#f5bc0f');
         })
         .catch((error) => {console.error(error);});
@@ -52,12 +54,9 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
 
     const onUpdateToDoBoxTitle = async (e) => {
         await axios
-            .put(baseUrl + "/toDoBox/" + id, 
-                {
-                    title: titleTxt
-            })
+            .put("/user/toDoBox/" + id, {title: titleTxt}, config)
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data['data']);
             })
             .catch((error) => {console.error(error);});
         console.log("타이틀이 수정되었습니다.");
@@ -65,9 +64,9 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
 
     const onDeleteToDoBox = async (e) => {
         await axios
-            .delete(baseUrl + "/toDoBox/" + id)
+            .delete("/user/" + userId + "/toDoBox/" + id, config)
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data['data']);
                 deleteToDoBoxOnScreen(id);
             })
             .catch((error) => {console.error(error);});
@@ -77,12 +76,12 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
 
     const onCreateToDoElmObj = async () => {
         await axios
-            .post(baseUrl + "/toDoBox/" + id, {})
+            .post("/user/toDoBox/" + id, {}, config)
             .then((response) => {
                 // response.data로 새로 생성된 todo element의 id가 옴
-                console.log("todo elm " + response.data + "가 생성되었습니다.");
+                console.log("todo elm " + response.data['data'] + "가 생성되었습니다.");
                 const elm = {
-                    id: response.data,
+                    id: response.data['data'],
                     content: "",
                     completed: false
                 };
@@ -93,12 +92,12 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
 
     const onUpdateToDoElm = async (e, toDoElmId) => {
         await axios
-            .put(baseUrl + "/toDoElm/" + toDoElmId, 
+            .put("/user/toDoElm/" + toDoElmId,
             {
                 content: e.target.value
-            })
+            }, config)
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data['data']);
             })
             .catch((error) => {console.error(error);});
         // e.target.blur();
@@ -108,9 +107,9 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
     const onDeleteToDoElm = async (toDoElmId) => {
         if(editingYn){
             await axios
-            .delete(baseUrl + "/toDoElm/" + toDoElmId)
+            .delete("/user/toDoElm/" + toDoElmId, config)
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data['data']);
                 setToDoElms(toDoElms.filter((elm) => elm.id !== toDoElmId));
             })
             .catch((error) => {console.error(error);});
@@ -121,9 +120,9 @@ function ToDoBox({id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
     
     const onClickCompleteBtn = async (toDoElmId) => {
         await axios
-            .patch(baseUrl + "/toDoElm/" + toDoElmId, {})
+            .patch("/user/toDoElm/" + toDoElmId, {}, config)
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data['data']);
                 
                 setToDoElms(toDoElms.map(elm=> elm.id === toDoElmId ? { ...elm, completed: !elm.completed } : elm));
             })

@@ -1,27 +1,23 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
-import customAxios from "../../customAxios";
 import Home from "../Home/Home";
-import { BrowserRouter, Route, Switch} from "react-router-dom";
+import { BrowserRouter, Route} from "react-router-dom";
 
 const baseUrl = "http://localhost:8080"
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    var token;
+    var accessToken;
     var userId;
     var userName;
-
-    const history = useHistory();
 
     const routeChange = () =>{ 
         return (
             <BrowserRouter>
               
-                <Route path="/home" component={Home(token, userId, userName)}/>
+                <Route path="/home" component={Home(accessToken, userId, userName)}/>
                 
             </BrowserRouter>
           );
@@ -44,13 +40,13 @@ function Login() {
             password
         })
         .then((response) => {
-            token = response.data['data']['accessToken'];
+            accessToken = response.data['data']['accessToken'];
             userId = response.data['data']['userId'];
             userName = response.data['data']['userName'];
-            console.log(token);
+            console.log(accessToken);
             console.log(userId);
             console.log(userName);
-            localStorage.setItem('token',token);
+            localStorage.setItem('accessToken',accessToken);
             localStorage.setItem('userId',userId);
             localStorage.setItem('userName',userName);
 
@@ -74,8 +70,6 @@ function Login() {
         <div className = "InputBox">
     
             <h1>HANDEY</h1>
-           
-            
             
             <div className = "login-form">
                 <div className = "ID">

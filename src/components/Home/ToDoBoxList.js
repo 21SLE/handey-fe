@@ -36,14 +36,12 @@ function ToDoBoxList({accessToken, userId}) {
 
     const createToDoBoxObj = async () => {
         await axios
-
-        .post("/user/" + userId + "/toDoBoxList", config, {})
-
+        .post("/user/" + userId + "/toDoBox", {}, config)
         .then((response) => {
             // response.data로 새로 생성된 todo element의 id가 옴
-            console.log("todo box " + response.data + "가 생성되었습니다.");
+            console.log("todo box " + response.data['data'] + "가 생성되었습니다.");
             const box = {
-                id: response.data,
+                id: response.data['data'],
                 title: "",
                 fixed: false,
                 toDoElmList: []
@@ -64,6 +62,8 @@ function ToDoBoxList({accessToken, userId}) {
             {toDoBoxListData.map((toDoBox) => {
                  return <ToDoBox 
                         key = {toDoBox.id}
+                        accessToken = {accessToken}
+                        userId = {userId}
                         id = {toDoBox.id}
                         title = {toDoBox.title}
                         fixed = {toDoBox.fixed}

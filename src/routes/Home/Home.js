@@ -6,7 +6,7 @@ import WeeklyBoxList from "../../components/Home/WeeklyBoxList";
 import "./Home.css";
 
 function Home() {
-    const accessToken = localStorage.getItem('token');
+    const accessToken = localStorage.getItem('accessToken');
     const userId = localStorage.getItem('userId');
 
     return <div className = "home-layout">
