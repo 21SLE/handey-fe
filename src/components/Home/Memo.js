@@ -2,8 +2,6 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./Memo.css";
 
-const baseUrl = "http://localhost:8080";
-
 function Memo({accessToken, userId}) {
     var config = {
         headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }

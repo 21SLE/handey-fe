@@ -1,4 +1,4 @@
-import React, { useHistory, useLocation } from "react";
+import React from "react";
 import AfterBoxList from "../../components/Home/AfterBoxList";
 import ToDoBoxList from "../../components/Home/ToDoBoxList";
 import Memo from "../../components/Home/Memo";
