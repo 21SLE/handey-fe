@@ -25,7 +25,8 @@ function ToDoBoxList({accessToken, userId}) {
         console.log(accessToken);
         console.log(userId)
         await axios
-            .get(baseUrl + "/user/" + userId + "/toDoBoxList", config)
+            // .get(baseUrl + "/user/" + userId + "/toDoBoxList", config)
+            .get("/user/" + userId + "/toDoBoxList", config)
             .then(response => {
                 console.log(response.data);
                 setToDoBoxListData(response.data['data']);
