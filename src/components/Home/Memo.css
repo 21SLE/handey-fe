@@ -1,5 +1,5 @@
 .memo {
-    margin-top: 25px;
+    margin-top: 15px;
     width: 660px;
     height: 190px;
     box-shadow: 3px 3px 3px 1px #979797 ; /*x-position y-position blur spread color*/
@@ -9,7 +9,7 @@
     display: block;
     align-items: center;
     justify-content: center;
-    padding: 10px
+    padding: 15px
 }
 
 .memo_title {

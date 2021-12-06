@@ -72,7 +72,7 @@ function WeeklyBoxList({accessToken, userId}) {
                         weeklyElmList = {weeklyBox.weeklyElmList}
                         deleteWeeklyBoxOnScreen = {deleteWeeklyBoxOnScreen}
                     />
-                    <hr className="small_hr" />
+                    {/* <hr className="small_hr" /> */}
                     </div>; 
                     
                 })

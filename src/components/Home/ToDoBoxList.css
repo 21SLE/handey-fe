@@ -2,7 +2,6 @@
     box-sizing: content-box;
     overflow-y: scroll;
     overflow-x: hidden;
-    margin-bottom: 25px;
     width: 700px;
     height: 470px;
     z-index: 2;

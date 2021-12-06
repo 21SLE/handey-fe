@@ -25,19 +25,42 @@
 .toDoBox__title {
     margin-bottom: 27px;
     display:flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+}
+
+.toDoBox__title .faThumbtack {
+    margin-top: 3px;
+    font-size: 15px;
+    transition: 0.5s;
+    -ms-transform: rotate(30deg); /* IE 9 */
+    -webkit-transform: rotate(30deg); /* Chrome, Safari, Opera */
+    transform: rotate(30deg);
+}
+
+.faThumbtack .unfixed:hover {
+    transform: rotate(-30deg);
+    transition: transform 0.5s;
+}
+
+.toDoBox__title .fixed {
+    /* color: #f5bc0f; */
+    color: rgb(254, 192, 1);
+    -ms-transform: rotate(0deg); /* IE 9 */
+    -webkit-transform: rotate(00deg); /* Chrome, Safari, Opera*/
+    transform: rotate(00deg);
+    transition: transform 0.5s;   
 }
 
 .toDoBox__title input {
     width: 200px;
     display: block;
-    padding-left: 5px;
+    padding-left: 10px;
     padding-top: 0;
     padding-bottom: 0;
     outline:none;
     border: none;
     font-size: 18px;
-    border-left: 6px solid #f5bc0f;
+    /* border-left: 6px solid #f5bc0f; */
 }
 
 .toDoBox_menu {
@@ -59,13 +82,7 @@
     color:#4b4b4b;
 }
 
-.toDoBox_menu .faThumbtack {
-    font-size: 27px;
-}
 
-.toDoBox_menu .fixed {
-    color: #f5bc0f;
-}
 
 .toDoBox__elm-list {
     padding-left: 5px;

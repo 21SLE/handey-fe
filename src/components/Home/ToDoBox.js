@@ -132,8 +132,7 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
     return <div className="toDoBox">
         <form>
             <div className="toDoBox_menu">
-                <FontAwesomeIcon className={fixed ? "fa faThumbtack fixed" : "fa faThumbtack"} icon={faThumbtack} 
-                    onClick={()=> {onUpdateFixedYn();}} style={{color: `${fixedColor}`}}/>
+                
                 <FontAwesomeIcon className="fa faList" icon={faList} 
                     onClick={() => setEditingYn(!editingYn)}/>
                 <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
@@ -142,11 +141,13 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
                     onClick={()=> {onDeleteToDoBox();}}  />
             </div>
             <div className="toDoBox__title">
+                <FontAwesomeIcon className={fixed ? "fa faThumbtack fixed" : "fa faThumbtack unfixed"} icon={faThumbtack} 
+                    onClick={()=> {onUpdateFixedYn();}} style={{color: `${fixedColor}`}}/>
                 <input type="text" value={ titleTxt } 
-                onChange={changeTitleTxt} 
-                onKeyPress={onEnterKeyPressBlur}
-                onBlur={(e)=>onUpdateToDoBoxTitle(e)}
-                />         
+                    onChange={changeTitleTxt} 
+                    onKeyPress={onEnterKeyPressBlur}
+                    onBlur={(e)=>onUpdateToDoBoxTitle(e)}
+                    />         
             </div>
             <ul className="toDoBox__elm-list">
                 {toDoElms.map(elm => {

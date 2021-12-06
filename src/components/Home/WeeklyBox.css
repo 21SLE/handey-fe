@@ -32,6 +32,8 @@
 .weeklyBox__title input {
     width: 250px;
     display: inline-block;
+    margin-top: 17px;
+    margin-bottom: 5px;
     padding-left: 10px;
     padding-top: 0;
     padding-bottom: 0;
@@ -39,6 +41,8 @@
     border: none;
     font-size: 12pt;
     height: 14pt;
+    border-left: 5px solid rgb(254, 192, 1);
+    color: black;
 }
 
 .weeklyBox_menu {
@@ -48,6 +52,7 @@
 .weeklyBox_menu .faEllipsisV {
     font-size: 14px;
     color: grey;
+    margin-top: 17px;
 }
 
 .weeklyBox__elm-list {
@@ -92,4 +97,5 @@
     outline:none;
     border: none;
     font-size: 12pt;
+    
 }
