@@ -21,6 +21,7 @@ class SideBar extends React.Component {
                 <li><Link to="/info">INFO</Link></li>
                 <li><Link to="/trash">TRASH</Link></li>
             </ul>
+            <div className="logout">Log Out</div>
         </div>
         : null;
     }

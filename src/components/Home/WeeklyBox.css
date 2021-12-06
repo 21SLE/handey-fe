@@ -12,38 +12,46 @@
     background-color: white;
     display: inline-block;
     box-sizing: border-box;
-    margin-bottom: 15px;
-    width: 280px;
+    margin-bottom: 10px;
+    width: 314px;
     min-height: fit-content;
     height:fit-content;
     max-height: fit-content;
 }
 
 .weeklyBox__title {
+    width: 314px;
+    padding-right: 10px;
     margin-bottom: 10px;
     display:flex;
     justify-content: space-between;
+    align-items: stretch;
+    position: relative;
 }
 
 .weeklyBox__title input {
     width: 250px;
-    display: block;
-    padding-left: 11px;
+    display: inline-block;
+    padding-left: 10px;
     padding-top: 0;
     padding-bottom: 0;
     outline:none;
     border: none;
-    font-size: 15pt;
+    font-size: 12pt;
+    height: 14pt;
 }
 
 .weeklyBox_menu {
-    width: 50px;
-    float: right;
-    top: 0;
-    right: 10px;
-    padding-bottom: 10px; 
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-block;
+}
+
+.weeklyBox_menu .faEllipsisV {
+    font-size: 14px;
+    color: grey;
+}
+
+.weeklyBox__elm-list {
+    padding-left: 10px;
 }
 
 .weeklyBox__elm-list li {
@@ -53,25 +61,35 @@
 }
 
 .weeklyBox__elm-list li:not(:last-child) { 
-    margin-bottom: 33px;  
+    margin-bottom: 16px;  
  }
 
 .circleBorderBtn {
     position: absolute;
+    left: 2px;
     outline: inherit;
     border: 2px solid lightgrey;
     background-color: white;
-    height: 26px;
-    width: 26px;
-    border-radius: 13px;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
 }
 
 .weeklyBox__elm-list .faCheck {
     position: absolute;
-    width: 20px;
-    height:24px;
-    left: 3px;
+    width: 15px;
+    left: 4px;
     color: #fddb4200;
 }
 
-
+.weeklyBox__elm-list input {
+    width: 220px;
+    height: 12pt;
+    margin-left: 15px;
+    overflow: visible;
+    color: #7d7d7d;
+    left: 30px;
+    outline:none;
+    border: none;
+    font-size: 12pt;
+}

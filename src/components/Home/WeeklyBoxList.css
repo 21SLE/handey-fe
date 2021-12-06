@@ -5,7 +5,7 @@
     width: 314px;
     height: 380px;
     flex-wrap: wrap;
-    position: relative;
+    /* position: relative; */
     justify-content: center;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
@@ -39,4 +39,13 @@ hr {
     background: rgb(231, 230, 230);
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.small_hr {
+    height: 1px;
+    background: rgb(231, 230, 230);
+    width: 300px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

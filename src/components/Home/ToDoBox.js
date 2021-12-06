@@ -157,7 +157,7 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
                         <FontAwesomeIcon className={
                                 editingYn
                                  ? "faCheck invisible"
-                                 : elm.completed ? "faCheck completed" : "faCheck"
+                                 : elm.completed ? "faCheck completed" : "faCheck invisible"
                             } icon={faCheck} onClick={()=>onClickCompleteBtn(elm.id)}/>
                         <FontAwesomeIcon className={editingYn ? "faMinus visible" : "faMinus invisible"} icon={faMinus} 
                             onClick={()=>onDeleteToDoElm(elm.id)}/>

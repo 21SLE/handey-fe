@@ -62,7 +62,7 @@ function WeeklyBoxList({accessToken, userId}) {
             <div className="weeklyBoxList">  
             {          
                 weeklyBoxListData.map(weeklyBox => {
-                    return <WeeklyBox 
+                    return <div><WeeklyBox 
                         key = {weeklyBox.id}
                         accessToken = {accessToken}
                         userId = {userId}
@@ -71,7 +71,9 @@ function WeeklyBoxList({accessToken, userId}) {
                         clear = {weeklyBox.clear}
                         weeklyElmList = {weeklyBox.weeklyElmList}
                         deleteWeeklyBoxOnScreen = {deleteWeeklyBoxOnScreen}
-                    />; 
+                    />
+                    <hr className="small_hr" />
+                    </div>; 
                     
                 })
             }</div>

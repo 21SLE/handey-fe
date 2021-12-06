@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from "react";
-import { faCheck, faPlus, faMinus, faList } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faPlus, faMinus, faList, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import "./WeeklyBox.css";
@@ -122,11 +122,8 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList}) {
             onBlur={(e)=>onUpdateWeeklyBoxTitle(e)}
             />   
             <div className="weeklyBox_menu">
-            <FontAwesomeIcon className="fa faList" icon={faList} 
-                onClick={() => setEditingYn(!editingYn)}/>
-            <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
-                onClick={()=>{onCreateWeeklyElmObj();}}  />
-        </div>       
+                <FontAwesomeIcon className="fa faEllipsisV" icon={faEllipsisV}/>
+            </div>       
         </div>
         <ul className="weeklyBox__elm-list">
             {weeklyElms.map(elm => {
