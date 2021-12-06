@@ -19,4 +19,5 @@ class History extends React.Component {
         </div>;
     }
 }
+
 export default History;

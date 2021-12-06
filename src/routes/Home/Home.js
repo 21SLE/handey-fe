@@ -24,23 +24,6 @@ function Home() {
                 </div>
             </div>
         </div>;
-    // render() {
-    //     return <div className = "home-layout">
-    //         <div className = "home-layout__wrap">
-    //             <div className = "home-layout__wrap__left">
-    //                 <WeeklyBoxList />
-    //                 <AfterBoxList />
-    //             </div>
-    //             <div className = "home-layout__wrap__right">
-    //                 <ToDoBoxList 
-    //                     accessToken = {accessToken}
-    //                     userId = {userId}
-    //                     />
-    //                 <Memo />
-    //             </div>
-    //         </div>
-    //     </div>;
-    // }
 }
 
 
