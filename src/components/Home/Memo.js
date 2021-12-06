@@ -26,7 +26,6 @@ function Memo({accessToken, userId}) {
     }
 
     const getMemo = async () => {
-        // TODO 회원가입 완성시 수정
         await axios.get("/user/" + userId + "/memo", config)
             .then((response) => {
                 setMemoTxt(response.data['data'].content === null ? "" : response.data['data'].content);
@@ -37,12 +36,11 @@ function Memo({accessToken, userId}) {
     }
 
     const onUpdateMemo = async (e) => {
-        // TODO 회원가입 완성시 수정
         await axios
-                .put("/user/" + userId + "/memo", config, 
+                .put("/user/" + userId + "/memo", 
                 {
                     content: e.target.value
-                })
+                }, config)
                 .then((response) => {
                     console.log(response.data);
                 })
@@ -56,10 +54,12 @@ function Memo({accessToken, userId}) {
     }, []);
 
     return <div className="memo">
+        <h1 className="memo_title">Memo</h1>
+        <hr />
         <textarea value = {memoTxt} 
-        onChange={changeMemoTxt} 
-        onKeyPress={onEnterKeyPressBlur}
-        onBlur={onUpdateMemo} />
+            onChange={changeMemoTxt} 
+            onKeyPress={onEnterKeyPressBlur}
+            onBlur={onUpdateMemo} />
     </div>;
 }
 

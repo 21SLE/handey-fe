@@ -10,6 +10,13 @@
     align-items: center;
     justify-content: center;
     background-color: white;
+    display: inline-block;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    width: 280px;
+    min-height: fit-content;
+    height:fit-content;
+    max-height: fit-content;
 }
 
 .weeklyBox__title {
@@ -19,7 +26,7 @@
 }
 
 .weeklyBox__title input {
-    width: 180px;
+    width: 250px;
     display: block;
     padding-left: 11px;
     padding-top: 0;

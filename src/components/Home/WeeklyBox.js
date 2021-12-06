@@ -16,10 +16,10 @@ function onEnterKeyPressBlur(e) {
     }
 }
 
-const baseUrl = "http://localhost:8080";
-
-function WeeklyBox({id, title, weeklyElmList}) {
-    
+function WeeklyBox({accessToken, userId, id, title, weeklyElmList}) {
+    var config = {
+        headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
+      };
 
     const [titleTxt, setTitleTxt] = useState(title === null ? "" : title);
     const [weeklyElms, setWeeklyElms] = useState(weeklyElmList);
@@ -36,25 +36,14 @@ function WeeklyBox({id, title, weeklyElmList}) {
             elm.id === id ? { ...elm, content: e.target.value } : elm));
     }
 
-    const onClickClearBtn = async (weeklyElmId) => {
-        await axios
-            .patch(baseUrl + "/weeklyElm/" + weeklyElmId, {})
-            .then((response) => {
-                console.log(response.data);
-                
-                setWeeklyElms(weeklyElms.map(elm=> elm.id === weeklyElmId ? { ...elm, completed: !elm.completed } : elm));
-            })
-            .catch((error) => {console.error(error);});
-    }
-
     const onUpdateWeeklyBoxTitle = async (e) => {
         await axios
-            .put(baseUrl + "/user/1/weeklyBox/" + id, 
+            .put("/user/weeklyBox/" + id, 
                 {
                     title: titleTxt
-            })
+            }, config)
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data['data']);
             })
             .catch((error) => {console.error(error);});
         console.log("타이틀이 수정되었습니다.");
@@ -62,9 +51,9 @@ function WeeklyBox({id, title, weeklyElmList}) {
 
     const onDeleteWeeklyBox = async () => {
         await axios
-            .delete(baseUrl + "/user/1/weeklyBox/" + id)
+            .delete("/user/weeklyBox/" + id, config)
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data['data']);
             })
             .catch((error) => {console.error(error);});
 
@@ -73,38 +62,38 @@ function WeeklyBox({id, title, weeklyElmList}) {
 
     const onCreateWeeklyElmObj = async () => {
         await axios
-            .post(baseUrl + "/user/1/weeklyBox/" + id, {})
+            .post("/user/weeklyBox/" + id, {}, config)
             .then((response) => {
-                console.log("weekly elm " + response.data + "가 생성되었습니다.");
+                console.log("weekly elm " + response.data['data'] + "가 생성되었습니다.");
                 const elm = {
-                    id: response.data,
+                    id: response.data['data'],
                     content: "",
                     completed: false
                 };
-                //setWeeklyElms([...weeklyElms, elm]);
+                setWeeklyElms([...weeklyElms, elm]);
             })
             .catch((error) => {console.error(error);});
     }
 
     const onUpdateWeeklyElm = async (e, weeklyElmId) => {
         await axios
-            .put(baseUrl + "/weeklyElm/" + weeklyElmId, 
+            .put("/user/weeklyElm/" + weeklyElmId, 
             {
                 content: e.target.value
-            })
+            }, config)
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data['data']);
             })
             .catch((error) => {console.error(error);});
-        console.log("위클리내용이 수정됨.");
+        console.log("위클리내용이 수정되었습니다.");
     }
 
     const onDeleteWeeklyElm = async (weeklyElmId) => {
         if(editingYn){
             await axios
-            .delete(baseUrl + "/weeklyElm/" + weeklyElmId)
+            .delete("/user/weeklyElm/" + weeklyElmId, config)
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data['data']);
                 setWeeklyElms(weeklyElms.filter((elm) => elm.id !== weeklyElmId));
             })
             .catch((error) => {console.error(error);});
@@ -113,20 +102,31 @@ function WeeklyBox({id, title, weeklyElmList}) {
         }
     }
 
+    const onClickCompleteBtn = async (weeklyElmId) => {
+        await axios
+            .patch("/user/weeklyElm/" + weeklyElmId, {}, config)
+            .then((response) => {
+                console.log(response.data['data']);
+                
+                setWeeklyElms(weeklyElms.map(elm=> elm.id === weeklyElmId ? { ...elm, completed: !elm.completed } : elm));
+            })
+            .catch((error) => {console.error(error);});
+    }
+
     return <div className="weeklyBox">
     <form>
-        <div className="weeklyBox_menu">
-                    <FontAwesomeIcon className="fa faList" icon={faList} 
-                        onClick={() => setEditingYn(!editingYn)}/>
-                    <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
-                        onClick={()=>{onCreateWeeklyElmObj();}}  />
-        </div>   
         <div className="weeklyBox__title">
             <input type="text" value={ titleTxt } 
             onChange={changeTitleTxt} 
             onKeyPress={onEnterKeyPressBlur}
             onBlur={(e)=>onUpdateWeeklyBoxTitle(e)}
-            />          
+            />   
+            <div className="weeklyBox_menu">
+            <FontAwesomeIcon className="fa faList" icon={faList} 
+                onClick={() => setEditingYn(!editingYn)}/>
+            <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
+                onClick={()=>{onCreateWeeklyElmObj();}}  />
+        </div>       
         </div>
         <ul className="weeklyBox__elm-list">
             {weeklyElms.map(elm => {
@@ -138,7 +138,7 @@ function WeeklyBox({id, title, weeklyElmList}) {
                             editingYn
                              ? "faCheck invisible"
                              : elm.completed ? "faCheck completed" : "faCheck"
-                        } icon={faCheck} onClick={()=>onClickClearBtn(elm.id)}/>
+                        } icon={faCheck} onClick={()=>onClickCompleteBtn(elm.id)}/>
                     <FontAwesomeIcon className={editingYn ? "faMinus visible" : "faMinus invisible"} icon={faMinus} 
                         onClick={()=>onDeleteWeeklyElm(elm.id)}/>
 
