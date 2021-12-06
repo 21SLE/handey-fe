@@ -9,10 +9,16 @@ class SideBar extends React.Component {
 
         return (currentUrl === "/home" || currentUrl === "/history") 
         ? <div className="sideBar">
-            <ul>
-                <li><Link to="/home">Home</Link></li>
-                <li><Link to="/history">History</Link></li>
-                <li><Link to="/trash">휴지통</Link></li>
+            <h1 className = "logo">HANDEY</h1>
+            <h2 className = "date">2021-12-06</h2>
+            <h3 className = "welcomeMessage">홍길동님 환영합니다.</h3>
+            <div className = "calendar"></div>
+            <ul className = "sidebarList">
+                <li><Link to="/home">HOME</Link></li>
+                <li><Link to="/history">HISTORY</Link></li>
+                <li>HELP</li>
+                <li>INFO</li>
+                <li><Link to="/trash">TRASH</Link></li>
             </ul>
         </div>
         : null;

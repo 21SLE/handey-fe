@@ -8,44 +8,12 @@ import Home from "./routes/Home/Home";
 import History from "./routes/history/History";
 import Trash from "./routes/Trash/Trash"
 import SideBar from "./components/common/Side-bar";
-import customAxios from './customAxios';
 import "./App.css";
-
-// import { useLocation } from "react-router";
 
  
 
 
 function App() {
-//   const location = useLocation();
-
-//  const accessToken = location.state.accessToken;
-//  const userId = location.state.userId;
-//  const userName = location.state.userName;
-
-//   const [state, dispatch] = useReducer(reducer, initialState);
-//   const { authenticated } = state;
-
-//   function handleLogin(id, password) {
-//     let token = Login.Login(id, password);
-
-//     if (token) {
-//       console.log('로그인 성공!');
-//       dispatch({
-//         type: 'SET_TOKEN',
-//         token: token,
-//         result: true,
-//       });
-//     } else {
-//       console.log('로그인 실패');
-//       dispatch({
-//         type: 'SET_TOKEN',
-//         token: null,
-//         result: false,
-//       });
-//     }
-//   }
-
 
   return (
     <BrowserRouter>
