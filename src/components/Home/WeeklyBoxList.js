@@ -6,12 +6,12 @@ import PropTypes from "prop-types";
 import WeeklyBox from "./WeeklyBox";
 import "./WeeklyBoxList.css";
 
-
-const baseUrl = "http://localhost:8080";
-
 export const WeeklyContext = React.createContext();
 
-function WeeklyBoxList() {
+function WeeklyBoxList({accessToken, userId}) {
+    var config = {
+        headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
+      };
 
     const [weeklyBoxListData, setWeeklyBoxListData] = useState([]);
 
@@ -20,8 +20,8 @@ function WeeklyBoxList() {
     }, []);
 
     async function getWeeklyBoxList() {
-        
-        await axios.get(baseUrl + "/user/1/weeklyBoxList")
+        await axios
+            .get("/user/" + userId + "/weeklyBoxList", config)
             .then((response) => {
                 console.log(response.data);
                 //setWeeklyBoxListData(response.data);
@@ -33,7 +33,7 @@ function WeeklyBoxList() {
 
     const createWeeklyBoxObj = async () => {
         await axios
-        .post(baseUrl + "/user/1/weeklyBox", {})
+        .post("/user/" + userId + "/weeklyBoxList", config, {})
         .then((response) => {
             // response.data로 새로 생성된 weekly element의 id가 옴
             console.log("weekly box " + response.data + "가 생성되었습니다.");

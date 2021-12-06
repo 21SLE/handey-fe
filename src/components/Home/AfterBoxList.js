@@ -9,13 +9,16 @@ const baseUrl = "http://localhost:8080";
 
 export const AfterContext = React.createContext();
 
-function AfterBoxList() {
+function AfterBoxList({accessToken, userId}) {
+    var config = {
+        headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
+      };
+
     const [afterBoxListData, setAfterBoxListData] = useState([]);
 
     const deleteAfterObj = (weeklyBoxId) => {
         setAfterBoxListData(afterBoxListData.filter((weeklyBox)=> weeklyBox.id !== weeklyBoxId));
     }
-
 
 
     return <AfterContext.Provider value = {afterBoxListData}>

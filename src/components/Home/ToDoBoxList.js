@@ -5,7 +5,6 @@ import axios from "axios";
 import ToDoBox from "./ToDoBox";
 import "./ToDoBoxList.css";
 
-const baseUrl = "http://localhost:8080";
 export const ToDoContext = React.createContext();
 
 function ToDoBoxList({accessToken, userId}) {
@@ -25,7 +24,6 @@ function ToDoBoxList({accessToken, userId}) {
         console.log(accessToken);
         console.log(userId)
         await axios
-            // .get(baseUrl + "/user/" + userId + "/toDoBoxList", config)
             .get("/user/" + userId + "/toDoBoxList", config)
             .then(response => {
                 console.log(response.data);
@@ -39,7 +37,7 @@ function ToDoBoxList({accessToken, userId}) {
     const createToDoBoxObj = async () => {
         await axios
 
-        .post(baseUrl + "/user/33/toDoBox", {})
+        .post("/user/" + userId + "/toDoBoxList", config, {})
 
         .then((response) => {
             // response.data로 새로 생성된 todo element의 id가 옴

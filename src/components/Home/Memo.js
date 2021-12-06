@@ -4,9 +4,16 @@ import "./Memo.css";
 
 const baseUrl = "http://localhost:8080";
 
-function Memo({id, content}) {
+function Memo({accessToken, userId}) {
+    var config = {
+        headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
+      };
 
-    const [memoTxt, setMemoTxt] = useState(content == null ? "" : content);
+    const [memoTxt, setMemoTxt] = useState("");
+
+    useEffect(() => {
+        getMemo();
+    }, []);
 
     function changeMemoTxt(e) {
         e.preventDefault();
@@ -22,9 +29,9 @@ function Memo({id, content}) {
 
     const getMemo = async () => {
         // TODO 회원가입 완성시 수정
-        await axios.get(baseUrl + "/memo/1")
+        await axios.get("/user/" + userId + "/memo", config)
             .then((response) => {
-                setMemoTxt(response.data.content === null ? "" : response.data.content);
+                setMemoTxt(response.data['data'].content === null ? "" : response.data['data'].content);
             })
             .catch((error) => {
                 console.error("ERROR: " + error);
@@ -34,7 +41,7 @@ function Memo({id, content}) {
     const onUpdateMemo = async (e) => {
         // TODO 회원가입 완성시 수정
         await axios
-                .put(baseUrl + "/memo/1", 
+                .put("/user/" + userId + "/memo", config, 
                 {
                     content: e.target.value
                 })

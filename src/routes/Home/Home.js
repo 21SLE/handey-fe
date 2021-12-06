@@ -12,15 +12,24 @@ function Home() {
     return <div className = "home-layout">
             <div className = "home-layout__wrap">
                 <div className = "home-layout__wrap__left">
-                    <WeeklyBoxList />
-                    <AfterBoxList />
+                    <WeeklyBoxList 
+                        accessToken = {accessToken}
+                        userId = {userId}
+                        />
+                    <AfterBoxList 
+                        accessToken = {accessToken}
+                        userId = {userId}
+                        />
                 </div>
                 <div className = "home-layout__wrap__right">
                     <ToDoBoxList 
                         accessToken = {accessToken}
                         userId = {userId}
                         />
-                    <Memo />
+                    <Memo 
+                        accessToken = {accessToken}
+                        userId = {userId}
+                        />
                 </div>
             </div>
         </div>;
