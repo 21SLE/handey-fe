@@ -25,7 +25,7 @@ hr {
 }
 
 .afterBoxList {
-    margin-top: 15px;
+    margin-top: 7px;
     box-sizing: border-box;
     overflow-y: scroll;
     height: 160px;
