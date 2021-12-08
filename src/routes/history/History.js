@@ -1,21 +1,19 @@
 import React from "react";
-import "./history.css";
+import "./History.css";
+import HistoryBoxList from "../../components/History/HistoryBoxList";
 
 
-class History extends React.Component {   
-    render() {
-
-        return <div className = "history-layout" style={{paddingLeft: "280px"}}>
+function History() {
+    
+    return <div className = "history-layout">
             <div className = "history-layout__wrap">
-                    <div className = "history-layout__wrap__search">
+                <div className = "history-layout__wrap__search">
                         
-                    </div>
-                    <div className = "history-layout__wrap__main">
-                        
-                    </div>
+                </div>
+                <HistoryBoxList />
+                
             </div>
         </div>;
-    }
 }
 
 export default History;

@@ -1,28 +1,8 @@
 .history-layout {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    margin-left: 100px;
-    vertical-align: baseline;
-    background: transparent;
-}
-
-.history-layout__wrap {
+    margin-left: 280px;
+    height: 100vh;
+    
     display:flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin-top: 35px;
-}
-
-.history-layout__wrap__search {
-    display: flex;
-    margin-left: 0px;
-    position: relative;
-    z-index: 1;
-}
-
-.history-layout__wrap__main {
-    display: inline-flex;
-    position: relative;
-    height: 600;
+    justify-content: center;
+    align-items: center;
 }
