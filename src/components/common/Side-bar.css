@@ -1,8 +1,55 @@
 .sideBar {
-    background-color: #808080;
+    background-color: rgb(242, 242, 242);
     width: 280px;
     margin: 0;
     padding: 0;
     position: fixed;
     height: 100%;
+    padding: 20px;
+    padding-left: 30px;
+}
+
+.logo {
+    color: rgb(254, 192, 1);
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    
+}
+
+.todayDate {
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.welcomeMessage {
+    color: rgb(177, 177, 177);
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 30px;
+}
+
+.calendar {
+    height: 210px;
+    width: 250px;
+    background-color: rgb(231, 230, 230);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    margin-left: -5px;
+}
+
+.sidebarList li {
+    font-size: 16px;
+    font-weight: 900;
+    margin-bottom: 25px;
+    margin-left: 2px;
+}
+
+.logout {
+    font-size: 16px;
+    font-weight: 900;
+    position: fixed;
+    bottom: 15px;
+    color: rgb(177, 177, 177);
 }

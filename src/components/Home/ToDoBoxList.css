@@ -1,12 +1,9 @@
 .toDoBoxList {
-    box-sizing:content-box;
+    box-sizing: content-box;
     overflow-y: scroll;
     overflow-x: hidden;
-    padding: 20px;
-    margin: -20px;
-    margin-bottom: 25px;
     width: 700px;
-    height: 440px;
+    height: 470px;
     z-index: 2;
     display: flex;
     flex-wrap: wrap;
@@ -17,7 +14,7 @@
     float: right;
     top: 0;
     right: 0;
-    margin-right: -24px;
+    margin-right: -5px;
 }
 
 /* 스크롤바 너비 설정 */ 

@@ -1,47 +1,23 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
-import customAxios from "../../customAxios";
 import Home from "../Home/Home";
-import { BrowserRouter, Route, Switch} from "react-router-dom";
+import { BrowserRouter, Route} from "react-router-dom";
 
 const baseUrl = "http://localhost:8080"
 
 function Login() {
-/*
-        // IP주소 변수 선언
-    const [ip, setIp] = useState('');
-
-    // IP주소 값을 설정합니다.
-    function callback(data) {
-        setIp(data);
-    }
-
-    // 첫번째 렌더링을 다 마친 후 실행합니다.
-    useEffect(
-        () => {
-        // 클라이언트의 IP주소를 알아내는 백엔드의 함수를 호출합니다.
-        customAxios('/ip', callback);
-        }, []
-    );
-    
-    //const navigate = useNavigate();
-    const history = useHistory();
-    */
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    var token;
+    var accessToken;
     var userId;
     var userName;
-
-    const history = useHistory();
 
     const routeChange = () =>{ 
         return (
             <BrowserRouter>
               
-                <Route path="/home" component={Home(token, userId, userName)}/>
+                <Route path="/home" component={Home(accessToken, userId, userName)}/>
                 
             </BrowserRouter>
           );
@@ -64,30 +40,15 @@ function Login() {
             password
         })
         .then((response) => {
-            // const token = response.headers['ACCESS_TOKEN'];
-            token = response.data['data']['accessToken'];
+            accessToken = response.data['data']['accessToken'];
             userId = response.data['data']['userId'];
             userName = response.data['data']['userName'];
-            console.log(token);
+            console.log(accessToken);
             console.log(userId);
             console.log(userName);
-            localStorage.setItem('token',token);
+            localStorage.setItem('accessToken',accessToken);
             localStorage.setItem('userId',userId);
             localStorage.setItem('userName',userName);
-            // localStorage.setItem('authenticatedUser', response.data);
-            
-            // axios.interceptors.request.use(
-            //     config => {
-            //         const token = localStorage.getItem('token');
-            //         if(token){
-            //             config.headers['Authorization'] = 'ACCESS_TOKEN' + token;
-            //         }
-    
-            //         return config;
-            //     },
-            //     error => {
-            //         Promise.reject(error)
-            //     });
 
             window.location.href = "/home";
             
@@ -109,38 +70,36 @@ function Login() {
         <div className = "InputBox">
     
             <h1>HANDEY</h1>
-           
-            <div className = "caption">
-            <a href = "/join">회원가입</a>
-            <a>/</a>
-            <a href = "/findPw">비밀번호찾기</a>
-            </div>
             
             <div className = "login-form">
-            
-            <div className = "ID">
-            <label htmlFor="input_id">ID</label>
-            <input className = "email"
-            value={email}
-            onChange={handleID}
-            required={true}
-            />
-            </div>
+                <div className = "ID">
+                <label htmlFor="input_id">ID</label>
+                <input className = "email"
+                    value={email}
+                    onChange={handleID}
+                    required={true}
+                />
+                </div>
 
-            <div className = "PASSWORD">
-             <label htmlFor="input_pw">PASSWORD</label>
-            <input className = "password"
-            value={password}
-            onChange={handlePW}
-            required={true}
-            onKeyPress={KeyPress}
-            />
-            </div>
+                <div className = "PASSWORD">
+                    <label htmlFor="input_pw">PASSWORD</label>
+                    <input className = "password"
+                        value={password}
+                        onChange={handlePW}
+                        required={true}
+                        onKeyPress={KeyPress}
+                        />
+                </div>
 
-        </div>
+            </div>
 
             <button type = "button" onClick={onsubmit}>Log in</button>
         
+            <div className = "caption">
+                <a href = "/join">회원가입</a>
+                <a>/</a>
+                <a href = "/findPw">비밀번호찾기</a>
+            </div>
         </div>
     );
 }

@@ -55,3 +55,8 @@ a {
     color: inherit;
     text-decoration: none;
 }
+
+html, body {
+    background-color: rgb(242, 242, 242);
+    overflow: hidden;
+}

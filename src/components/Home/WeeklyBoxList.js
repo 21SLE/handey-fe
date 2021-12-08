@@ -2,16 +2,15 @@ import React, { forwardRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faPlus, faMinus, faList } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import PropTypes from "prop-types";
 import WeeklyBox from "./WeeklyBox";
 import "./WeeklyBoxList.css";
 
-
-const baseUrl = "http://localhost:8080";
-
 export const WeeklyContext = React.createContext();
 
-function WeeklyBoxList() {
+function WeeklyBoxList({accessToken, userId}) {
+    var config = {
+        headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
+      };
 
     const [weeklyBoxListData, setWeeklyBoxListData] = useState([]);
 
@@ -20,11 +19,11 @@ function WeeklyBoxList() {
     }, []);
 
     async function getWeeklyBoxList() {
-        
-        await axios.get(baseUrl + "/user/1/weeklyBoxList")
+        await axios
+            .get("/user/" + userId + "/weeklyBoxList", config)
             .then((response) => {
-                console.log(response.data);
-                //setWeeklyBoxListData(response.data);
+                console.log(response.data['data']);
+                setWeeklyBoxListData(response.data['data']);
             })
             .catch((error) => {
                 console.error("ERROR: " + error);
@@ -33,12 +32,12 @@ function WeeklyBoxList() {
 
     const createWeeklyBoxObj = async () => {
         await axios
-        .post(baseUrl + "/user/1/weeklyBox", {})
+        .post("/user/" + userId + "/weeklyBox", {}, config)
         .then((response) => {
             // response.data로 새로 생성된 weekly element의 id가 옴
-            console.log("weekly box " + response.data + "가 생성되었습니다.");
+            console.log("weekly box " + response.data['data'] + "가 생성되었습니다.");
             const box = {
-                id: response.data,
+                id: response.data['data'],
                 title: "",
                 clear: false,
                 weeklyElmList: []
@@ -54,17 +53,19 @@ function WeeklyBoxList() {
     }
 
     return <WeeklyContext.Provider value = {weeklyBoxListData}>
-        <div className="weeklyBoxList">        
-            <div className="weekly_part">    
-                <span> weekly </span> 
-                <hr border="solid" width="294px" color="grey"/>
+        <div className="weeklyList">        
+            <div className="weeklyList_title">    
+                <h1>Weekly</h1> 
                 <FontAwesomeIcon className="fa faPlus createWeeklyBoxBtn" icon={faPlus} onClick={()=>{createWeeklyBoxObj();}}/>
             </div>
-            <div className="w_box_list">  
+            <hr/>
+            <div className="weeklyBoxList">  
             {          
                 weeklyBoxListData.map(weeklyBox => {
                     return <WeeklyBox 
                         key = {weeklyBox.id}
+                        accessToken = {accessToken}
+                        userId = {userId}
                         id = {weeklyBox.id}
                         title = {weeklyBox.title}
                         clear = {weeklyBox.clear}

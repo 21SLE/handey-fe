@@ -1,37 +1,55 @@
-import React, { forwardRef, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import "./WeeklyBox";
+import AfterBox from "./AfterBox";
 import "./AfterBoxList.css";
-
-const baseUrl = "http://localhost:8080";
 
 export const AfterContext = React.createContext();
 
-function AfterBoxList() {
+function AfterBoxList({accessToken, userId}) {
+    var config = {
+        headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
+      };
+
     const [afterBoxListData, setAfterBoxListData] = useState([]);
 
-    const deleteAfterObj = (weeklyBoxId) => {
-        setAfterBoxListData(afterBoxListData.filter((weeklyBox)=> weeklyBox.id !== weeklyBoxId));
-    }
+    useEffect(() => {
+        getToDoBoxList();
+    }, []);
 
+    async function getToDoBoxList() {
+        await axios
+            .get("/user/" + userId + "/weeklyBoxList", config)
+            .then(response => {
+                console.log(response.data['data']);
+                
+                setAfterBoxListData(response.data['data']);
+            })
+            .catch((error) => {
+                console.error("ERROR: " + error);
+            })
+    };
 
 
     return <AfterContext.Provider value = {afterBoxListData}>
-        <FontAwesomeIcon className="fa faMinus deleteAfter" icon={faMinus} onClick={()=>{deleteAfterObj();}}/>
-        <div className="afterList">
+        <div className="afterSection">
+            <div className="after_title">
+                <h1>Finished</h1> 
+            </div>
+            <hr/>
+            <div className="afterBoxList">
             {            
-                afterBoxListData.map(weeklyBox => {
-                    return <weeklyBox 
-                        key = {weeklyBox.id}
-                        id = {weeklyBox.id}
-                        title = {weeklyBox.title}
-                        clear = {weeklyBox.clear}
-                        weeklyElmList = {weeklyBox.weeklyElmList}
+                afterBoxListData.map(afterBox => {
+                    return <AfterBox 
+                        key = {afterBox.id}
+                        id = {afterBox.id}
+                        title = {afterBox.title}
+                        weeklyElmList = {afterBox.weeklyElmList}
                     />;
                 })
             }
+            </div>
         </div>
     </AfterContext.Provider>;
 }

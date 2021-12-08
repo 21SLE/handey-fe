@@ -2,11 +2,16 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./Memo.css";
 
-const baseUrl = "http://localhost:8080";
+function Memo({accessToken, userId}) {
+    var config = {
+        headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
+      };
 
-function Memo({id, content}) {
+    const [memoTxt, setMemoTxt] = useState("");
 
-    const [memoTxt, setMemoTxt] = useState(content == null ? "" : content);
+    useEffect(() => {
+        getMemo();
+    }, []);
 
     function changeMemoTxt(e) {
         e.preventDefault();
@@ -21,10 +26,9 @@ function Memo({id, content}) {
     }
 
     const getMemo = async () => {
-        // TODO 회원가입 완성시 수정
-        await axios.get(baseUrl + "/memo/1")
+        await axios.get("/user/" + userId + "/memo", config)
             .then((response) => {
-                setMemoTxt(response.data.content === null ? "" : response.data.content);
+                setMemoTxt(response.data['data'].content === null ? "" : response.data['data'].content);
             })
             .catch((error) => {
                 console.error("ERROR: " + error);
@@ -32,12 +36,11 @@ function Memo({id, content}) {
     }
 
     const onUpdateMemo = async (e) => {
-        // TODO 회원가입 완성시 수정
         await axios
-                .put(baseUrl + "/memo/1", 
+                .put("/user/" + userId + "/memo", 
                 {
                     content: e.target.value
-                })
+                }, config)
                 .then((response) => {
                     console.log(response.data);
                 })
@@ -51,10 +54,12 @@ function Memo({id, content}) {
     }, []);
 
     return <div className="memo">
+        <h1 className="memo_title">Memo</h1>
+        <hr />
         <textarea value = {memoTxt} 
-        onChange={changeMemoTxt} 
-        onKeyPress={onEnterKeyPressBlur}
-        onBlur={onUpdateMemo} />
+            onChange={changeMemoTxt} 
+            onKeyPress={onEnterKeyPressBlur}
+            onBlur={onUpdateMemo} />
     </div>;
 }
 

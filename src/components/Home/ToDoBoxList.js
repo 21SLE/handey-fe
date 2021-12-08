@@ -5,7 +5,6 @@ import axios from "axios";
 import ToDoBox from "./ToDoBox";
 import "./ToDoBoxList.css";
 
-const baseUrl = "http://localhost:8080";
 export const ToDoContext = React.createContext();
 
 function ToDoBoxList({accessToken, userId}) {
@@ -21,10 +20,11 @@ function ToDoBoxList({accessToken, userId}) {
     }, []);
 
     async function getToDoBoxList() {
+        console.log("------------------------------------------ToDoBoxList------------------------------------------------");
         console.log(accessToken);
         console.log(userId)
         await axios
-            .get(baseUrl + "/user/" + userId + "/toDoBoxList", config)
+            .get("/user/" + userId + "/toDoBoxList", config)
             .then(response => {
                 console.log(response.data);
                 setToDoBoxListData(response.data['data']);
@@ -36,14 +36,12 @@ function ToDoBoxList({accessToken, userId}) {
 
     const createToDoBoxObj = async () => {
         await axios
-
-        .post(baseUrl + "/user/33/toDoBox", {})
-
+        .post("/user/" + userId + "/toDoBox", {}, config)
         .then((response) => {
             // response.data로 새로 생성된 todo element의 id가 옴
-            console.log("todo box " + response.data + "가 생성되었습니다.");
+            console.log("todo box " + response.data['data'] + "가 생성되었습니다.");
             const box = {
-                id: response.data,
+                id: response.data['data'],
                 title: "",
                 fixed: false,
                 toDoElmList: []
@@ -64,6 +62,8 @@ function ToDoBoxList({accessToken, userId}) {
             {toDoBoxListData.map((toDoBox) => {
                  return <ToDoBox 
                         key = {toDoBox.id}
+                        accessToken = {accessToken}
+                        userId = {userId}
                         id = {toDoBox.id}
                         title = {toDoBox.title}
                         fixed = {toDoBox.fixed}
@@ -71,9 +71,6 @@ function ToDoBoxList({accessToken, userId}) {
                         deleteToDoBoxOnScreen = {deleteToDoBoxOnScreen}
                     />;
                 })
-                // toDoElmList.map(toDoBox => {
-                //     
-                // })
             }
 
         </div>
