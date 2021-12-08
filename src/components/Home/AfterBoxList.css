@@ -1,4 +1,4 @@
-.afterList {
+.afterSection {
     display: inline-block;
     box-sizing: border-box;
     width: 314px;
@@ -22,4 +22,17 @@ hr {
     background: rgb(231, 230, 230);
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.afterBoxList {
+    margin-top: 15px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    height: 160px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.afterBoxList::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }

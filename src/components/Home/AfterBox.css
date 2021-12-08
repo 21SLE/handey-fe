@@ -1,0 +1,30 @@
+.afterBox {
+    margin-bottom: 10px;
+}
+.afterBox_title {
+    font-size: 18px;
+    
+    color: #FDDC42;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.afterBox_elmList li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.afterBox_elmList li .faChevronRight {
+    display: block;
+    font-size: 10px;
+    color: rgb(187, 187, 187);
+}
+
+.afterBox_elmList li .afterElm_content {
+    display: block;
+    font-size: 16px;
+    color: rgb(187, 187, 187);
+    margin-left: 5px;
+}
