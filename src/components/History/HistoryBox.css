@@ -1,0 +1,123 @@
+.historyBox {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 20px; /*top right bottom left*/
+    margin-bottom: 18px;
+    margin-right: 18px;
+    background-color: white;
+    width: 280px;
+    height: 550px;
+    box-shadow: 3px 3px 3px 1px #979797 ; /*x-position y-position blur spread color*/
+    border-radius: 10px;
+}
+
+.historyBox .date {
+    /* color: rgb(254, 192, 1); */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.historyBox hr {
+    border: 0;
+    height: 3px;
+    background: rgb(231, 230, 230);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.historyBox .sectionTitle {
+    color: rgb(254, 192, 1);
+    /* color: #FDDC42; */
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.toDoBoxList_history {
+    height: 280px;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.toDoBoxList_history::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.toDoBox_history_title_section {
+    margin-left: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.boxTitle {
+    display: inline-block;
+    /* border-left: 5px solid #FDDC42;; */
+    font-size: 16px;
+    color: #FDDC42;
+    font-weight: bold;
+    
+    margin-bottom: 5px;
+}
+
+.historyBox .faCheck {
+    display: inline-block;
+    color: #FDDC42;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+.toDoElmList_history li {
+    font-size: 16px;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.toDoElmList_history .faChevronRight {
+    display: block;
+    font-size: 8px;
+    color: rgb(187, 187, 187);
+}
+
+.elm_dot {
+    display: block;
+    font-size: 14px;
+    color: rgb(187, 187, 187);
+    margin-bottom: 2px;
+    margin-right: 3px;
+}
+
+.elm_content {
+    display: block;
+    font-size: 16px;
+    color: rgb(187, 187, 187);
+}
+
+.afterList_history {
+    height: 140px;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.afterList_history::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.afterTitle {
+    margin-left: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.afterElmList_history {
+    padding-left: 20px;
+    margin-bottom: 5px;
+    display: flex;
+}

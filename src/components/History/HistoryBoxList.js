@@ -34,6 +34,7 @@ function HistoryBoxList() {
             historyBoxListData.map((historyBox) => {
                 return <HistoryBox
                         key = {historyBox.saveDt}
+                        date = {historyBox.saveDt}
                         toDoBoxList = {historyBox.toDoBoxHstList}
                         afterList = {historyBox.afterHstList}
                         />

@@ -7,11 +7,12 @@ class SideBar extends React.Component {
     render() {
         const currentUrl = window.location.pathname;
         const userName = localStorage.getItem('userName');
+        var todayDate = new Date().toISOString().slice(0, 10).replace(/-/g, '.');
 
         return (currentUrl === "/home" || currentUrl === "/history") 
         ? <div className="sideBar">
             <h1 className = "logo">HANDEY</h1>
-            <h2 className = "date">2021-12-06</h2>
+            <h2 className = "todayDate">{todayDate}</h2>
             <h3 className = "welcomeMessage">{userName}님 환영합니다.</h3>
             <div className = "calendar"></div>
             <ul className = "sidebarList">

@@ -11,7 +11,6 @@ function History() {
                         
                 </div>
                 <HistoryBoxList />
-                
             </div>
         </div>;
 }
