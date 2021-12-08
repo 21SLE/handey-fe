@@ -22,7 +22,7 @@ function WeeklyBoxList({accessToken, userId}) {
         await axios
             .get("/user/" + userId + "/weeklyBoxList", config)
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data['data']);
                 setWeeklyBoxListData(response.data['data']);
             })
             .catch((error) => {
@@ -62,7 +62,7 @@ function WeeklyBoxList({accessToken, userId}) {
             <div className="weeklyBoxList">  
             {          
                 weeklyBoxListData.map(weeklyBox => {
-                    return <div><WeeklyBox 
+                    return <WeeklyBox 
                         key = {weeklyBox.id}
                         accessToken = {accessToken}
                         userId = {userId}
@@ -71,9 +71,7 @@ function WeeklyBoxList({accessToken, userId}) {
                         clear = {weeklyBox.clear}
                         weeklyElmList = {weeklyBox.weeklyElmList}
                         deleteWeeklyBoxOnScreen = {deleteWeeklyBoxOnScreen}
-                    />
-                    {/* <hr className="small_hr" /> */}
-                    </div>; 
+                    />; 
                     
                 })
             }</div>

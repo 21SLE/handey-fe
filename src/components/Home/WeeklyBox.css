@@ -87,10 +87,30 @@
     color: #fddb4200;
 }
 
+.weeklyBox__elm-list .completed {
+    color: #FDDC42;
+}
+
+.weeklyBox__elm-list .elmInputCompleted {
+    color: #FDDC42;
+}
+
+.weeklyBox__elm-list .editingCircleBorderBtn {
+    border: 2px solid rgba(151, 53, 40, 0.7);
+}
+
+.weeklyBox__elm-list .faMinus {
+    position: absolute;
+    width: 15px;
+    left: 5px;
+    color: rgba(151, 53, 40, 0.7);
+}
+
+
 .weeklyBox__elm-list input {
     width: 220px;
     height: 12pt;
-    margin-left: 15px;
+    margin-left: 30px;
     overflow: visible;
     color: #7d7d7d;
     left: 30px;

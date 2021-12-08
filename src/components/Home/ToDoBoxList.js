@@ -71,9 +71,6 @@ function ToDoBoxList({accessToken, userId}) {
                         deleteToDoBoxOnScreen = {deleteToDoBoxOnScreen}
                     />;
                 })
-                // toDoElmList.map(toDoBox => {
-                //     
-                // })
             }
 
         </div>

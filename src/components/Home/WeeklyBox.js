@@ -106,7 +106,7 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList}) {
         await axios
             .patch("/user/weeklyElm/" + weeklyElmId, {}, config)
             .then((response) => {
-                console.log(response.data['data']);
+                console.log(response.data);
                 
                 setWeeklyElms(weeklyElms.map(elm=> elm.id === weeklyElmId ? { ...elm, completed: !elm.completed } : elm));
             })
