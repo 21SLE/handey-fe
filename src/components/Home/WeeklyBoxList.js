@@ -1,6 +1,6 @@
-import React, { forwardRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faPlus, faMinus, faList } from "@fortawesome/free-solid-svg-icons";
+import { faPlus} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import WeeklyBox from "./WeeklyBox";
 import "./WeeklyBoxList.css";

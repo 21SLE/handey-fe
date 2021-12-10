@@ -1,6 +1,19 @@
 .trash-layout {
     margin-left: 280px;
-    padding: 40px;
-    vertical-align: baseline;
-    background: transparent;
+    height: 100vh;
+    /* width: 100vw; */
+    display:flex;
+    justify-content: start;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.trash-layout__wrap {
+    height: 100%;
+    width: 100%;
+    display:flex;
+    justify-content: start;
+    align-items: flex-start;
+    padding: 25px;
+    overflow: hidden;
 }

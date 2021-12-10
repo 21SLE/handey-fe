@@ -66,7 +66,7 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
         await axios
             .delete("/user/" + userId + "/toDoBox/" + id, config)
             .then((response) => {
-                console.log(response.data['data']);
+                console.log(response.data);
                 deleteToDoBoxOnScreen(id);
             })
             .catch((error) => {console.error(error);});
@@ -154,7 +154,7 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
                     if(elm.content == null) elm.content = "";
                 
                     return <li key={elm.id}>
-                        <button className={editingYn ? "circleBorderBtn editingCircleBorderBtn" : "circleBorderBtn"} type="button"></button>
+                        {/* <button className={editingYn ? "circleBorderBtn editingCircleBorderBtn" : "circleBorderBtn"} type="button"></button> */}
                         <FontAwesomeIcon className={
                                 editingYn
                                  ? "faCheck invisible"
