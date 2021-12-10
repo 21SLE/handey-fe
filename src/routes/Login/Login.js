@@ -49,6 +49,7 @@ function Login() {
             localStorage.setItem('accessToken',accessToken);
             localStorage.setItem('userId',userId);
             localStorage.setItem('userName',userName);
+            localStorage.setItem('userEmail',email);
 
             window.location.href = "/home";
             
