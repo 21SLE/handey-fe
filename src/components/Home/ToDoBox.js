@@ -130,16 +130,16 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
     }
 
     return <div className="toDoBox">
+        <FontAwesomeIcon className={editingYn ? "fa faTrash visible" : "fa faTrash invisible"} icon={faTrash}
+                    onClick={()=> {onDeleteToDoBox();}}  />
         <form>
             <div className="toDoBox_menu">
-                
                 <FontAwesomeIcon className="fa faList" icon={faList} 
                     onClick={() => setEditingYn(!editingYn)}/>
                 <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
                     onClick={()=>{onCreateToDoElmObj();}}/>
-                <FontAwesomeIcon className={editingYn ? "fa faTrash visible" : "fa faTrash invisible"} icon={faTrash}
-                    onClick={()=> {onDeleteToDoBox();}}  />
             </div>
+            
             <div className="toDoBox__title">
                 <FontAwesomeIcon className={fixed ? "fa faThumbtack fixed" : "fa faThumbtack unfixed"} icon={faThumbtack} 
                     onClick={()=> {onUpdateFixedYn();}} style={{color: `${fixedColor}`}}/>

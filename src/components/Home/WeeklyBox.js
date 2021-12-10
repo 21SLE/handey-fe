@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import "./WeeklyBox.css";
 import axios from "axios";
+import DropDownMenu from "../common/DropDownMenu"
 
 const Input = forwardRef((props, ref) => {
     return <input type="text" ref={ref} {...props}/>;
@@ -122,7 +123,7 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList}) {
             onBlur={(e)=>onUpdateWeeklyBoxTitle(e)}
             />   
             <div className="weeklyBox_menu">
-                <FontAwesomeIcon className="fa faEllipsisV" icon={faEllipsisV}/>
+                <DropDownMenu />
             </div>       
         </div>
         <ul className="weeklyBox__elm-list">
