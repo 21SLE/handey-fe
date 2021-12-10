@@ -1,12 +1,14 @@
 import React from "react";
 import "./Setting.css";
 
-function Info() {
+function Setting() {
 
-    return <div className = "info-layout">
-            <h1>Info</h1>
-        </div>;
+    return <div className = "setting-layout">
+        <div className="setting-layout__wrap">
+
+        </div>
+    </div>;
 }
 
 
-export default Info;
+export default Setting;

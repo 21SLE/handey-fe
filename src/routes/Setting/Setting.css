@@ -1,5 +1,16 @@
-.info-layout {
-    background-color: rgb(242, 242, 242);
+.setting-layout {
+    margin-left: 280px;
     height: 100vh;
-    width:100vw;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.setting-layout__wrap {
+    width: 1074px;
+    height: 675px;
+    background-color: white;
+    box-shadow: 3px 3px 3px 1px #979797 ; /*x-position y-position blur spread color*/
+    border-radius: 10px;
 }

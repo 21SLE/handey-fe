@@ -9,7 +9,7 @@ class SideBar extends React.Component {
         const userName = localStorage.getItem('userName');
         var todayDate = new Date().toISOString().slice(0, 10).replace(/-/g, '.');
 
-        return (currentUrl === "/home" || currentUrl === "/history") 
+        return (currentUrl === "/home" || currentUrl === "/history" || currentUrl === "/setting" || currentUrl === "/trash") 
         ? <div className="sideBar">
             <h1 className = "logo">HANDEY</h1>
             <h2 className = "todayDate">{todayDate}</h2>
