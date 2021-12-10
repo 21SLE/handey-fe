@@ -116,7 +116,7 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
     }
 
     const enterEditMode = () => {
-        setEditingYn(true);
+        setEditingYn(!editingYn);
     }
 
     return <div className="weeklyBox">
@@ -145,7 +145,7 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
                              ? "faCheck invisible"
                              : elm.completed ? "faCheck completed" : "faCheck"
                         } icon={faCheck} onClick={()=>onClickCompleteBtn(elm.id)}/>
-                    <FontAwesomeIcon className={editingYn ? "faMinus visible" : "faMinus invisible"} icon={faMinus} 
+                    <FontAwesomeIcon className={editingYn ? "faMinus visible shaking" : "faMinus invisible"} icon={faMinus} 
                         onClick={()=>onDeleteWeeklyElm(elm.id)}/>
 
                     <input type="text" className={ elm.completed ? "elmInputCompleted" : null } value = {elm.content} 

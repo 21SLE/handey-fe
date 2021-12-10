@@ -6,6 +6,16 @@
     visibility: visible;
 }
 
+.weeklyBox__elm-list .shaking {
+    animation: shake 0.1s infinite;
+}
+
+@keyframes shake {
+    0%  { transform: rotate(10deg);  }
+    50% { transform: rotate(0deg); } 
+    100%{ transform: rotate(-10deg); }
+}
+
 .WeeklyBox {
     align-items: center;
     justify-content: center;
