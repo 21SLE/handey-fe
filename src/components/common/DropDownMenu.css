@@ -19,7 +19,7 @@
     float: left;
     /* width: 30px;
     height: 108px; */
-    top: 5px;
+    top: 0px;
     right: 30px;
     position: absolute;
     box-shadow: 3px 3px 3px 1px #979797 ; /*x-position y-position blur spread color*/

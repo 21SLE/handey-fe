@@ -17,7 +17,7 @@ function onEnterKeyPressBlur(e) {
     }
 }
 
-function WeeklyBox({accessToken, userId, id, title, weeklyElmList}) {
+function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyBoxOnScreen}) {
     var config = {
         headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
       };
@@ -54,7 +54,8 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList}) {
         await axios
             .delete("/user/weeklyBox/" + id, config)
             .then((response) => {
-                console.log(response.data['data']);
+                console.log(response.data);
+                deleteWeeklyBoxOnScreen(id);
             })
             .catch((error) => {console.error(error);});
 
@@ -114,6 +115,10 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList}) {
             .catch((error) => {console.error(error);});
     }
 
+    const enterEditMode = () => {
+        setEditingYn(true);
+    }
+
     return <div className="weeklyBox">
     <form>
         <div className="weeklyBox__title">
@@ -123,7 +128,10 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList}) {
             onBlur={(e)=>onUpdateWeeklyBoxTitle(e)}
             />   
             <div className="weeklyBox_menu">
-                <DropDownMenu />
+                <DropDownMenu
+                    addFunc = {onCreateWeeklyElmObj}
+                    editFunc = {enterEditMode}
+                    deleteFunc = {onDeleteWeeklyBox}/>
             </div>       
         </div>
         <ul className="weeklyBox__elm-list">
