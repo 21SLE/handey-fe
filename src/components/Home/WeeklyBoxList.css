@@ -1,12 +1,12 @@
 .weeklyBoxList {
-    display: flex;
+    /* display: flex;
+    flex-wrap: wrap; */
     box-sizing: border-box;
     overflow-y: scroll;
     width: 314px;
     height: 380px;
-    flex-wrap: wrap;
-    /* position: relative; */
-    justify-content: center;
+    padding-bottom: 85px;
+    justify-content: start;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }

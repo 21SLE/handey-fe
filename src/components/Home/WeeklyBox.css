@@ -46,14 +46,14 @@
 }
 
 .weeklyBox_menu {
-    display: inline-block;
+    float: right;
+    /* width: 30px; */
+    top: 17px;
+    right: 0px;
+    margin-right: -5px;
+    position: absolute;
 }
 
-.weeklyBox_menu .faEllipsisV {
-    font-size: 14px;
-    color: grey;
-    margin-top: 17px;
-}
 
 .weeklyBox__elm-list {
     padding-left: 10px;

@@ -99,7 +99,7 @@
 }
 
 .afterList_history {
-    height: 140px;
+    height: 120px;
     overflow-y: scroll;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */

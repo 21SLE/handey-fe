@@ -1,15 +1,88 @@
 .trashBox {
     display: inline-block;
     box-sizing: border-box;
-    padding: 30px 15px 35px 30px; /*top right bottom left*/
-    margin-bottom: 25px;
-    margin-right: 20px;
+    padding: 20px 5px 25px 20px; /*top right bottom left*/
+    margin-bottom: 18px;
+    margin-right: 18px;
     background-color: white;
     width: 320px;
     min-height: fit-content;
     height:fit-content;
     max-height: fit-content;
-    box-shadow: 5px 10px 25px 10px #e8e8e8 ; /*x-position y-position blur spread color*/
+    box-shadow: 3px 3px 3px 1px #979797 ; /*x-position y-position blur spread color*/
     border-radius: 10px;
-    z-index: 3;
+    position: relative;
+}
+
+.trashBox .faRedoAlt {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 16px;
+    color: #acdb8d;
+}
+
+.trashBox .faTrash {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 16px;
+    color: #e99076;
+}
+
+.trashBox__title-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    margin-bottom: 15px;
+}
+
+.trashBox__title-section .yellowTag {
+    width: 5px;
+    height: 18px;
+    background-color: #f5bc0f;
+
+}
+
+.trashBox__title {
+    display:flex;
+    justify-content: flex-start;
+    width: 200px;
+    display: block;
+    padding-left: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 18px;
+    
+}
+
+.trashElmList {
+    padding-left: 5px;
+}
+
+.trashElmList li {
+    display: flex;
+    align-items: flex-start;
+}
+
+.trashElmList li:not(:last-child) { 
+    margin-bottom: 10px;  
+ }
+
+ .trashElmList .faCheck {
+    /* position: absolute; */
+    width: 15px;
+    left: 4px;
+    color: #b6b6b6;
+    margin-right: 7px;
+}
+
+.trashElmList .trashElmContent {
+    font-size: 18px;
+    
+    color: #b6b6b6;
+}
+
+.trashElmList .completed {
+    color: #FDDC42;
 }

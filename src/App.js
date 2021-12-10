@@ -8,7 +8,7 @@ import Home from "./routes/Home/Home";
 import History from "./routes/History/History";
 import Trash from "./routes/Trash/Trash"
 import SideBar from "./components/common/Side-bar";
-import Info from "./routes/Info/Info"
+import Setting from "./routes/Setting/Setting"
 import "./App.css";
 
  
@@ -25,7 +25,7 @@ function App() {
       <SideBar />
         <Route path="/home" component={Home}/>
         <Route path="/history" component={History} />
-        <Route path="/info" component={Info} />
+        <Route path="/setting" component={Setting} />
         <Route path="/trash" component={Trash} />
         {/* <Route component={PageNotFound} /> */}
     </BrowserRouter>

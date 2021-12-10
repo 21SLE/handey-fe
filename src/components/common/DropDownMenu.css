@@ -1,0 +1,35 @@
+/* .dropDownMenu {
+    width: 100px;
+    height: 100px;
+} */
+
+.dropDownMenu .faEllipsisV {
+    width: 30px;
+    color: grey;
+    margin: 5px;
+
+
+}
+
+.dropDownMenuIcon {
+    position: relative;
+}
+
+.dropDownMenu-items {
+    float: left;
+    /* width: 30px;
+    height: 108px; */
+    top: 0px;
+    right: 30px;
+    position: absolute;
+    box-shadow: 3px 3px 3px 1px #979797 ; /*x-position y-position blur spread color*/
+    border-radius: 10px;
+    z-index: 3;
+    padding: 5px;
+}
+
+.dropDownMenu-items li {
+    font-size: 14px;
+    color: grey;
+    padding: 10px;
+}

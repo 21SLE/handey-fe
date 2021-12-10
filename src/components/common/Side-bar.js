@@ -18,9 +18,9 @@ class SideBar extends React.Component {
             <ul className = "sidebarList">
                 <li><Link to="/home">HOME</Link></li>
                 <li><Link to="/history">HISTORY</Link></li>
-                <li>HELP</li>
-                <li><Link to="/info">INFO</Link></li>
+                <li><Link to="/setting">SETTING</Link></li>
                 <li><Link to="/trash">TRASH</Link></li>
+                <li>HELP</li>
             </ul>
             <div className="logout">Log Out</div>
         </div>

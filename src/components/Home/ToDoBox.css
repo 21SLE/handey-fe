@@ -20,6 +20,15 @@
     box-shadow: 3px 3px 3px 1px #979797 ; /*x-position y-position blur spread color*/
     border-radius: 10px;
     z-index: 3;
+    position: relative;
+}
+
+.toDoBox .faTrash {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 16px;
+    color: #e99076;
 }
 
 .toDoBox__title {

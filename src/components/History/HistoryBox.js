@@ -32,7 +32,7 @@ function HistoryBox({date, toDoBoxList, afterList}) {
                 </li>
             })}
         </ul>
-        <div className="afterList_history">
+        <div className="afterList_history_section">
             <h2 className="sectionTitle">Weekly</h2>
             {/* <hr /> */}
             <ul className="afterList_history">

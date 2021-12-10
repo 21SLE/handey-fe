@@ -66,7 +66,7 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
         await axios
             .delete("/user/" + userId + "/toDoBox/" + id, config)
             .then((response) => {
-                console.log(response.data['data']);
+                console.log(response.data);
                 deleteToDoBoxOnScreen(id);
             })
             .catch((error) => {console.error(error);});
@@ -130,16 +130,16 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
     }
 
     return <div className="toDoBox">
+        <FontAwesomeIcon className={editingYn ? "fa faTrash visible" : "fa faTrash invisible"} icon={faTrash}
+                    onClick={()=> {onDeleteToDoBox();}}  />
         <form>
             <div className="toDoBox_menu">
-                
                 <FontAwesomeIcon className="fa faList" icon={faList} 
                     onClick={() => setEditingYn(!editingYn)}/>
                 <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
                     onClick={()=>{onCreateToDoElmObj();}}/>
-                <FontAwesomeIcon className={editingYn ? "fa faTrash visible" : "fa faTrash invisible"} icon={faTrash}
-                    onClick={()=> {onDeleteToDoBox();}}  />
             </div>
+            
             <div className="toDoBox__title">
                 <FontAwesomeIcon className={fixed ? "fa faThumbtack fixed" : "fa faThumbtack unfixed"} icon={faThumbtack} 
                     onClick={()=> {onUpdateFixedYn();}} style={{color: `${fixedColor}`}}/>
@@ -154,7 +154,7 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
                     if(elm.content == null) elm.content = "";
                 
                     return <li key={elm.id}>
-                        <button className={editingYn ? "circleBorderBtn editingCircleBorderBtn" : "circleBorderBtn"} type="button"></button>
+                        {/* <button className={editingYn ? "circleBorderBtn editingCircleBorderBtn" : "circleBorderBtn"} type="button"></button> */}
                         <FontAwesomeIcon className={
                                 editingYn
                                  ? "faCheck invisible"

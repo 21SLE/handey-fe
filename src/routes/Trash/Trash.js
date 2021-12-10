@@ -1,20 +1,13 @@
 import React from "react";
 import TrashBoxList from "../../components/Trash/TrashBoxList"
+import "./Trash.css"
 
-class Trash extends React.Component {
-    
-
-    render() {
-
-        return <div className = "trash-layout" style={{paddingLeft: "280px"}}>
-        
-        <span>this is trash screen</span>
-        <TrashBoxList/>
-
+function Trash() {
+    return <div className = "trash-layout">
+        <div className="trash-layout__wrap">
+            <TrashBoxList/>
+        </div>
     </div>;
-    }
 }
-
-
 
 export default Trash;
