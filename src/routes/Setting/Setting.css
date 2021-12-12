@@ -28,13 +28,11 @@
     display: flex;
     flex-wrap: wrap;
     width: 500px;
-    height: 220px;
+    /* padding: 10px; */
 }
 
 .titles{
     width: 200px;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .sectionSubtitle {
@@ -43,19 +41,22 @@
     color: grey;
     width: 200px;
     display: inline-block;
+    height: 38px;
 }
+
 .inputs {
     width: 300px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    height: 220px;
+    justify-content: flex-end;
+    font-size: 16px;
 }
 
 .boxShadow {
     background-color: white;
     box-shadow: 2px 2px 3px 1px #979797 ; 
     border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .width200 {
@@ -65,16 +66,79 @@
     padding-left: 10px;
     padding-top: 0;
     padding-bottom: 0;
-    outline:none;
+    /* outline:none; */
     border: none;
-    font-size: 18px;
     width: 200px;
 }
 
-.width300 {
-    width:300px;
+.userEmail { 
+    height: 28px;
+}
+
+.pw-section {
+    width: 300px;
 }
 
 .pwBox {
-    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 220px;
+}
+
+.pwBox input {
+    width: 200px;
+    display: inline;
+    height: 28px;
+}
+
+.pw-section {
+    display: flex;
+}
+
+.pw__button{
+    width: 80px;
+    height: 105px;
+    /* background-color: white; */
+    background-color: rgb(242, 242, 242);
+    /* color: rgb(254, 192, 1); */
+    color: grey;
+    border-radius: 5px;
+    outline: inherit;
+    /* border: 3px solid rgb(254, 192, 1); */
+    border: none;
+    border: 3px solid rgb(185, 185, 185);
+    
+    
+    font-weight: bold;
+    
+}
+
+.userName-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.userName {
+    height: 28px;
+    margin-right: 20px;
+    
+}
+
+.userName__button {
+    width: 80px;
+    height: 36px;
+    background-color: rgb(242, 242, 242);
+    color: grey;
+    border-radius: 5px;
+    outline: inherit;
+    border: none;
+    border: 3px solid rgb(185, 185, 185);
+    font-weight: bold;
+    
+}
+
+.mb10 {
+    margin-bottom: 10px;
 }

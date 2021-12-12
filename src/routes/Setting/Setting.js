@@ -33,9 +33,10 @@ function Setting() {
     return <div className = "setting-layout">
         <div className="setting-layout__wrap">
             <div className="userInfo">
-                <h1 className="sectionTitle">회원정보</h1>
-        
+                
+            <h1 className="sectionTitle">회원정보</h1>
                 <div className="userInfo-section">
+                    
                     <div className="titles">
                         <h2 className="sectionSubtitle">이메일</h2>
                         <h2 className="sectionSubtitle">현재 비밀번호</h2>
@@ -44,24 +45,30 @@ function Setting() {
                         <h2 className="sectionSubtitle">이름</h2>
                     </div>
                     <div className="inputs">
-                        <div className="boxShadow width200">{userEmail}</div>
-                        <div className="pwBox boxShadow width300">
-                            <input className="width200"/>
-                            <input className="width200"/>
-                            <input className="width200"/>
-                        </div>        
-                        <div className="boxShadow width200">{userName}</div>
+                        <div className="boxShadow width200 mb10 userEmail">{userEmail}</div>
+                        <div className="pw-section">
+                            <div className="pwBox">
+                                <input className="boxShadow width200 mb10"/>
+                                <input className="boxShadow width200 mb10"/>
+                                <input className="boxShadow width200 mb10"/>
+                            </div>        
+                            <button className="pw__button">변경</button>
+                        </div>
+                        <div className="userName-section">
+                            <div className="boxShadow width200 userName">{userName}</div>
+                            <button className="userName__button">변경</button>
+                        </div>
                     </div>
                 </div>
-
+                <hr/>
                 <h1 className="sectionTitle">Reset Time(리셋 시간)</h1>
-                <ul className="resetTime-section">
-                    <li>
+                <div className="resetTime-section">
+                    <div>
                         <h2 className="sectionSubtitle">Reset At</h2>
                         <h3 className="userInfoContent">{userInfoData['resetTime']}</h3>
-                    </li>
+                    </div>
                     
-                </ul>
+                </div>
             </div>
         </div>
     </div>;
