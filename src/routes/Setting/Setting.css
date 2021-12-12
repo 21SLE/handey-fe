@@ -4,13 +4,77 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    
+    padding-top: 20px;
 }
 
 .setting-layout__wrap {
     width: 1074px;
     height: 675px;
-    background-color: white;
-    box-shadow: 3px 3px 3px 1px #979797 ; /*x-position y-position blur spread color*/
+    /* background-color: white; */
+    /* box-shadow: 3px 3px 3px 1px #979797 ;  */
     border-radius: 10px;
+}
+
+.sectionTitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px;
+    margin-left: 0;
+    margin-top: 30px;
+
+}
+
+.userInfo-section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
+    height: 220px;
+}
+
+.titles{
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sectionSubtitle {
+    font-size: 16px;
+    font-weight: bold;
+    color: grey;
+    width: 200px;
+    display: inline-block;
+}
+.inputs {
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 220px;
+}
+
+.boxShadow {
+    background-color: white;
+    box-shadow: 2px 2px 3px 1px #979797 ; 
+    border-radius: 5px;
+}
+
+.width200 {
+    height: 26px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+    outline:none;
+    border: none;
+    font-size: 18px;
+    width: 200px;
+}
+
+.width300 {
+    width:300px;
+}
+
+.pwBox {
+    padding: 10px;
 }

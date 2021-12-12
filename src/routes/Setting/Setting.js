@@ -6,6 +6,7 @@ function Setting() {
     const accessToken = localStorage.getItem('accessToken');
     const userId = localStorage.getItem('userId');
     const userEmail = localStorage.getItem('userEmail');
+    const userName = localStorage.getItem('userName');
 
     var config = {
         headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
@@ -33,27 +34,28 @@ function Setting() {
         <div className="setting-layout__wrap">
             <div className="userInfo">
                 <h1 className="sectionTitle">회원정보</h1>
-                <ul>
-                    <li>
+        
+                <div className="userInfo-section">
+                    <div className="titles">
                         <h2 className="sectionSubtitle">이메일</h2>
-                        <h3 className="userInfoContent">{userEmail}</h3>
-                    </li>
-                    <li>
                         <h2 className="sectionSubtitle">현재 비밀번호</h2>
-                        
-                    </li>
-                    <li>
                         <h2 className="sectionSubtitle">새로운 비밀번호</h2>
-                    
-                    </li>
-                    <li>
                         <h2 className="sectionSubtitle">새로운 비밀번호 확인</h2>
-                    
-                    </li>
-                </ul>
+                        <h2 className="sectionSubtitle">이름</h2>
+                    </div>
+                    <div className="inputs">
+                        <div className="boxShadow width200">{userEmail}</div>
+                        <div className="pwBox boxShadow width300">
+                            <input className="width200"/>
+                            <input className="width200"/>
+                            <input className="width200"/>
+                        </div>        
+                        <div className="boxShadow width200">{userName}</div>
+                    </div>
+                </div>
 
                 <h1 className="sectionTitle">Reset Time(리셋 시간)</h1>
-                <ul>
+                <ul className="resetTime-section">
                     <li>
                         <h2 className="sectionSubtitle">Reset At</h2>
                         <h3 className="userInfoContent">{userInfoData['resetTime']}</h3>
