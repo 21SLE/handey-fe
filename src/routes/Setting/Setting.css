@@ -142,3 +142,7 @@
 .mb10 {
     margin-bottom: 10px;
 }
+
+.resetTime-section {
+    display:flex;
+}

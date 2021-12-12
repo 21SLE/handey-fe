@@ -63,10 +63,8 @@ function Setting() {
                 <hr/>
                 <h1 className="sectionTitle">Reset Time(리셋 시간)</h1>
                 <div className="resetTime-section">
-                    <div>
                         <h2 className="sectionSubtitle">Reset At</h2>
-                        <h3 className="userInfoContent">{userInfoData['resetTime']}</h3>
-                    </div>
+                        <h3 className="userInfoContent boxShadow width200">{userInfoData['resetTime']}</h3>
                     
                 </div>
             </div>
