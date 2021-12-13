@@ -1,14 +1,10 @@
 import React, { forwardRef, useState } from "react";
-import { faCheck, faPlus, faMinus, faList, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import { faCheck,faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import "./WeeklyBox.css";
 import axios from "axios";
 import DropDownMenu from "../common/DropDownMenu"
-
-const Input = forwardRef((props, ref) => {
-    return <input type="text" ref={ref} {...props}/>;
-});
 
 function onEnterKeyPressBlur(e) {
     if(e.key === 'Enter') {
@@ -17,7 +13,7 @@ function onEnterKeyPressBlur(e) {
     }
 }
 
-function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyBoxOnScreen}) {
+function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyBoxOnScreen, refreshAfterBoxList}) {
     var config = {
         headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
       };
@@ -84,7 +80,7 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
                 content: e.target.value
             }, config)
             .then((response) => {
-                console.log(response.data['data']);
+                console.log(response.data);
             })
             .catch((error) => {console.error(error);});
         console.log("위클리내용이 수정되었습니다.");
@@ -106,10 +102,10 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
 
     const onClickCompleteBtn = async (weeklyElmId) => {
         await axios
-            .patch("/user/weeklyElm/" + weeklyElmId, {}, config)
+            .post("/user/" + userId + "/fwelm/" + weeklyElmId, {}, config)
             .then((response) => {
                 console.log(response.data);
-                
+                refreshAfterBoxList();
                 setWeeklyElms(weeklyElms.map(elm=> elm.id === weeklyElmId ? { ...elm, completed: !elm.completed } : elm));
             })
             .catch((error) => {console.error(error);});
@@ -148,10 +144,12 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
                     <FontAwesomeIcon className={editingYn ? "faMinus visible shaking" : "faMinus invisible"} icon={faMinus} 
                         onClick={()=>onDeleteWeeklyElm(elm.id)}/>
 
-                    <input type="text" className={ elm.completed ? "elmInputCompleted" : null } value = {elm.content} 
-                        onChange={(e) => changeElmTxt(e, elm.id)} 
-                        onKeyPress={onEnterKeyPressBlur}
-                        onBlur={(e) => onUpdateWeeklyElm(e, elm.id)}/> 
+                    { elm.completed
+                        ? <input type="text" className="elmInputCompleted" value = {elm.content} readOnly/> 
+                        : <input type="text" value = {elm.content} 
+                            onChange={(e) => changeElmTxt(e, elm.id)} 
+                            onKeyPress={onEnterKeyPressBlur}
+                            onBlur={(e) => onUpdateWeeklyElm(e, elm.id)}/> }
                 </li>;
             })}
         </ul>

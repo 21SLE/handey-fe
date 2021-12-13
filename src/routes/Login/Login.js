@@ -13,16 +13,6 @@ function Login() {
     var userId;
     var userName;
 
-    const routeChange = () =>{ 
-        return (
-            <BrowserRouter>
-              
-                <Route path="/home" component={Home(accessToken, userId, userName)}/>
-                
-            </BrowserRouter>
-          );
-      }
-
     const handleID = (e) => {
         e.preventDefault();
         setEmail(e.target.value)

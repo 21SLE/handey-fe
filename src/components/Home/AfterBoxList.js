@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import React, { useImperativeHandle, useState, useEffect, forwardRef } from "react";
 import axios from "axios";
 import AfterBox from "./AfterBox";
 import "./AfterBoxList.css";
 
 export const AfterContext = React.createContext();
 
-function AfterBoxList({accessToken, userId}) {
+function AfterBoxList({accessToken, userId}, ref) {
     var config = {
         headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
       };
@@ -15,12 +13,23 @@ function AfterBoxList({accessToken, userId}) {
     const [afterBoxListData, setAfterBoxListData] = useState([]);
 
     useEffect(() => {
-        getToDoBoxList();
+        getAfterBoxList();
     }, []);
 
-    async function getToDoBoxList() {
+    useImperativeHandle(ref, () => ({
+        getAfterBoxList
+      }));
+
+    // useImperativeHandle(ref, () => ({
+    //     refreshAfterList: () => {
+    //         getAfterBoxList();
+    //     }
+    //   }));
+
+    async function getAfterBoxList() {
+        var todayDate = new Date().toISOString().slice(0, 10);
         await axios
-            .get("/user/" + userId + "/weeklyBoxList", config)
+            .get("/user/" + userId + "/fw?dt=" + todayDate, config)
             .then(response => {
                 console.log(response.data['data']);
                 
@@ -35,7 +44,7 @@ function AfterBoxList({accessToken, userId}) {
     return <AfterContext.Provider value = {afterBoxListData}>
         <div className="afterSection">
             <div className="after_title">
-                <h1>Finished</h1> 
+                <h1>Finished Today</h1> 
             </div>
             <hr/>
             <div className="afterBoxList">
@@ -45,7 +54,7 @@ function AfterBoxList({accessToken, userId}) {
                         key = {afterBox.id}
                         id = {afterBox.id}
                         title = {afterBox.title}
-                        weeklyElmList = {afterBox.weeklyElmList}
+                        fwElmList = {afterBox.fwElmList}
                     />;
                 })
             }
@@ -53,5 +62,5 @@ function AfterBoxList({accessToken, userId}) {
         </div>
     </AfterContext.Provider>;
 }
-
-export default AfterBoxList;
+export default forwardRef(AfterBoxList);
+// export default AfterBoxList;

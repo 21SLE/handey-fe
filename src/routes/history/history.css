@@ -5,7 +5,7 @@
     display:flex;
     justify-content: start;
     align-items: flex-start;
-    overflow: hidden;
+    /* overflow: scroll; */
 }
 
 
@@ -16,5 +16,5 @@
     justify-content: start;
     align-items: flex-start;
     padding: 25px;
-    overflow: hidden;
+    /* overflow: scroll; */
 }

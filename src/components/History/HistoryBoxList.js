@@ -36,7 +36,7 @@ function HistoryBoxList() {
                         key = {historyBox.saveDt}
                         date = {historyBox.saveDt}
                         toDoBoxList = {historyBox.toDoBoxHstList}
-                        afterList = {historyBox.afterHstList}
+                        fwBoxList = {historyBox.fwBoxList}
                         />
             })
         }
