@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Select from 'react-select';
 import {refreshPage} from "../../components/common/CommonFunc";
 import axios from "axios";
@@ -119,8 +119,7 @@ function Setting() {
     return <div className = "setting-layout">
         <div className="setting-layout__wrap">
             <div className="userInfo">
-                
-            <h1 className="sectionTitle">회원정보</h1>
+                <h1 className="sectionTitle">회원정보</h1>
                 <div className="userInfo-section">
                     
                     <div className="titles">
@@ -155,12 +154,38 @@ function Setting() {
                 <div className="resetTime-section">
                         <h2 className="sectionSubtitle">Reset At</h2>
                         {/* <SelectBox options={RESET_OPTIONS} defaultValue={resetT} /> */}
-                        <Select options={RESET_OPTIONS} defaultValue={RESET_OPTIONS[Number(resetTime)]} onChange={handleNewResetTime}/>
+                        <Select options={RESET_OPTIONS} defaultValue={RESET_OPTIONS[Number(resetTime)]} 
+                            onChange={handleNewResetTime}
+                            styles={{
+                                control: (provided, state) => ({
+                                  ...provided,
+                                  boxShadow: "none",
+                                  border: state.isFocused && "none",
+                                  boxShadow: "2px 2px 3px 1px #979797",
+                                  borderRadius: "5px",
+                                  width: "200px"
+                                }),
+                                menu: (provided, state) => ({
+                                  ...provided,
+                                //   border: "none",
+                                //   boxShadow: "none"
+                                }),
+                                option: (provided, state) => ({
+                                   ...provided,
+                                   backgroundColor: state.isFocused && "lightgray",
+                                   color: state.isFocused && "black"
+                                })
+                              }}/>
                         <button className="resetTime__button" onClick={changeResetTime}>변경</button>
                         
                     
                 </div>
             </div>
+            {/* <div className="verticalLine"></div>
+            <div className="handeyInfo">
+                <h1 className="logo">HANDEY</h1>
+                <h6 className="handeyEmail"></h6>
+            </div> */}
         </div>
     </div>;
 }

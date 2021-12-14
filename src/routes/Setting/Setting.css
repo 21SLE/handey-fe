@@ -10,9 +10,7 @@
 .setting-layout__wrap {
     width: 1074px;
     height: 675px;
-    /* background-color: white; */
-    /* box-shadow: 3px 3px 3px 1px #979797 ;  */
-    border-radius: 10px;
+    /* display: flex; */
 }
 
 .sectionTitle {
@@ -24,6 +22,10 @@
 
 }
 
+.userInfo hr {
+    margin-bottom: 40px;
+}
+
 .userInfo-section {
     display: flex;
     flex-wrap: wrap;
@@ -33,6 +35,11 @@
 
 .titles{
     width: 200px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-bottom: 10px;
 }
 
 .sectionSubtitle {
@@ -40,7 +47,8 @@
     font-weight: bold;
     color: grey;
     width: 200px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     height: 38px;
 }
 
@@ -60,7 +68,6 @@
 }
 
 .width200 {
-    height: 26px;
     display: flex;
     align-items: center;
     padding-left: 10px;
@@ -69,11 +76,12 @@
     /* outline:none; */
     border: none;
     width: 200px;
+    height: 36px;
 }
 
-.userEmail { 
+/* .userEmail { 
     height: 28px;
-}
+} */
 
 .pw-section {
     width: 300px;
@@ -89,7 +97,7 @@
 .pwBox input {
     width: 200px;
     display: inline;
-    height: 28px;
+    
 }
 
 .pw-section {
@@ -98,7 +106,7 @@
 
 .pw__button{
     width: 80px;
-    height: 105px;
+    height: 130px;
     /* background-color: white; */
     background-color: rgb(242, 242, 242);
     /* color: rgb(254, 192, 1); */
@@ -121,14 +129,12 @@
 }
 
 .userName {
-    height: 28px;
     margin-right: 20px;
-    
 }
 
 .userName__button {
     width: 80px;
-    height: 36px;
+    height: 40px;
     background-color: rgb(242, 242, 242);
     color: grey;
     border-radius: 5px;
@@ -145,4 +151,30 @@
 
 .resetTime-section {
     display:flex;
+    align-items: center;
+}
+
+.resetTime__button {
+    width: 80px;
+    height: 40px;
+    background-color: rgb(242, 242, 242);
+    color: grey;
+    border-radius: 5px;
+    outline: inherit;
+    border: none;
+    border: 3px solid rgb(185, 185, 185);
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+
+.verticalLine{
+    border-left: 3px solid #E7E6E6;
+    height: 80%;
+    margin: 30px;
+}
+
+.handeyInfo .logo {
+    font-size: 40px;
+    font-weight: bold;
 }

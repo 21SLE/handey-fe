@@ -8,6 +8,21 @@
     flex-wrap: wrap;
 }
 
+.noHistoryMsg {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(177, 177, 177);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 75vw;
+}
+
+.noHistoryMsg h1 {
+    margin-right: 10px;
+}
+
 /* 스크롤바 너비 설정 */ 
 .historyBoxList::-webkit-scrollbar{ 
     width: 6px; 

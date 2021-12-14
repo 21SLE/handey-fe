@@ -100,15 +100,16 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
         }
     }
 
-    const onClickCompleteBtn = async (weeklyElmId) => {
-        await axios
-            .post("/user/" + userId + "/fwelm/" + weeklyElmId, {}, config)
-            .then((response) => {
-                console.log(response.data);
-                refreshAfterBoxList();
-                setWeeklyElms(weeklyElms.map(elm=> elm.id === weeklyElmId ? { ...elm, completed: !elm.completed } : elm));
-            })
-            .catch((error) => {console.error(error);});
+    const onClickCompleteBtn = async (completed, weeklyElmId) => {
+        if(!completed)
+            await axios
+                .post("/user/" + userId + "/fwelm/" + weeklyElmId, {}, config)
+                .then((response) => {
+                    console.log(response.data);
+                    refreshAfterBoxList();
+                    setWeeklyElms(weeklyElms.map(elm=> elm.id === weeklyElmId ? { ...elm, completed: !elm.completed } : elm));
+                })
+                .catch((error) => {console.error(error);});
     }
 
     const enterEditMode = () => {
@@ -135,12 +136,12 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
                 if(elm.content == null) elm.content = "";
             
                 return <li key={elm.id}>
-                    <button className={editingYn ? "circleBorderBtn editingCircleBorderBtn" : "circleBorderBtn"} type="button"></button>
+                    {/* <button className={editingYn ? "circleBorderBtn editingCircleBorderBtn" : "circleBorderBtn"} type="button"></button> */}
                     <FontAwesomeIcon className={
                             editingYn
-                             ? "faCheck invisible"
+                             ? "faCheck"
                              : elm.completed ? "faCheck completed" : "faCheck"
-                        } icon={faCheck} onClick={()=>onClickCompleteBtn(elm.id)}/>
+                        } icon={faCheck} onClick={()=>onClickCompleteBtn(elm.completed, elm.id)}/>
                     <FontAwesomeIcon className={editingYn ? "faMinus visible shaking" : "faMinus invisible"} icon={faMinus} 
                         onClick={()=>onDeleteWeeklyElm(elm.id)}/>
 

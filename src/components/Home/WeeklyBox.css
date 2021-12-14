@@ -94,15 +94,18 @@
     position: absolute;
     width: 15px;
     left: 4px;
-    color: #fddb4200;
+    color: #b6b6b6;
 }
 
 .weeklyBox__elm-list .completed {
     color: #FDDC42;
+    position: absolute;
+    text-decoration: line-through gray;
 }
 
 .weeklyBox__elm-list .elmInputCompleted {
     color: #FDDC42;
+    text-decoration: line-through #FDDC42;
 }
 
 .weeklyBox__elm-list .editingCircleBorderBtn {
