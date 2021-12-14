@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Login.css";
-import Home from "../Home/Home";
-import { BrowserRouter, Route} from "react-router-dom";
-
-const baseUrl = "http://localhost:8080"
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -25,7 +21,7 @@ function Login() {
     
     const onsubmit = async() => {
         await axios
-        .post(baseUrl+"/login",{
+        .post("/login", {
             email,
             password
         })
@@ -33,20 +29,15 @@ function Login() {
             accessToken = response.data['data']['accessToken'];
             userId = response.data['data']['userId'];
             userName = response.data['data']['userName'];
-            console.log(accessToken);
-            console.log(userId);
-            console.log(userName);
             localStorage.setItem('accessToken',accessToken);
             localStorage.setItem('userId',userId);
             localStorage.setItem('userName',userName);
             localStorage.setItem('userEmail',email);
 
             window.location.href = "/home";
-            
-            // routeChange();
         })
         .catch(() => {
-
+            alert("아이디 혹은 비밀번호를 다시 확인해주시기 바랍니다.");
         })
     }
 

@@ -13,6 +13,30 @@ function Setting() {
     };
     
     const [userInfoData, setUserInfoData] = useState([]);
+    const [curPw, setCurPw] = useState("");
+    const [newPw, setNewPw] = useState("");
+    const [newPwChk, setNewPwChk] = useState("");
+    const [newUserName, setNewUserName] = useState(userName);
+
+    const handleCurPw = (e) => {
+        e.preventDefault();
+        setCurPw(e.target.value)
+    }
+
+    const handleNewPw = (e) => {
+        e.preventDefault();
+        setNewPw(e.target.value)
+    }
+
+    const handleNewPwChk = (e) => {
+        e.preventDefault();
+        setNewPwChk(e.target.value)
+    }
+
+    const handleNewUserName = (e) => {
+        e.preventDefault();
+        setNewUserName(e.target.value)
+    }
 
     useEffect(() => {
         getUserInfoData();
@@ -28,6 +52,46 @@ function Setting() {
             .catch((error) => {
                 console.error("ERROR: " + error);
             })
+    }
+
+    const checkCurPw = async () => {
+    // 현재 비밀번호가 틀렸다면 팝업
+        await axios
+        .post("/login", {
+            email: userEmail,
+            password: curPw
+        })
+        .then((response) => {
+            if(response.data['success']) {
+                if(newPw == newPwChk) {
+                    changePw()
+                    alert("비밀번호가 변경되었습니다!");
+                }
+                else
+                    alert("새로운 비밀번호를 다시 확인해주시기 바랍니다.");
+            } else
+                alert("현재 비밀번호를 다시 확인해주시기 바랍니다.");
+        })
+        .catch(() => {
+            alert("현재 비밀번호를 다시 확인해주시기 바랍니다.");
+        })
+    }
+
+    const changePw = async () => {
+        
+        await axios
+        .put("/user/" + userId + "/password", 
+        {
+            password: newPw
+        }, config)
+        .then((response) => {
+            console.log(response.data);
+            setCurPw("");
+            setNewPw("");
+            setNewPwChk("");
+        })
+        .catch((error) => {console.error(error);});
+        
     }
 
     return <div className = "setting-layout">
@@ -48,14 +112,18 @@ function Setting() {
                         <div className="boxShadow width200 mb10 userEmail">{userEmail}</div>
                         <div className="pw-section">
                             <div className="pwBox">
-                                <input className="boxShadow width200 mb10"/>
-                                <input className="boxShadow width200 mb10"/>
-                                <input className="boxShadow width200 mb10"/>
+                                <input className="boxShadow width200 mb10"
+                                    value={curPw} onChange={handleCurPw} placeholder="현재 비밀번호를 입력하세요."/>
+                                <input className="boxShadow width200 mb10"
+                                    value={newPw} onChange={handleNewPw} placeholder="새로운 비밀번호를 입력하세요."/>
+                                <input className="boxShadow width200 mb10"
+                                    value={newPwChk} onChange={handleNewPwChk} placeholder="새로운 비밀번호 확인"/>
                             </div>        
-                            <button className="pw__button">변경</button>
+                            <button className="pw__button" onClick={checkCurPw}>변경</button>
                         </div>
                         <div className="userName-section">
-                            <div className="boxShadow width200 userName">{userName}</div>
+                            <input className="boxShadow width200 userName"
+                                    value={newUserName} onChange={handleNewUserName}/>
                             <button className="userName__button">변경</button>
                         </div>
                     </div>

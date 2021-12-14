@@ -40,7 +40,7 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
                     title: titleTxt
             }, config)
             .then((response) => {
-                console.log(response.data['data']);
+                console.log(response.data);
             })
             .catch((error) => {console.error(error);});
         console.log("타이틀이 수정되었습니다.");
