@@ -8,6 +8,7 @@ function Login() {
     var accessToken;
     var userId;
     var userName;
+    var resetTime;
 
     const handleID = (e) => {
         e.preventDefault();
@@ -34,6 +35,12 @@ function Login() {
             localStorage.setItem('userName',userName);
             localStorage.setItem('userEmail',email);
 
+            var config = {
+                headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
+            };
+
+            getUserInfoData(config);
+
             window.location.href = "/home";
         })
         .catch(() => {
@@ -41,12 +48,24 @@ function Login() {
         })
     }
 
+    async function getUserInfoData(config) {
+        await axios
+            .get("/user/" + userId + "/info", config)
+            .then(response => {
+                console.log(response.data['data']);
+                console.log(response.data['data']['resetTime'])
+                localStorage.setItem('resetTime', response.data['data']['resetTime']);
+            })
+            .catch((error) => {
+                console.error("ERROR: " + error);
+            })
+    }
+
     const KeyPress = (e) => { 
         if(e.key === 'Enter') {
             onsubmit();
         }
     }
-
 
     return(
         <div className = "InputBox">

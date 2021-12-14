@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Select from 'react-select';
 import {refreshPage} from "../../components/common/CommonFunc";
 import axios from "axios";
 import "./Setting.css";
@@ -8,16 +9,20 @@ function Setting() {
     const userId = localStorage.getItem('userId');
     const userEmail = localStorage.getItem('userEmail');
     const userName = localStorage.getItem('userName');
+    const resetTime = localStorage.getItem('resetTime');
 
     var config = {
         headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
     };
     
-    const [userInfoData, setUserInfoData] = useState([]);
     const [curPw, setCurPw] = useState("");
     const [newPw, setNewPw] = useState("");
     const [newPwChk, setNewPwChk] = useState("");
     const [newUserName, setNewUserName] = useState(userName);
+    const [newResetTime, setNewResetTIme] = useState(resetTime);
+    const RESET_OPTIONS = [
+        { value: "0", label: "0" }, { value: "1", label: "1" }, { value: "2", label: "2" }, { value: "3", label: "3" }, { value: "4", label: "4" }, { value: "5", label: "5" }, { value: "6", label: "6" }
+    ];
 
     const handleCurPw = (e) => {
         e.preventDefault();
@@ -39,20 +44,9 @@ function Setting() {
         setNewUserName(e.target.value)
     }
 
-    useEffect(() => {
-        getUserInfoData();
-    }, []);
-
-    async function getUserInfoData() {
-        await axios
-            .get("/user/" + userId + "/info", config)
-            .then(response => {
-                console.log(response.data['data']);
-                setUserInfoData(response.data['data']);
-            })
-            .catch((error) => {
-                console.error("ERROR: " + error);
-            })
+    const handleNewResetTime = (selectedOpt) => {
+        console.log(selectedOpt)
+        setNewResetTIme(selectedOpt.value)
     }
 
     const checkCurPw = async () => {
@@ -108,6 +102,20 @@ function Setting() {
         .catch((error) => {console.error(error);});
     }
 
+    const changeResetTime = async () => {
+        await axios
+        .put("/user/" + userId + "/info", 
+        {
+            resetTime: newResetTime
+        }, config)
+        .then((response) => {
+            console.log(response.data);
+            localStorage.setItem('resetTime', newResetTime);
+            alert("리셋 시간이 변경되었습니다!");
+        })
+        .catch((error) => {console.error(error);});
+    }
+
     return <div className = "setting-layout">
         <div className="setting-layout__wrap">
             <div className="userInfo">
@@ -146,7 +154,10 @@ function Setting() {
                 <h1 className="sectionTitle">Reset Time(리셋 시간)</h1>
                 <div className="resetTime-section">
                         <h2 className="sectionSubtitle">Reset At</h2>
-                        <h3 className="userInfoContent boxShadow width200">{userInfoData['resetTime']}</h3>
+                        {/* <SelectBox options={RESET_OPTIONS} defaultValue={resetT} /> */}
+                        <Select options={RESET_OPTIONS} defaultValue={RESET_OPTIONS[Number(resetTime)]} onChange={handleNewResetTime}/>
+                        <button className="resetTime__button" onClick={changeResetTime}>변경</button>
+                        
                     
                 </div>
             </div>
