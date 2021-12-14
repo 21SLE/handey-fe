@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {refreshPage} from "../../components/common/CommonFunc";
 import axios from "axios";
 import "./Setting.css";
 
@@ -78,7 +79,6 @@ function Setting() {
     }
 
     const changePw = async () => {
-        
         await axios
         .put("/user/" + userId + "/password", 
         {
@@ -91,7 +91,21 @@ function Setting() {
             setNewPwChk("");
         })
         .catch((error) => {console.error(error);});
-        
+    }
+
+    const changeUserName = async () => {
+        await axios
+        .put("/user/" + userId + "/username", 
+        {
+            username: newUserName
+        }, config)
+        .then((response) => {
+            console.log(response.data);
+            localStorage.setItem('userName', newUserName);
+            alert("이름이 변경되었습니다!");
+            refreshPage();
+        })
+        .catch((error) => {console.error(error);});
     }
 
     return <div className = "setting-layout">
@@ -124,7 +138,7 @@ function Setting() {
                         <div className="userName-section">
                             <input className="boxShadow width200 userName"
                                     value={newUserName} onChange={handleNewUserName}/>
-                            <button className="userName__button">변경</button>
+                            <button className="userName__button" onClick={changeUserName}>변경</button>
                         </div>
                     </div>
                 </div>

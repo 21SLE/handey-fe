@@ -9,10 +9,6 @@ const Input = forwardRef((props, ref) => {
     return <input type="text" ref={ref} {...props}/>;
 });
 
-function refreshPage() {
-    window.location.reload(false);
-}
-
 function onEnterKeyPressBlur(e) {
     if(e.key === 'Enter') {
         e.preventDefault();
@@ -181,5 +177,4 @@ ToDoBox.propTypes = {
 };
 
 export default ToDoBox;
-
 
