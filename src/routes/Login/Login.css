@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    position: relative;
 }
 
 .login-layout__circle {
@@ -20,6 +21,7 @@
     display:flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
 }
 
 .login-layout__wrap {
@@ -92,4 +94,67 @@
     border: none;
     font-weight: bold;
     margin-top: 32px;
+ }
+
+ .leftUpperCircle {
+    height: 750px;
+    width: 750px;
+    border-radius: 400px;
+    background-color: rgb(254, 232, 84);
+    position: absolute;
+    top: -200px;
+    left: -100px;
+ }
+
+ .leftLowerCircle {
+    height: 480px;
+    width: 480px;
+    border-radius: 250px;
+    background-color: rgba(255, 253, 129, 0.6);
+    position: absolute;
+    bottom: -30px;
+    left: 20px;
+    z-index: 2;
+ }
+
+ .rightUpperCircle {
+    height: 440px;
+    width: 440px;
+    border-radius: 250px;
+    background-color: rgb(255, 246, 127);
+    position: absolute;
+    top: -140px;
+    right: 120px;
+ }
+
+ .rightSmallUpperCircle {
+    height: 250px;
+    width: 250px;
+    border-radius: 250px;
+    background-color: rgba(254, 232, 84, 0.6);
+    position: absolute;
+    top: -140px;
+    right: -80px;
+    z-index: 2;
+ }
+
+ .rightMiddleCircle {
+    height: 270px;
+    width: 270px;
+    border-radius: 250px;
+    background-color: rgba(255, 248, 157, 0.7);
+    position: absolute;
+    top: 340px;
+    right: 110px;
+    z-index: 2;
+ }
+
+ .rightLowerCircle {
+    height: 570px;
+    width: 570px;
+    border-radius: 250px;
+    background-color: rgb(255, 232, 84);
+    position: absolute;
+    bottom: -320px;
+    right: -100px;
  }

@@ -66,10 +66,12 @@ function Login() {
 
     return(
         <div className = "login-layout">
-            <div className="yellowCircle leftUpperCircle"/>
-            <div className="yellowCircle leftLowerCircle"/>
-            <div className="yellowCircle rightUpperCircle"/>
-            <div className="yellowCircle rightLowerCircle"/>
+            <div className="leftUpperCircle"/>
+            <div className="leftLowerCircle"/>
+            <div className="rightUpperCircle"/>
+            <div className="rightSmallUpperCircle"/>
+            <div className="rightMiddleCircle"/>
+            <div className="rightLowerCircle"/>
             <div className="login-layout__circle">
                 <div className = "login-layout__wrap">
                     <div className="login-layout__upper">
