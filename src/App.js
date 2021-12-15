@@ -12,9 +12,6 @@ import SideBar from "./components/common/Side-bar";
 import Setting from "./routes/Setting/Setting"
 import "./App.css";
 
- 
-
-
 function App() {
 
   return (

@@ -79,7 +79,7 @@ function Login() {
                         <div className = "joinFindPwLinkBtn">
                             <a href = "/join">회원가입</a>
                             <a>/</a>
-                            <a href = "/findPw">비밀번호찾기</a>
+                            <a >비밀번호찾기</a>
                         </div>
                     </div>
                     
