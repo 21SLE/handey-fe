@@ -4,59 +4,92 @@
     box-sizing: border-box;
 }
 
-.InputBox{
-    display: flex;
+.login-layout {
+    display:flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.login-form{
-    position: relative;
-    z-index: 2;
+.login-layout__circle {
+    height: 900px;
+    width: 900px;
+    background-color: white;
+    box-shadow: 3px 3px 3px 1px #979797 ; /*x-position y-position blur spread color*/
+    border-radius: 600px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
-
-.InputBox h1 {
-    color: dimgray;
-    font-weight: bold;
-    font-size: 32px;
-    text-align: center;
- }
-
-.findpw{
-    text-decoration: none;
-    color: black;
+.login-layout__wrap {
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width:355px;
 }
 
-
- .caption{
-     color: darkgray;
-     font-size: smaller;
- }
-
- .login-form-field { 
-     width: 100%; border: none; 
-     border-bottom: 1px solid #3a3a3a; 
-     margin-bottom: 10px; 
-     border-radius: 3px; 
-     outline: none; 
-     padding: 0px 0px 5px 5px; 
- }
-
-.input_id{
-    margin-top: 20px;
-    width: 80%;
-  }
-  
-.input_id input {
+.login-layout__upper {
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
     width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
-  }
+    margin-bottom: 30px;
+}
 
-  
+.login-layout__upper .logo {
+    font-size: 46px;
+    color: #FDDC42;
+}
+
+.joinFindPwLinkBtn{
+    color: darkgray;
+    font-size: 13px;
+}
+
+.login-form {
+    color: rgb(112, 112, 112);
+    display: flex;
+    height: 60px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.login-form__label {
+    display:flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.login-form__input {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    height: 100%;
+}
+
+.login-form__input input{ 
+    outline:none;
+    border: none;
+    border-bottom: 2px solid rgb(112, 112, 112);
+ }
+
+.login-form__input input:focus {
+    border-bottom: 2px solid #FDDC42;
+ }
+
+ .loginButton {
+    width: 100%;
+    height: 52px;
+    background-color: #FDDC42;
+    color: grey;
+    border-radius: 10px;
+    outline: inherit;
+    border: none;
+    font-weight: bold;
+    margin-top: 32px;
+ }

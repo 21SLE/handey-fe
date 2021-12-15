@@ -8,7 +8,6 @@ function Login() {
     var accessToken;
     var userId;
     var userName;
-    var resetTime;
 
     const handleID = (e) => {
         e.preventDefault();
@@ -52,8 +51,6 @@ function Login() {
         await axios
             .get("/user/" + userId + "/info", config)
             .then(response => {
-                console.log(response.data['data']);
-                console.log(response.data['data']['resetTime'])
                 localStorage.setItem('resetTime', response.data['data']['resetTime']);
             })
             .catch((error) => {
@@ -68,38 +65,38 @@ function Login() {
     }
 
     return(
-        <div className = "InputBox">
-    
-            <h1>HANDEY</h1>
-            
-            <div className = "login-form">
-                <div className = "ID">
-                <label htmlFor="input_id">ID</label>
-                <input className = "email"
-                    value={email}
-                    onChange={handleID}
-                    required={true}
-                />
+        <div className = "login-layout">
+            <div className="yellowCircle leftUpperCircle"/>
+            <div className="yellowCircle leftLowerCircle"/>
+            <div className="yellowCircle rightUpperCircle"/>
+            <div className="yellowCircle rightLowerCircle"/>
+            <div className="login-layout__circle">
+                <div className = "login-layout__wrap">
+                    <div className="login-layout__upper">
+                        <h1 className="logo">HANDEY</h1>
+                        <div className = "joinFindPwLinkBtn">
+                            <a href = "/join">회원가입</a>
+                            <a>/</a>
+                            <a href = "/findPw">비밀번호찾기</a>
+                        </div>
+                    </div>
+                    
+                    
+                    <div className = "login-form">
+                        <div className="login-form__label">
+                            <h6>EMAIL</h6>
+                            <h6>PASSWORD</h6>
+                        </div>
+                        <div className = "login-form__input">
+                            <input className = "email" value={email} onChange={handleID} required={true} />
+                            <input className = "password" value={password} onChange={handlePW} required={true} onKeyPress={KeyPress} />
+                        </div>
+                    </div>
+
+                    <button className="loginButton" type = "button" onClick={onsubmit}>Log in</button>
+                
+                    
                 </div>
-
-                <div className = "PASSWORD">
-                    <label htmlFor="input_pw">PASSWORD</label>
-                    <input className = "password"
-                        value={password}
-                        onChange={handlePW}
-                        required={true}
-                        onKeyPress={KeyPress}
-                        />
-                </div>
-
-            </div>
-
-            <button type = "button" onClick={onsubmit}>Log in</button>
-        
-            <div className = "caption">
-                <a href = "/join">회원가입</a>
-                <a>/</a>
-                <a href = "/findPw">비밀번호찾기</a>
             </div>
         </div>
     );

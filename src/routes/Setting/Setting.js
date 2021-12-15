@@ -58,7 +58,7 @@ function Setting() {
         })
         .then((response) => {
             if(response.data['success']) {
-                if(newPw == newPwChk) {
+                if(newPw === newPwChk) {
                     changePw()
                     alert("비밀번호가 변경되었습니다!");
                 }
@@ -159,7 +159,7 @@ function Setting() {
                             styles={{
                                 control: (provided, state) => ({
                                   ...provided,
-                                  boxShadow: "none",
+                                //   boxShadow: "none",
                                   border: state.isFocused && "none",
                                   boxShadow: "2px 2px 3px 1px #979797",
                                   borderRadius: "5px",
