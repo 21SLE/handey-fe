@@ -5,19 +5,17 @@ import PropTypes from "prop-types";
 import "./AfterBox.css";
 import axios from "axios";
 
-function AfterBox({id, title, weeklyElmList}) {
+function AfterBox({id, title, fwElmList}) {
     return <div className="afterBox">
         <h1 className="afterBox_title">{title}</h1>
         <ul className="afterBox_elmList">
-            {weeklyElmList.map(elm => {
+            {fwElmList.map(elm => {
                 if(elm.content == null) elm.content = "";
-                if(elm.completed)
-                    return <li key={elm.id}>
-                        <FontAwesomeIcon className="faChevronRight" icon={faChevronRight} />
-                        <h2 className="afterElm_content">{elm.content}</h2>
-                    </li>;
-                else 
-                    return null;
+                
+                return <li key={elm.id}>
+                    <FontAwesomeIcon className="faChevronRight" icon={faChevronRight} />
+                    <h2 className="afterElm_content">{elm.content}</h2>
+                </li>;
             })}
         </ul>
     </div>

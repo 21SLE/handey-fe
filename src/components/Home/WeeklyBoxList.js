@@ -7,7 +7,7 @@ import "./WeeklyBoxList.css";
 
 export const WeeklyContext = React.createContext();
 
-function WeeklyBoxList({accessToken, userId}) {
+function WeeklyBoxList({accessToken, userId, refreshAfterBoxList}) {
     var config = {
         headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
       };
@@ -71,6 +71,7 @@ function WeeklyBoxList({accessToken, userId}) {
                         clear = {weeklyBox.clear}
                         weeklyElmList = {weeklyBox.weeklyElmList}
                         deleteWeeklyBoxOnScreen = {deleteWeeklyBoxOnScreen}
+                        refreshAfterBoxList = {refreshAfterBoxList}
                     />; 
                     
                 })

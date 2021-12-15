@@ -3,7 +3,7 @@
     height: 100vh;
     /* width: 100vw; */
     display:flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: flex-start;
     overflow: hidden;
 }
@@ -12,8 +12,29 @@
     height: 100%;
     width: 100%;
     display:flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: flex-start;
-    padding: 25px;
+    padding: 100px;
     overflow: hidden;
+    position: relative;
+}
+
+.trash-layout__wrap .warningMessage {
+    position: absolute;
+    top: 40px;
+    left: 100px;
+    display: flex;
+}
+
+.trash-layout__wrap .warningMessage .faBullhorn{
+    display: block;
+    width: 16px;
+    color: grey;
+    margin-right: 20px;
+}
+.trash-layout__wrap .warningMessage h1 {
+    display: block;
+    font-weight: bold;
+    color: rgb(104, 104, 104);
+    font-size: 17px;
 }

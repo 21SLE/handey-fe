@@ -9,10 +9,6 @@ const Input = forwardRef((props, ref) => {
     return <input type="text" ref={ref} {...props}/>;
 });
 
-function refreshPage() {
-    window.location.reload(false);
-}
-
 function onEnterKeyPressBlur(e) {
     if(e.key === 'Enter') {
         e.preventDefault();
@@ -160,7 +156,7 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
                                  ? "faCheck invisible"
                                  : elm.completed ? "faCheck completed" : "faCheck"
                             } icon={faCheck} onClick={()=>onClickCompleteBtn(elm.id)}/>
-                        <FontAwesomeIcon className={editingYn ? "faMinus visible" : "faMinus invisible"} icon={faMinus} 
+                        <FontAwesomeIcon className={editingYn ? "faMinus visible shaking" : "faMinus invisible"} icon={faMinus} 
                             onClick={()=>onDeleteToDoElm(elm.id)}/>
 
                         <input type="text" className={ elm.completed ? "elmInputCompleted" : null } value = {elm.content} 
@@ -181,5 +177,4 @@ ToDoBox.propTypes = {
 };
 
 export default ToDoBox;
-
 

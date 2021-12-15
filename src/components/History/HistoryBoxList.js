@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { faLaugh } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import HistoryBox from "./HistoryBox";
 import "./HistoryBoxList.css";
@@ -30,17 +32,20 @@ function HistoryBoxList() {
     }
 
     return <div className="historyBoxList">
-        {
-            historyBoxListData.map((historyBox) => {
+        {   historyBoxListData == null || historyBoxListData.length === 0
+            ? <div className="noHistoryMsg">
+                <h1>지난 히스토리가 없습니다</h1>
+                <FontAwesomeIcon icon={faLaugh}/>
+            </div>
+            : historyBoxListData.map((historyBox) => {
                 return <HistoryBox
                         key = {historyBox.saveDt}
                         date = {historyBox.saveDt}
                         toDoBoxList = {historyBox.toDoBoxHstList}
-                        afterList = {historyBox.afterHstList}
+                        fwBoxList = {historyBox.fwBoxList}
                         />
-            })
+            }) 
         }
     </div>
 }
-
 export default HistoryBoxList;

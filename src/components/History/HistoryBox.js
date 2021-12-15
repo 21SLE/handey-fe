@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { faCheck, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./HistoryBox.css";
 
-function HistoryBox({date, toDoBoxList, afterList}) {
+function HistoryBox({date, toDoBoxList, fwBoxList}) {
     var dateStr = date.replace(/-/g, '.');
     return <div className="historyBox">
         <div className="date">{dateStr}</div>
@@ -33,19 +33,27 @@ function HistoryBox({date, toDoBoxList, afterList}) {
             })}
         </ul>
         <div className="afterList_history_section">
-            <h2 className="sectionTitle">Weekly</h2>
+            <h2 className="sectionTitle">Finished Weekly</h2>
             {/* <hr /> */}
             <ul className="afterList_history">
-            {afterList.map(afterHistory => {
-                return afterHistory.subtitle
-                    ? <li key={afterHistory.id} className="afterTitle">
+            {fwBoxList.map(fwBox => {
+                return <li key={fwBox.id}>
+                <div  className="afterTitle">
+                    <div className="afterTitle">
                         <FontAwesomeIcon className="faCheck" icon={faCheck}/>
-                        <div className="boxTitle">{afterHistory.content}</div>
-                    </li>
-                    : <li key={afterHistory.id} className="afterElmList_history">
-                        <div className="elm_dot">-</div>
-                        <div className="elm_content">{afterHistory.content}</div>
-                    </li>
+                        <div className="boxTitle">{fwBox.title}</div>
+                    </div>
+                </div>
+                <ul className="afterElmList_history">
+                    {fwBox.fwElmList.map(elm => {
+                        return <li key={elm.id}>
+                            {/* <FontAwessomeIcon className="faChevronRight" icon={faChevronRight} /> */}
+                            <div className="elm_dot">-</div>
+                            <div className="elm_content">{elm.content}</div>
+                        </li>
+                    })}
+                </ul>
+            </li>
             })}
             </ul>
         </div>

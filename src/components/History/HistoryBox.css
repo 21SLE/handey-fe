@@ -30,6 +30,7 @@
     /* color: #FDDC42; */
     font-size: 22px;
     font-weight: bold;
+    margin: 0;
     margin-bottom: 10px;
 }
 
@@ -110,7 +111,7 @@
 }
 
 .afterTitle {
-    margin-left: 10px;
+    margin-left: 5px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -119,5 +120,19 @@
 .afterElmList_history {
     padding-left: 20px;
     margin-bottom: 5px;
+}
+
+.afterElmList_history li {
+    font-size: 16px;
+    
+    margin: 0px;
+    margin-bottom: 5px;
     display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 240px;
+}
+
+.afterElmList_history .elm_content {
+    
 }

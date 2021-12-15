@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import AfterBoxList from "../../components/Home/AfterBoxList";
 import ToDoBoxList from "../../components/Home/ToDoBoxList";
 import Memo from "../../components/Home/Memo";
@@ -8,6 +8,11 @@ import "./Home.css";
 function Home() {
     const accessToken = localStorage.getItem('accessToken');
     const userId = localStorage.getItem('userId');
+    const childRef = useRef(null);
+
+    const refreshAfterBoxList = () => {
+        childRef.current.getAfterBoxList();
+    }
 
     return <div className = "home-layout">
             <div className = "home-layout__wrap">
@@ -15,10 +20,12 @@ function Home() {
                     <WeeklyBoxList 
                         accessToken = {accessToken}
                         userId = {userId}
+                        refreshAfterBoxList = {refreshAfterBoxList}
                         />
                     <AfterBoxList 
                         accessToken = {accessToken}
                         userId = {userId}
+                        ref = {childRef}
                         />
                 </div>
                 <div className = "home-layout__wrap__right">
