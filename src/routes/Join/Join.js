@@ -3,15 +3,11 @@ import axios from "axios";
 import {useHistory} from "react-router-dom";
 
 function Join(props){
-
-    const baseUrl = "http://localhost:8080"; 
-
-    const history = useHistory();
- 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [rePassword, setrePassword] = useState("");
+    const [pwChk, setPwChk] = useState("");
+    const [emailChk, setEmailChk] = useState(false);
 
     const handleName = (e) => {
         e.preventDefault();
@@ -20,6 +16,8 @@ function Join(props){
     
     const handleEmail =(e) => {
         e.preventDefault();
+        if(email !== e.target.value && emailChk)
+            setEmailChk(false);
         setEmail(e.target.value)
     }
 
@@ -28,50 +26,70 @@ function Join(props){
         setPassword(e.target.value)
     }
 
-    const handleRepw = (e) => {
+    const handlePwChk = (e) => {
         e.preventDefault();
-        setrePassword(e.target.value)
+        setPwChk(e.target.value)
+    }
+
+    const checkEmailDuplication = async () => {
+        await axios
+        .get("/register/duplication?email=" + email)
+        .then((response) => {
+            console.log(response.data);
+            if(response.data['data']) {
+                alert("이미 존재하는 이메일입니다.")
+                setEmail("");
+            } else {
+                alert("사용 가능한 이메일입니다.")
+                setEmailChk(true);
+            }
+        })
+        .catch((error) => {
+            console.log("error");
+        }); 
     }
 
     const onsubmit = async() => {
-
-        if(password !== rePassword){
-            alert("비밀번호와 비밀번호 확인은 같아야합니다.")
+        if(!emailChk){
+            alert("이메일 중복확인을 해주시기 바랍니다.")
+        } else {
+            if(password !== pwChk){
+                alert("비밀번호가 일치하지 않습니다.")
+            } else {
+                const User= {
+                    username: username,
+                    email: email,
+                    password: password
+                };
+        
+                await axios
+                .post("/register", User)
+                .then(function(response){
+                    if(response.data['success'] === true){
+                        console.log("success");
+                        //TODO 회원가입을 축하드립니다 팝업띄우고 로그인하러가기 누르면 로그인창으로 이동
+        
+                        window.location.href = "/welcome";
+                     }
+                     else{
+                        console.log("fail");
+                         alert("fail");
+                     }
+                })
+                .catch(function(error){
+                    console.log("error");
+                });
+            } 
         }
 
-        const User= {
-
-            username:username,
-            userid: email,
-            password: password,
-            userrepw: rePassword
-        };
-
-        await axios
-        .post(baseUrl+"/register", User)
-        
-        .then(function(response){
-            localStorage.jwtAuthToken = response.headers['ACCESS_TOKEN'];
-            console.log(response.data);
-
-            if(response.data.success === true){
-                console.log("success");
-                history.push("/login");
-             }
-             else{
-                console.log("fail");
-                 alert("fail");
-             }
-        })
-        .catch(function(error){
-            console.log("error");
-        });  
+         
 }
-const KeyPress = (e) => { 
-    if(e.key === 'Enter') {
-       onsubmit();
-    }
-}
+
+// const KeyPress = (e) => { 
+//     if(e.key === 'Enter') {
+//        onsubmit();
+//     }
+// }
 
     return (
         <div className = "InputBox">
@@ -91,7 +109,10 @@ const KeyPress = (e) => {
                 onChange={handleEmail}
                 required={true}
                 placeholder = "abc@email.com" />
-                <button type="submit" onClick = {onclick}>인증</button>
+                {emailChk
+                ? <span>확인 완료</span>
+                : <button type="submit" onClick = {checkEmailDuplication}>중복확인</button>}
+                
             </div>
             <div>
                 <label>Password: </label>
@@ -104,11 +125,10 @@ const KeyPress = (e) => {
             <div>
                 <label>Confirm Password: </label>
                 <input type="password" 
-                value={rePassword}
-                onChange={handleRepw}
+                value={pwChk}
+                onChange={handlePwChk}
                 required={true}
-                placeholder = "repassword"
-                onKeyPress={KeyPress}/>
+                placeholder = "repassword"/>
             </div>
                 <button type="submit" onClick = {onsubmit}>Join</button>
         </div>
