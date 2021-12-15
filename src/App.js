@@ -4,7 +4,6 @@ import { BrowserRouter, Route} from "react-router-dom";
 import Login from "./routes/Login/Login";
 import Join from "./routes/Join/Join";
 import WelcomeJoin from "./routes/Join/WelcomeJoin";
-import FindPw from "./routes/Login/FindPw";
 import Home from "./routes/Home/Home";
 import History from "./routes/History/History";
 import Trash from "./routes/Trash/Trash"
@@ -20,7 +19,6 @@ function App() {
       <Route path="/login" exact={true} component={Login} />
       <Route path="/join" exact={true} component={Join} />
       <Route path="/welcome" exact={true} component={WelcomeJoin}/>
-      <Route path="/findPw" exact={true} component={FindPw} />
       <SideBar />
         <Route path="/home" component={Home}/>
         <Route path="/history" component={History} />
