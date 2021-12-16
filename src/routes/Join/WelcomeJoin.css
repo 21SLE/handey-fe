@@ -1,0 +1,37 @@
+.welcomejoin-layout {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.welcomejoin-layout__circle {
+    height: 650px;
+    width: 650px;
+    background-color: white;
+    box-shadow: 3px 3px 3px 1px #979797 ; /*x-position y-position blur spread color*/
+    border-radius: 600px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.welcomejoin-layout__wrap {
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width:355px;
+}
+
+.welcomejoin-layout .rightLowerCircle {
+    bottom: -320px;
+    right: -40px;
+}
+
+.welcomejoin-layout .logo {
+    font-size: 70px;
+}

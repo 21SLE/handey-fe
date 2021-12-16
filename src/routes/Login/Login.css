@@ -133,7 +133,7 @@
     border-radius: 250px;
     background-color: rgba(254, 232, 84, 0.6);
     position: absolute;
-    top: -140px;
+    top: -105px;
     right: -80px;
     z-index: 2;
  }
@@ -152,7 +152,7 @@
  .rightLowerCircle {
     height: 570px;
     width: 570px;
-    border-radius: 250px;
+    border-radius: 300px;
     background-color: rgb(255, 232, 84);
     position: absolute;
     bottom: -320px;

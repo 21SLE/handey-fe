@@ -1,8 +1,10 @@
 import React,  { useState } from "react";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import {useHistory} from "react-router-dom";
+import "./Join.css"
 
-function Join(props){
+function Join(){
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -66,74 +68,63 @@ function Join(props){
                 .post("/register", User)
                 .then(function(response){
                     if(response.data['success'] === true){
-                        console.log("success");
-                        //TODO 회원가입을 축하드립니다 팝업띄우고 로그인하러가기 누르면 로그인창으로 이동
-        
                         window.location.href = "/welcome";
                      }
                      else{
-                        console.log("fail");
-                         alert("fail");
+                        alert("fail");
                      }
                 })
                 .catch(function(error){
                     console.log("error");
                 });
             } 
-        }
+        }   
+    }
 
-         
-}
-
-// const KeyPress = (e) => { 
-//     if(e.key === 'Enter') {
-//        onsubmit();
-//     }
-// }
 
     return (
-        <div className = "InputBox">
-            <h1 className = "title">Join</h1>
-            <div>
-                <label>Name: </label>
-                <input type="name" 
-                value={username} 
-                onChange={handleName}
-                required={true}
-                placeholder = "username" />
-            </div>
-            <div>
-                <label>Id: </label>
-                <input type="email"
-                value={email}
-                onChange={handleEmail}
-                required={true}
-                placeholder = "abc@email.com" />
-                {emailChk
-                ? <span>확인 완료</span>
-                : <button type="submit" onClick = {checkEmailDuplication}>중복확인</button>}
+        <div className = "join-layout">
+            <div className="leftUpperCircle"/>
+            <div className="leftLowerCircle"/>
+            <div className="rightUpperCircle"/>
+            <div className="rightSmallUpperCircle"/>
+            <div className="rightMiddleCircle"/>
+            <div className="rightLowerCircle"/>
+
+            <div className="join-layout__circle">
+                <div className="join-layout__wrap">
+                    <div className="join__title">
+                        <h1 className = "handeyTxt">HANDEY</h1>
+                        <h1 className = "joinTxt">JOIN</h1>
+                    </div>
                 
+                <div className="join-form">
+                    <div className="join-form__label">
+                        <h6>이름</h6>
+                        <h6>이메일</h6>
+                        <h6>비밀번호</h6>
+                        <h6>비밀번호 확인</h6>
+                    </div>
+                    <div className="join-form__input">
+                        <input type="name" value={username} onChange={handleName} required={true} placeholder = "이름을 입력해주세요." />
+                        <div className="email__section">
+                            <input type="email" value={email} onChange={handleEmail} required={true} placeholder = "이메일을 입력해주세요." />
+                            {emailChk
+                                ? <button className="emailChkBtn chkCompleted"><FontAwesomeIcon className="faCheck" icon={faCheck}/></button>
+                                : <button className="emailChkBtn chkUnCompleted" type="submit" onClick = {checkEmailDuplication}>중복확인</button>}            
+                        </div>
+                        <input type="password" value={password} onChange={handlePW} required={true} placeholder = "비밀번호를 입력해주세요." />
+                        <input type="password"  value={pwChk} onChange={handlePwChk} required={true} placeholder = "비밀번호 확인"/>
+                    </div>
+                </div>
+            
+                <button className="joinButton" type="submit" onClick = {onsubmit}>회원가입하기</button>
+                </div>
             </div>
-            <div>
-                <label>Password: </label>
-                <input type="password"
-                value={password}
-                onChange={handlePW}
-                required={true}
-                placeholder = "password" />
-            </div>
-            <div>
-                <label>Confirm Password: </label>
-                <input type="password" 
-                value={pwChk}
-                onChange={handlePwChk}
-                required={true}
-                placeholder = "repassword"/>
-            </div>
-                <button type="submit" onClick = {onsubmit}>Join</button>
+            
         </div>
     )
-  }
+}
 
 export default Join;
 
