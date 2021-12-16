@@ -30,25 +30,33 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width:355px;
+    width:370px;
 }
 
 .login-layout__upper {
     display:flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .login-layout__upper .logo {
-    font-size: 46px;
+    font-size: 66px;
     color: #FDDC42;
+    margin: 0;
 }
 
 .joinFindPwLinkBtn{
     color: darkgray;
     font-size: 13px;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 26px;
+}
+.joinFindPwLinkBtn a {
+    padding-top: 4px;
 }
 
 .login-form {
@@ -93,7 +101,7 @@
     outline: inherit;
     border: none;
     font-weight: bold;
-    margin-top: 32px;
+    margin-top: 40px;
  }
 
  .leftUpperCircle {

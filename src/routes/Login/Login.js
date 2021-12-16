@@ -78,7 +78,6 @@ function Login() {
                         <h1 className="logo">HANDEY</h1>
                         <div className = "joinFindPwLinkBtn">
                             <a href = "/join">회원가입</a>
-                            <a>/</a>
                             <a >비밀번호찾기</a>
                         </div>
                     </div>
