@@ -1,0 +1,118 @@
+.join-layout {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.join-layout__circle {
+    height: 900px;
+    width: 900px;
+    background-color: white;
+    box-shadow: 3px 3px 3px 1px #979797 ; /*x-position y-position blur spread color*/
+    border-radius: 600px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.join-layout__wrap {
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width:400px;
+}
+
+.join__title {
+    font-size: 56px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 400px;
+}
+
+.join__title .joinTxt {
+    color: rgb(88, 88, 88);
+    color: #FDDC42;
+    color: rgb(255, 243, 82);
+    /* font-size: 44px; */
+}
+
+.join__title .handeyTxt {
+    color: #FDDC42;
+    color: rgb(254, 192, 1);
+    margin-right: 20px;
+}
+
+.join-form {
+    color: rgb(112, 112, 112);
+    display: flex;
+    height: 185px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.join-form__label {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.join-form__input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.join-form__input input{ 
+    outline:none;
+    border: none;
+    border-bottom: 2px solid rgb(112, 112, 112);
+    height: 30px;
+ }
+
+.join-form__input input:focus {
+    border-bottom: 2px solid #FDDC42;
+ }
+
+.join-form__input .emailChkBtn {
+    height: 30px;
+    width: 62px;
+    border-radius: 5px;
+    outline: inherit;
+    border: 2px solid #FDDC42;
+    margin-left: 10px;
+    font-size: 13px;
+    padding: 3px;
+ }
+
+ .join-form__input .chkUnCompleted {
+    background-color: white;
+    color: #FDDC42;
+ }
+
+.join-form__input .chkCompleted {
+    background-color: #FDDC42;
+    color: white;
+    font-size: 15px;
+    padding-top: 4px;
+ }
+
+.joinButton {
+    width: 100%;
+    height: 52px;
+    background-color: #FDDC42;
+    color: white;
+    border-radius: 10px;
+    outline: inherit;
+    border: none;
+    font-weight: bold;
+    margin-top: 36px;
+ }

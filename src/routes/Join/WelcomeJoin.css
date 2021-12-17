@@ -1,0 +1,66 @@
+.welcomejoin-layout {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.welcomejoin-layout__circle {
+    height: 650px;
+    width: 650px;
+    background-color: white;
+    box-shadow: 3px 3px 3px 1px #979797 ; /*x-position y-position blur spread color*/
+    border-radius: 600px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    position: relative;
+}
+
+.welcomejoin-layout__wrap {
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width:355px;
+    height: 300px;
+    
+}
+
+.welcomejoin-layout .rightLowerCircle {
+    bottom: -320px;
+    right: -40px;
+}
+
+.welcomejoin-layout .celebration__section {
+    display: flex;
+    flex-direction: row;
+    width: 700px;
+    left: 45px;
+    position: absolute;
+}
+
+.welcomejoin-layout .celebration__section h2 {
+    margin-top: 100px;
+    margin-left: -15px;
+    color: grey;
+    font-weight: bold;
+}
+
+.welcomejoin-layout .logo {
+    font-size: 70px;
+    /* position: absolute; */
+    top: 100px;
+}
+
+.welcomejoin-layout .celebrate_icon {
+    width: 200px;
+}
+
+.welcomejoin-layout .loginButton {
+    /* position: absolute; */
+    bottom: 0px;
+}

@@ -23,8 +23,13 @@ function HistoryBoxList() {
         await axios
             .get("/user/" + userId + "/history", config)
             .then(response => {
-                console.log(response.data['data']);
-                setHistoryBoxListData(response.data['data']);
+                var data = response.data['data'];
+                data.sort(function (a, b) { 
+                    return a.saveDt > b.saveDt ? -1 : a.saveDt < b.saveDt ? 1 : 0;  
+                });
+
+                console.log(data);
+                setHistoryBoxListData(data);
             })
             .catch((error) => {
                 console.error("ERROR: " + error);

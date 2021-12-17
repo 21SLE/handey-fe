@@ -30,25 +30,33 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width:355px;
+    width:370px;
 }
 
 .login-layout__upper {
     display:flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .login-layout__upper .logo {
-    font-size: 46px;
-    color: #FDDC42;
+    font-size: 66px;
+    /* color: #FDDC42; */
+    margin: 0;
 }
 
 .joinFindPwLinkBtn{
     color: darkgray;
     font-size: 13px;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 26px;
+}
+.joinFindPwLinkBtn a {
+    padding-top: 4px;
 }
 
 .login-form {
@@ -93,7 +101,7 @@
     outline: inherit;
     border: none;
     font-weight: bold;
-    margin-top: 32px;
+    margin-top: 40px;
  }
 
  .leftUpperCircle {
@@ -133,7 +141,7 @@
     border-radius: 250px;
     background-color: rgba(254, 232, 84, 0.6);
     position: absolute;
-    top: -140px;
+    top: -105px;
     right: -80px;
     z-index: 2;
  }
@@ -152,7 +160,7 @@
  .rightLowerCircle {
     height: 570px;
     width: 570px;
-    border-radius: 250px;
+    border-radius: 300px;
     background-color: rgb(255, 232, 84);
     position: absolute;
     bottom: -320px;
