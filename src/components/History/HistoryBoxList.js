@@ -30,7 +30,6 @@ function HistoryBoxList() {
 
                 console.log(data);
                 setHistoryBoxListData(data);
-                // historyBoxListData.sort((a, b) => b.saveDt - a.saveDt);
             })
             .catch((error) => {
                 console.error("ERROR: " + error);

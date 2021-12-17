@@ -11,7 +11,8 @@ class SideBar extends React.Component {
 
         return (currentUrl === "/home" || currentUrl === "/history" || currentUrl === "/setting" || currentUrl === "/trash") 
         ? <div className="sideBar">
-            <h1 className = "logo">HANDEY</h1>
+            {/* <h1 className = "logo">HANDEY</h1> */}
+            <Link className = "logo" to="/home">HANDEY</Link>
             <h2 className = "todayDate">{todayDate}</h2>
             <h3 className = "welcomeMessage">{userName}님 환영합니다.</h3>
             <div className = "calendar"></div>
