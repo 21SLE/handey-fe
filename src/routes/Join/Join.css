@@ -40,12 +40,13 @@
 .join__title .joinTxt {
     color: rgb(88, 88, 88);
     color: #FDDC42;
-    color: rgb(255, 246, 116);
+    color: rgb(255, 243, 82);
     /* font-size: 44px; */
 }
 
 .join__title .handeyTxt {
     color: #FDDC42;
+    color: rgb(254, 192, 1);
     margin-right: 20px;
 }
 

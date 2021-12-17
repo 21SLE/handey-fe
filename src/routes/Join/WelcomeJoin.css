@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    position: relative;
+    
 }
 
 .welcomejoin-layout__circle {
@@ -16,6 +16,7 @@
     align-items: center;
     justify-content: center;
     z-index: 1;
+    position: relative;
 }
 
 .welcomejoin-layout__wrap {
@@ -23,8 +24,10 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     width:355px;
+    height: 300px;
+    
 }
 
 .welcomejoin-layout .rightLowerCircle {
@@ -32,6 +35,32 @@
     right: -40px;
 }
 
+.welcomejoin-layout .celebration__section {
+    display: flex;
+    flex-direction: row;
+    width: 700px;
+    left: 45px;
+    position: absolute;
+}
+
+.welcomejoin-layout .celebration__section h2 {
+    margin-top: 100px;
+    margin-left: -15px;
+    color: grey;
+    font-weight: bold;
+}
+
 .welcomejoin-layout .logo {
     font-size: 70px;
+    /* position: absolute; */
+    top: 100px;
+}
+
+.welcomejoin-layout .celebrate_icon {
+    width: 200px;
+}
+
+.welcomejoin-layout .loginButton {
+    /* position: absolute; */
+    bottom: 0px;
 }
