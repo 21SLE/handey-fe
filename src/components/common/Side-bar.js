@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SideBarCalendar from "./SideBarCalendar"
 import "./Side-bar.css";
 
 class SideBar extends React.Component {
@@ -15,7 +16,9 @@ class SideBar extends React.Component {
             <Link className = "logo" to="/home">HANDEY</Link>
             <h2 className = "todayDate">{todayDate}</h2>
             <h3 className = "welcomeMessage">{userName}님 환영합니다.</h3>
-            <div className = "calendar"></div>
+            <div className = "calendar">
+                <SideBarCalendar />
+            </div>
             <ul className = "sidebarList">
                 <li><Link to="/home">HOME</Link></li>
                 <li><Link to="/history">HISTORY</Link></li>
