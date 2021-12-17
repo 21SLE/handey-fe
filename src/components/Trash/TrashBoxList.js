@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Masonry from "react-masonry-css";
 import axios from "axios";
 import TrashBox from "./TrashBox";
 import "./TrashBoxList.css"
@@ -33,8 +34,16 @@ function TrashBoxList() {
         setTrashBoxListData(trashBoxListData.filter((trashBox)=> trashBox.id !== trashBoxId));
     }
 
+    const breakpoints = {
+        default: 3
+    }
+
     return <div className="trashBoxList">
-        {
+        <Masonry
+            breakpointCols={breakpoints}
+            className="trash-masonry-grid"
+            columnClassName="trash-masonry-grid_column">
+            {
             trashBoxListData.map((trashBox) => {
                 return <TrashBox 
                     key = {trashBox.id}
@@ -45,6 +54,7 @@ function TrashBoxList() {
                     deleteTrashBoxOnScreen = {deleteTrashBoxOnScreen}/>
             })
         }
+        </Masonry>
     </div>;
 
 }

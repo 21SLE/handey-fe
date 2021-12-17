@@ -9,6 +9,26 @@
     flex-wrap: wrap;
 }
 
+.todo-masonry-grid {
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
+    margin-left: -30px; /* gutter size offset */
+    width: 710px;
+    height: 470px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 30px;
+}
+
+.todo-masonry-grid_column {
+    padding-left: 30px; /* gutter size */
+    background-clip: padding-box;
+    /* width:fit-content;
+    min-width: fit-content;
+    max-width: fit-content; */
+}
+
 .createToDoBoxBtn {
     position:absolute;
     float: right;
@@ -18,11 +38,11 @@
 }
 
 /* 스크롤바 너비 설정 */ 
-.toDoBoxList::-webkit-scrollbar{ 
+.todo-masonry-grid::-webkit-scrollbar{ 
     width: 6px; 
 }
 
-.toDoBoxList::-webkit-scrollbar-thumb{ 
+.todo-masonry-grid::-webkit-scrollbar-thumb{ 
     /* 스크롤바 막대 높이 설정 */ 
     height: 17%; 
     background-color: #b4b4b4;
@@ -32,8 +52,9 @@
 } 
 
 /* 스크롤바 뒷 배경 설정*/ 
-.toDoBoxList::-webkit-scrollbar-track{
+.todo-masonry-grid::-webkit-scrollbar-track{
     margin-top: 50px;
     background-color: rgba(0,0,0,0); 
+    margin-right: -30px;
 }
 
