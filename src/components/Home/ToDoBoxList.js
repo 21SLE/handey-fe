@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Masonry from "react-masonry-css";
 import axios from "axios";
 import ToDoBox from "./ToDoBox";
 import "./ToDoBoxList.css";
@@ -12,7 +13,6 @@ function ToDoBoxList({accessToken, userId}) {
         headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
       };
 
-    // const [input, setInput] = useState(""); //input 초기값이 ""
     const [toDoBoxListData, setToDoBoxListData] = useState([]); //todos 빈 객체 배열로 만들어줌
 
     useEffect(() => {
@@ -20,9 +20,6 @@ function ToDoBoxList({accessToken, userId}) {
     }, []);
 
     async function getToDoBoxList() {
-        console.log("------------------------------------------ToDoBoxList------------------------------------------------");
-        console.log(accessToken);
-        console.log(userId)
         await axios
             .get("/user/" + userId + "/toDoBoxList", config)
             .then(response => {
@@ -38,7 +35,6 @@ function ToDoBoxList({accessToken, userId}) {
         await axios
         .post("/user/" + userId + "/toDoBox", {}, config)
         .then((response) => {
-            // response.data로 새로 생성된 todo element의 id가 옴
             console.log("todo box " + response.data['data'] + "가 생성되었습니다.");
             const box = {
                 id: response.data['data'],
@@ -56,9 +52,16 @@ function ToDoBoxList({accessToken, userId}) {
         setToDoBoxListData(toDoBoxListData.filter((toDoBox)=> toDoBox.id !== toDoBoxId));
     }
 
+    const breakpoints = {
+        default: 2
+    }
+
     return <ToDoContext.Provider value = {toDoBoxListData}>
         <FontAwesomeIcon className="fa faPlus createToDoBoxBtn" icon={faPlus} onClick={()=>{createToDoBoxObj();}}/>
-        <div className="toDoBoxList">  
+        <Masonry
+            breakpointCols={breakpoints}
+            className="todo-masonry-grid"
+            columnClassName="todo-masonry-grid_column">
             {toDoBoxListData.map((toDoBox) => {
                  return <ToDoBox 
                         key = {toDoBox.id}
@@ -72,8 +75,7 @@ function ToDoBoxList({accessToken, userId}) {
                     />;
                 })
             }
-
-        </div>
+        </Masonry>
     </ToDoContext.Provider>;
 }
 
