@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 
 const SideBarCalendar = () => {
     return <Calendar 
+    formatMonthYear={(locale, date) => dayjs(date).format('YYYY. MM')}
     formatDay ={(locale, date) => dayjs(date).format('D')}>
 
     </Calendar>
