@@ -47,6 +47,10 @@
     margin: 0;
 }
 
+.login-layout__upper .logo:hover {
+    cursor: pointer;
+}
+
 .joinFindPwLinkBtn{
     color: darkgray;
     font-size: 13px;
@@ -102,6 +106,10 @@
     border: none;
     font-weight: bold;
     margin-top: 40px;
+ }
+
+ .loginButton:hover {
+     cursor: pointer;
  }
 
  .leftUpperCircle {
