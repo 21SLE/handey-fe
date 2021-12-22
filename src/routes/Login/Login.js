@@ -90,7 +90,7 @@ function Login() {
                         </div>
                         <div className = "login-form__input">
                             <input className = "email" value={email} onChange={handleID} required={true} />
-                            <input className = "password" value={password} onChange={handlePW} required={true} onKeyPress={KeyPress} />
+                            <input className = "password" type="password" value={password} onChange={handlePW} required={true} onKeyPress={KeyPress} />
                         </div>
                     </div>
 
