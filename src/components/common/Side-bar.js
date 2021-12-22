@@ -3,7 +3,13 @@ import { Link } from "react-router-dom";
 import SideBarCalendar from "./SideBarCalendar"
 import "./Side-bar.css";
 
+const handleLogOut = () => {
+    localStorage.setItem('accessToken', "");
+    window.location.href = "/login";
+}
+
 class SideBar extends React.Component {
+    
     
     render() {
         const currentUrl = window.location.pathname;
@@ -26,7 +32,7 @@ class SideBar extends React.Component {
                 <li><Link to="/trash">TRASH</Link></li>
                 <li>HELP</li>
             </ul>
-            <div className="logout">Log Out</div>
+            <div className="logout" onClick={handleLogOut}>Log Out</div>
         </div>
         : null;
     }

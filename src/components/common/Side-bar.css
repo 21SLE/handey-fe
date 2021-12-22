@@ -6,7 +6,7 @@
     position: fixed;
     height: 100%;
     padding: 20px;
-    padding-left: 30px;
+    padding-left: 35px;
 }
 
 .logo {
@@ -37,7 +37,7 @@
     background-color: rgb(231, 230, 230);
     border-radius: 20px;
     margin-bottom: 30px;
-    margin-left: -5px;
+    margin-left: -8px;
 }
 
 .sidebarList li {
@@ -53,4 +53,8 @@
     position: fixed;
     bottom: 15px;
     color: rgb(177, 177, 177);
+}
+
+.logout:hover {
+    cursor: pointer;
 }

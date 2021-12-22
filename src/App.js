@@ -12,6 +12,7 @@ import Setting from "./routes/Setting/Setting"
 import "./App.css";
 
 function App() {
+  const accessToken = localStorage.getItem('accessToken');
 
   return (
     <BrowserRouter>
@@ -19,12 +20,16 @@ function App() {
       <Route path="/login" exact={true} component={Login} />
       <Route path="/join" exact={true} component={Join} />
       <Route path="/welcome" exact={true} component={WelcomeJoin}/>
+      {(accessToken != null && accessToken !="")
+      ? <div>
       <SideBar />
         <Route path="/home" component={Home}/>
         <Route path="/history" component={History} />
         <Route path="/setting" component={Setting} />
         <Route path="/trash" component={Trash} />
-        {/* <Route component={PageNotFound} /> */}
+        </div>
+        :<Route path="/" exact={true} component={Login} />
+      }
     </BrowserRouter>
   );
 
