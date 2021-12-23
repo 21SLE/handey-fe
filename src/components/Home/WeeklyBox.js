@@ -139,7 +139,7 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
                     {/* <button className={editingYn ? "circleBorderBtn editingCircleBorderBtn" : "circleBorderBtn"} type="button"></button> */}
                     <FontAwesomeIcon className={
                             editingYn
-                             ? "faCheck"
+                             ? "faCheck invisible"
                              : elm.completed ? "faCheck completed" : "faCheck"
                         } icon={faCheck} onClick={()=>onClickCompleteBtn(elm.completed, elm.id)}/>
                     <FontAwesomeIcon className={editingYn ? "faMinus visible shaking" : "faMinus invisible"} icon={faMinus} 

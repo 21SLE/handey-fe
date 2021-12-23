@@ -9,6 +9,10 @@ function Login() {
     var userId;
     var userName;
 
+    const onClickLogo = () => {
+        window.location.href = "/login";
+    }
+
     const handleID = (e) => {
         e.preventDefault();
         setEmail(e.target.value)
@@ -75,7 +79,7 @@ function Login() {
             <div className="login-layout__circle">
                 <div className = "login-layout__wrap">
                     <div className="login-layout__upper">
-                        <h1 className="logo">HANDEY</h1>
+                        <h1 className="logo" onClick={onClickLogo}>HANDEY</h1>
                         <div className = "joinFindPwLinkBtn">
                             <a href = "/join">회원가입</a>
                             <a >비밀번호찾기</a>
@@ -90,7 +94,7 @@ function Login() {
                         </div>
                         <div className = "login-form__input">
                             <input className = "email" value={email} onChange={handleID} required={true} />
-                            <input className = "password" value={password} onChange={handlePW} required={true} onKeyPress={KeyPress} />
+                            <input className = "password" type="password" value={password} onChange={handlePW} required={true} onKeyPress={KeyPress} />
                         </div>
                     </div>
 

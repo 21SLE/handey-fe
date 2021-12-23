@@ -11,6 +11,10 @@ function Join(){
     const [pwChk, setPwChk] = useState("");
     const [emailChk, setEmailChk] = useState(false);
 
+    const onClickLogo = () => {
+        window.location.href = "/login";
+    }
+
     const handleName = (e) => {
         e.preventDefault();
         setUsername(e.target.value)
@@ -94,7 +98,7 @@ function Join(){
             <div className="join-layout__circle">
                 <div className="join-layout__wrap">
                     <div className="join__title">
-                        <h1 className = "handeyTxt">HANDEY</h1>
+                        <h1 className = "handeyTxt" onClick={onClickLogo}>HANDEY</h1>
                         <h1 className = "joinTxt">JOIN</h1>
                     </div>
                 

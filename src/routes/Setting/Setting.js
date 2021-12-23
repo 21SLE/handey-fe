@@ -133,11 +133,11 @@ function Setting() {
                         <div className="boxShadow width200 mb10 userEmail">{userEmail}</div>
                         <div className="pw-section">
                             <div className="pwBox">
-                                <input className="boxShadow width200 mb10"
+                                <input className="boxShadow width200 mb10" type="password"
                                     value={curPw} onChange={handleCurPw} placeholder="현재 비밀번호를 입력하세요."/>
-                                <input className="boxShadow width200 mb10"
+                                <input className="boxShadow width200 mb10" type="password"
                                     value={newPw} onChange={handleNewPw} placeholder="새로운 비밀번호를 입력하세요."/>
-                                <input className="boxShadow width200 mb10"
+                                <input className="boxShadow width200 mb10" type="password"
                                     value={newPwChk} onChange={handleNewPwChk} placeholder="새로운 비밀번호 확인"/>
                             </div>        
                             <button className="pw__button" onClick={checkCurPw}>변경</button>
