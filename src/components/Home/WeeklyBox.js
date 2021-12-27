@@ -123,6 +123,7 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
             onChange={changeTitleTxt} 
             onKeyPress={onEnterKeyPressBlur}
             onBlur={(e)=>onUpdateWeeklyBoxTitle(e)}
+            placeholder = "제목을 입력해주세요."
             />   
             <div className="weeklyBox_menu">
                 <DropDownMenu
@@ -146,11 +147,12 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
                         onClick={()=>onDeleteWeeklyElm(elm.id)}/>
 
                     { elm.completed
-                        ? <input type="text" className="elmInputCompleted" value = {elm.content} readOnly/> 
+                        ? <input type="text" className="elmInputCompleted" value = {elm.content} readOnly placeholder = "할일을 입력해주세요."/> 
                         : <input type="text" value = {elm.content} 
                             onChange={(e) => changeElmTxt(e, elm.id)} 
                             onKeyPress={onEnterKeyPressBlur}
-                            onBlur={(e) => onUpdateWeeklyElm(e, elm.id)}/> }
+                            onBlur={(e) => onUpdateWeeklyElm(e, elm.id)}
+                            placeholder = "할일을 입력해주세요."/> }
                 </li>;
             })}
         </ul>

@@ -143,6 +143,7 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
                     onChange={changeTitleTxt} 
                     onKeyPress={onEnterKeyPressBlur}
                     onBlur={(e)=>onUpdateToDoBoxTitle(e)}
+                    placeholder = "제목을 입력해주세요."
                     />         
             </div>
             <ul className="toDoBox__elm-list">
@@ -162,7 +163,8 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
                         <input type="text" className={ elm.completed ? "elmInputCompleted" : null } value = {elm.content} 
                             onChange={(e) => changeElmTxt(e, elm.id)} 
                             onKeyPress={onEnterKeyPressBlur}
-                            onBlur={(e) => onUpdateToDoElm(e, elm.id)}/>
+                            onBlur={(e) => onUpdateToDoElm(e, elm.id)}
+                            placeholder = "할일을 입력해주세요."/>
                     </li>;
                 })}
             </ul>

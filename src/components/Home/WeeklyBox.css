@@ -29,6 +29,11 @@
     max-height: fit-content;
 }
 
+.weeklyBox input::placeholder {
+    color: rgb(194, 194, 194);
+    font-style: italic;
+  }
+
 .weeklyBox__title {
     width: 314px;
     padding-right: 10px;

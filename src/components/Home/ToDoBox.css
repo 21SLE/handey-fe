@@ -50,6 +50,11 @@
     position: relative;
 }
 
+.toDoBox input::placeholder {
+    color: rgb(194, 194, 194);
+    font-style: italic;
+}
+
 .toDoBox .faTrash {
     position: absolute;
     bottom: 10px;
