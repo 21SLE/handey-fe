@@ -18,7 +18,7 @@ function AfterBoxList({accessToken, userId}, ref) {
 
     useImperativeHandle(ref, () => ({
         getAfterBoxList
-      }));
+    }));
 
     // useImperativeHandle(ref, () => ({
     //     refreshAfterList: () => {
@@ -63,4 +63,3 @@ function AfterBoxList({accessToken, userId}, ref) {
     </AfterContext.Provider>;
 }
 export default forwardRef(AfterBoxList);
-// export default AfterBoxList;

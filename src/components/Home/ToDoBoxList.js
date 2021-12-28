@@ -37,10 +37,10 @@ function ToDoBoxList({accessToken, userId}) {
         .then((response) => {
             console.log("todo box " + response.data['data'] + "가 생성되었습니다.");
             const box = {
-                id: response.data['data'],
+                id: response.data['data']['id'],
                 title: "",
                 fixed: false,
-                toDoElmList: []
+                toDoElmList: response.data['data']['toDoElmList']
             };
 
             setToDoBoxListData([...toDoBoxListData, box]);
