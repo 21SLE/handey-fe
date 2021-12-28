@@ -41,9 +41,24 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
             }, config)
             .then((response) => {
                 console.log(response.data);
+                updateFwBoxTitle();
             })
             .catch((error) => {console.error(error);});
         console.log("타이틀이 수정되었습니다.");
+    }
+
+    const updateFwBoxTitle = async () => {
+        await axios
+            .put("/user/fwbox/" + id, 
+                {
+                    title: titleTxt
+            }, config)
+            .then((response) => {
+                console.log(response.data);
+                refreshAfterBoxList();
+            })
+            .catch((error) => {console.error(error);});
+        console.log("fw 타이틀이 수정되었습니다.");
     }
 
     const onDeleteWeeklyBox = async () => {
@@ -73,7 +88,7 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
             .catch((error) => {console.error(error);});
     }
 
-    const onUpdateWeeklyElm = async (e, weeklyElmId) => {
+    const onUpdateWeeklyElm = async (e, weeklyElmId, weeklyElmCompleted) => {
         await axios
             .put("/user/weeklyElm/" + weeklyElmId, 
             {
@@ -81,9 +96,26 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
             }, config)
             .then((response) => {
                 console.log(response.data);
+                if(weeklyElmCompleted)
+                    updateFwElmContent(weeklyElmId, e.target.value);
             })
             .catch((error) => {console.error(error);});
         console.log("위클리내용이 수정되었습니다.");
+    }
+
+    const updateFwElmContent = async (weeklyElmId, contentTxt) => {
+        // /user/fwbox/{weeklyBoxId}/fwelm/{weeklyElmId}
+        await axios
+            .put("/user/fwbox/" + id + "/fwelm/" + weeklyElmId, 
+                {
+                    content: contentTxt
+            }, config)
+            .then((response) => {
+                console.log(response.data);
+                refreshAfterBoxList();
+            })
+            .catch((error) => {console.error(error);});
+        console.log("fw 내용이 수정되었습니다.");
     }
 
     const onDeleteWeeklyElm = async (weeklyElmId) => {
@@ -104,6 +136,16 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
         if(!completed)
             await axios
                 .post("/user/" + userId + "/fwelm/" + weeklyElmId, {}, config)
+                .then((response) => {
+                    console.log(response.data);
+                    refreshAfterBoxList();
+                    setWeeklyElms(weeklyElms.map(elm=> elm.id === weeklyElmId ? { ...elm, completed: !elm.completed } : elm));
+                })
+                .catch((error) => {console.error(error);});
+        else
+        // /user/{userId}/fwbox/{weeklyBoxId}/fwelm/{weeklyElmId}
+            await axios
+                .put("/user/" + userId + "/fwbox/" + id +"/fwelm/" + weeklyElmId, {}, config)
                 .then((response) => {
                     console.log(response.data);
                     refreshAfterBoxList();
@@ -146,13 +188,19 @@ function WeeklyBox({accessToken, userId, id, title, weeklyElmList, deleteWeeklyB
                     <FontAwesomeIcon className={editingYn ? "faMinus visible shaking" : "faMinus invisible"} icon={faMinus} 
                         onClick={()=>onDeleteWeeklyElm(elm.id)}/>
 
-                    { elm.completed
+                    <input type="text" value = {elm.content} 
+                        onChange={(e) => changeElmTxt(e, elm.id)} 
+                        onKeyPress={onEnterKeyPressBlur}
+                        onBlur={(e) => onUpdateWeeklyElm(e, elm.id, elm.completed)}
+                        placeholder = "할일을 입력해주세요."/>
+
+                    {/* { elm.completed
                         ? <input type="text" className="elmInputCompleted" value = {elm.content} readOnly placeholder = "할일을 입력해주세요."/> 
                         : <input type="text" value = {elm.content} 
                             onChange={(e) => changeElmTxt(e, elm.id)} 
                             onKeyPress={onEnterKeyPressBlur}
                             onBlur={(e) => onUpdateWeeklyElm(e, elm.id)}
-                            placeholder = "할일을 입력해주세요."/> }
+                            placeholder = "할일을 입력해주세요."/> } */}
                 </li>;
             })}
         </ul>
