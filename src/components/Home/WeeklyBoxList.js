@@ -37,10 +37,10 @@ function WeeklyBoxList({accessToken, userId, refreshAfterBoxList}) {
             // response.data로 새로 생성된 weekly element의 id가 옴
             console.log("weekly box " + response.data['data'] + "가 생성되었습니다.");
             const box = {
-                id: response.data['data'],
+                id: response.data['data']['id'],
                 title: "",
                 clear: false,
-                weeklyElmList: []
+                weeklyElmList: response.data['data']['weeklyElmList']
             };
 
             setWeeklyBoxListData([...weeklyBoxListData, box]);
