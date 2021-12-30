@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { DndProvider, useDrop } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import React, { useState, useEffect } from "react";
+import { useDrop } from "react-dnd";
 import { ItemTypes } from "../common/ItemTypes";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,11 +22,14 @@ function ToDoBoxList({accessToken, userId}) {
     }, []);
 
     async function getToDoBoxList() {
-        console.log('------------getToDoBoxList------------')
         await axios
             .get("/user/" + userId + "/toDoBoxList", config)
             .then(response => {
-                console.log(response.data);
+                var data = response.data['data'];
+                data.sort(function (a, b) { 
+                    return a.index < b.index ? -1 : a.index > b.index ? 1 : 0;  
+                });
+
                 setToDoBoxListData(response.data['data']);
             })
             .catch((error) => {
@@ -56,31 +58,32 @@ function ToDoBoxList({accessToken, userId}) {
         setToDoBoxListData(toDoBoxListData.filter((toDoBox)=> toDoBox.id !== toDoBoxId));
     }
 
-    const findToDoBox = (toDoBoxId) => {
-        toDoBoxListData.forEach((toDoBox)=>{
-            console.log(toDoBox);
-            if(toDoBox.id === toDoBoxId)
-            return toDoBox;
-        })
-    }
-
-    const moveToDoBox = (toDoBoxId, toIndex) => {
-        console.log('옮겨지는 toDoBoxId: '+ toDoBoxId)
-        console.log('어디로 toIndex: '+ toIndex)
+    const moveToDoBox = async (toDoBoxId, toIndex, shouldCallApi) => {
         let box;
         toDoBoxListData.forEach((toDoBox)=>{
             console.log(toDoBox);
             if(toDoBox.id === toDoBoxId)
                 box = toDoBox;
         })
-        console.log(box)
         const index = toDoBoxListData.indexOf(box);
         let newOrder = [...toDoBoxListData];
         newOrder.splice(index, 1);
-        console.log(box)
         newOrder.splice(toIndex, 0, box);
-        console.log(newOrder)
         setToDoBoxListData(newOrder)
+        if(shouldCallApi) {
+            var list = [];
+            newOrder.forEach((toDoBox, idx)=> {
+                list.push({id: toDoBox.id, index: idx})
+            });
+            await axios
+            .put("/user/"+ userId +"/toDoBox/sequence", {indexList: list}, config)
+            .then((response) => {
+                console.log(response.data);
+                
+                console.log("todobox 순서가 수정되었습니다.");
+            })
+            .catch((error) => {console.error(error);});
+        }
     };
     
     const [, drop] = useDrop(() => ({ accept: ItemTypes.ToDoBox }));

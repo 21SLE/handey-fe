@@ -63,6 +63,19 @@
     color: #e99076;
 }
 
+.toDoBox .faGripHorizontal {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    height: 14px;
+    /* color: #b6b6b6; */
+    color: #4b4b4b;
+}
+
+.toDoBox .toDoBox__dragRef:hover {
+    cursor: all-scroll;
+}
+
 .toDoBox__title {
     margin-bottom: 27px;
     display:flex;

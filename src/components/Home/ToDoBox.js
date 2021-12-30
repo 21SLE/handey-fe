@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useCallback } from "react";
+import React, { useState } from "react";
 import _ from "lodash";
 import { useDrag, useDrop } from 'react-dnd';
 import { faCheck, faList, faPlus, faThumbtack, faTrash, faMinus, faGripHorizontal } from "@fortawesome/free-solid-svg-icons";
@@ -25,42 +25,32 @@ function ToDoBox({accessToken, userId, id, title, index, fixed, toDoElmList, del
     const [toDoElms, setToDoElms] = useState(toDoElmList);
     const [editingYn, setEditingYn] = useState(false);
 
-    const [{ isDragging }, dragRef, previewRef] = useDrag(
-        //isDragging은 아이템이 드래깅 중일때 true, 아닐때 false를 리턴 받는다. 드래깅 중인 아이템을 스타일링 할때 사용했다.
-        //dragRef는 리액트의 useRef처럼 작동한다. 드래그될 부분에 선언해주면된다. 네모의 타이틀이 있는 부분에 선언했다. 
-        //previewRef는 드래깅될때 보여질 프리뷰 이미지를 뜻한다. 네모전체를 감싸는 div에 선언해주었다.
-        //세가지 변수는 순서만 지켜서 이름은 아무렇게나 선언해주면된다. 나는 공식홈페이지의 변수명을 사용했다.
-    () => ({
-      type: ItemTypes.ToDoBox,
-      item: { id, index },
-      //item:에 드래깅 물체안에 넣어줄 정보
-      collect: (monitor) => ({
-        isDragging: monitor.isDragging(),//isDragging 변수가 현재 드래깅중인지 아닌지를 리턴해주는 부분.
-      }),
-      end: (item, monitor) => { //드래그가 끝났을때 작동하는 부분.
-        const { id: originId, index: originIndex } = item;
-        const didDrop = monitor.didDrop();
-        if (!didDrop) {//didDrop이 !(아니다)라는 것은 dropRef로 선언한 태그위에 드랍되지 않음 을 의미한다.
-          //그때는 원래의 위치대로 이동.
-          moveToDoBox(originId, originIndex); 
-        }
-      },
+    const [{ isDragging }, dragRef, previewRef] = useDrag(() => ({
+        type: ItemTypes.ToDoBox,
+        item: { id, index },
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+        }),
+        end: (item, monitor) => {
+            const { id: originId, index: originIndex } = item;
+            const didDrop = monitor.didDrop();
+            if (!didDrop) {
+                moveToDoBox(originId, originIndex, false); 
+            }
+        },
     }), [id, index, moveToDoBox]);
 
-    const throttleHoverItem = _.debounce((draggedId, index)=> {
-        console.log('Id: '+id)
-            console.log('draggedId: '+draggedId)
-            console.log('index: '+index)
+    const throttleHoverItem = _.debounce((draggedId, index, shouldCallApi)=> {
         if(draggedId === id) {
             return null;
         }
-        moveToDoBox(draggedId, index)
-    }, 1000);
+        moveToDoBox(draggedId, index, shouldCallApi)
+    }, 70);
 
     const [, drop] = useDrop({
         accept: ItemTypes.ToDoBox,
         hover: ({ id: draggedId, index: orgIndex }) => {
-            throttleHoverItem(draggedId, index); 
+            throttleHoverItem(draggedId, index, true); 
         }
     })
 
@@ -163,54 +153,56 @@ function ToDoBox({accessToken, userId, id, title, index, fixed, toDoElmList, del
             .catch((error) => {console.error(error);});
     }
 
-    return <div className="toDoBox" ref={previewRef, drop}style={{opacity: isDragging ? '0.3' : '1',}}>
-        <FontAwesomeIcon className={editingYn ? "fa faTrash visible" : "fa faTrash invisible"} icon={faTrash}
-            onClick={()=> {onDeleteToDoBox();}}  />
-        <div ref={dragRef}>
-            <FontAwesomeIcon className={editingYn ? "fa faGripHorizontal invisible" : "fa faGripHorizontal visible"} 
-            icon={faGripHorizontal}  />
-        </div>
-        <form>
-            <div className="toDoBox_menu" >
-                <FontAwesomeIcon className="fa faList" icon={faList} 
-                    onClick={() => setEditingYn(!editingYn)}/>
-                <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
-                    onClick={()=>{onCreateToDoElmObj();}}/>
-            </div>
-            
-            <div className="toDoBox__title">
-                <FontAwesomeIcon className={fixed ? "fa faThumbtack fixed" : "fa faThumbtack unfixed"} icon={faThumbtack} 
-                    onClick={()=> {onUpdateFixedYn();}} style={{color: `${fixedColor}`}}/>
-                <input type="text" value={ titleTxt } 
-                    onChange={changeTitleTxt} 
-                    onKeyPress={onEnterKeyPressBlur}
-                    onBlur={(e)=>onUpdateToDoBoxTitle(e)}
-                    placeholder = "제목을 입력해주세요."
-                    />         
-            </div>
-            <ul className="toDoBox__elm-list">
-                {toDoElms.map(elm => {
-                    if(elm.content == null) elm.content = "";
+    return <div className="toDoBox" ref={drop} style={{opacity: isDragging ? '0.5' : '1',}}>
+        <div ref={previewRef}>
+            <div className="toDoBox__dragRef" ref={dragRef}>
+            <FontAwesomeIcon className={editingYn ? "fa faTrash visible" : "fa faTrash invisible"} icon={faTrash}
+                onClick={()=> {onDeleteToDoBox();}}  />
+            {/* <div >
+                <FontAwesomeIcon className={editingYn ? "fa faGripHorizontal invisible" : "fa faGripHorizontal visible"} icon={faGripHorizontal} />
+            </div> */}
+            <form>
+                <div className="toDoBox_menu" >
+                    <FontAwesomeIcon className="fa faList" icon={faList} 
+                        onClick={() => setEditingYn(!editingYn)}/>
+                    <FontAwesomeIcon className="fa faPlus" icon={faPlus} 
+                        onClick={()=>{onCreateToDoElmObj();}}/>
+                </div>
                 
-                    return <li key={elm.id}>
-                        {/* <button className={editingYn ? "circleBorderBtn editingCircleBorderBtn" : "circleBorderBtn"} type="button"></button> */}
-                        <FontAwesomeIcon className={
-                                editingYn
-                                 ? "faCheck invisible"
-                                 : elm.completed ? "faCheck completed" : "faCheck"
-                            } icon={faCheck} onClick={()=>onClickCompleteBtn(elm.id)}/>
-                        <FontAwesomeIcon className={editingYn ? "faMinus visible shaking" : "faMinus invisible"} icon={faMinus} 
-                            onClick={()=>onDeleteToDoElm(elm.id)}/>
+                <div className="toDoBox__title">
+                    <FontAwesomeIcon className={fixed ? "fa faThumbtack fixed" : "fa faThumbtack unfixed"} icon={faThumbtack} 
+                        onClick={()=> {onUpdateFixedYn();}} style={{color: `${fixedColor}`}}/>
+                    <input type="text" value={ titleTxt } 
+                        onChange={changeTitleTxt} 
+                        onKeyPress={onEnterKeyPressBlur}
+                        onBlur={(e)=>onUpdateToDoBoxTitle(e)}
+                        placeholder = "제목을 입력해주세요."
+                        />         
+                </div>
+                <ul className="toDoBox__elm-list">
+                    {toDoElms.map(elm => {
+                        if(elm.content == null) elm.content = "";
+                    
+                        return <li key={elm.id}>
+                            <FontAwesomeIcon className={
+                                    editingYn
+                                    ? "faCheck invisible"
+                                    : elm.completed ? "faCheck completed" : "faCheck"
+                                } icon={faCheck} onClick={()=>onClickCompleteBtn(elm.id)}/>
+                            <FontAwesomeIcon className={editingYn ? "faMinus visible shaking" : "faMinus invisible"} icon={faMinus} 
+                                onClick={()=>onDeleteToDoElm(elm.id)}/>
 
-                        <input type="text" className={ elm.completed ? "elmInputCompleted" : null } value = {elm.content} 
-                            onChange={(e) => changeElmTxt(e, elm.id)} 
-                            onKeyPress={onEnterKeyPressBlur}
-                            onBlur={(e) => onUpdateToDoElm(e, elm.id)}
-                            placeholder = "할일을 입력해주세요."/>
-                    </li>;
-                })}
-            </ul>
-        </form>
+                            <input type="text" className={ elm.completed ? "elmInputCompleted" : null } value = {elm.content} 
+                                onChange={(e) => changeElmTxt(e, elm.id)} 
+                                onKeyPress={onEnterKeyPressBlur}
+                                onBlur={(e) => onUpdateToDoElm(e, elm.id)}
+                                placeholder = "할일을 입력해주세요."/>
+                        </li>;
+                    })}
+                </ul>
+            </form>
+            </div>
+        </div>
     </div>;
 };
 
