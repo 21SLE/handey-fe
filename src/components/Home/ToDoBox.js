@@ -1,13 +1,12 @@
-import React, { forwardRef, useState} from "react";
-import { faCheck, faList, faPlus, faThumbtack, faTrash, faMinus } from "@fortawesome/free-solid-svg-icons";
+import React, { forwardRef, useState, useCallback } from "react";
+import _ from "lodash";
+import { useDrag, useDrop } from 'react-dnd';
+import { faCheck, faList, faPlus, faThumbtack, faTrash, faMinus, faGripHorizontal } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
+import { ItemTypes } from "../common/ItemTypes";
 import "./ToDoBox.css";
 import axios from "axios";
-
-const Input = forwardRef((props, ref) => {
-    return <input type="text" ref={ref} {...props}/>;
-});
 
 function onEnterKeyPressBlur(e) {
     if(e.key === 'Enter') {
@@ -16,7 +15,7 @@ function onEnterKeyPressBlur(e) {
     }
 }
 
-function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDoBoxOnScreen}) {
+function ToDoBox({accessToken, userId, id, title, index, fixed, toDoElmList, deleteToDoBoxOnScreen, moveToDoBox}) {
     var config = {
         headers: { 'Content-Type': 'application/json', 'ACCESS_TOKEN': accessToken }
       };
@@ -25,6 +24,45 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
     const [fixedColor, setFixedColor] = useState(fixed ? '#f5bc0f' : '#4b4b4b');
     const [toDoElms, setToDoElms] = useState(toDoElmList);
     const [editingYn, setEditingYn] = useState(false);
+
+    const [{ isDragging }, dragRef, previewRef] = useDrag(
+        //isDragging은 아이템이 드래깅 중일때 true, 아닐때 false를 리턴 받는다. 드래깅 중인 아이템을 스타일링 할때 사용했다.
+        //dragRef는 리액트의 useRef처럼 작동한다. 드래그될 부분에 선언해주면된다. 네모의 타이틀이 있는 부분에 선언했다. 
+        //previewRef는 드래깅될때 보여질 프리뷰 이미지를 뜻한다. 네모전체를 감싸는 div에 선언해주었다.
+        //세가지 변수는 순서만 지켜서 이름은 아무렇게나 선언해주면된다. 나는 공식홈페이지의 변수명을 사용했다.
+    () => ({
+      type: ItemTypes.ToDoBox,
+      item: { id, index },
+      //item:에 드래깅 물체안에 넣어줄 정보
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging(),//isDragging 변수가 현재 드래깅중인지 아닌지를 리턴해주는 부분.
+      }),
+      end: (item, monitor) => { //드래그가 끝났을때 작동하는 부분.
+        const { id: originId, index: originIndex } = item;
+        const didDrop = monitor.didDrop();
+        if (!didDrop) {//didDrop이 !(아니다)라는 것은 dropRef로 선언한 태그위에 드랍되지 않음 을 의미한다.
+          //그때는 원래의 위치대로 이동.
+          moveToDoBox(originId, originIndex); 
+        }
+      },
+    }), [id, index, moveToDoBox]);
+
+    const throttleHoverItem = _.debounce((draggedId, index)=> {
+        console.log('Id: '+id)
+            console.log('draggedId: '+draggedId)
+            console.log('index: '+index)
+        if(draggedId === id) {
+            return null;
+        }
+        moveToDoBox(draggedId, index)
+    }, 1000);
+
+    const [, drop] = useDrop({
+        accept: ItemTypes.ToDoBox,
+        hover: ({ id: draggedId, index: orgIndex }) => {
+            throttleHoverItem(draggedId, index); 
+        }
+    })
 
     function changeTitleTxt(e) {
         e.preventDefault();
@@ -125,11 +163,15 @@ function ToDoBox({accessToken, userId, id, title, fixed, toDoElmList, deleteToDo
             .catch((error) => {console.error(error);});
     }
 
-    return <div className="toDoBox">
+    return <div className="toDoBox" ref={previewRef, drop}style={{opacity: isDragging ? '0.3' : '1',}}>
         <FontAwesomeIcon className={editingYn ? "fa faTrash visible" : "fa faTrash invisible"} icon={faTrash}
-                    onClick={()=> {onDeleteToDoBox();}}  />
+            onClick={()=> {onDeleteToDoBox();}}  />
+        <div ref={dragRef}>
+            <FontAwesomeIcon className={editingYn ? "fa faGripHorizontal invisible" : "fa faGripHorizontal visible"} 
+            icon={faGripHorizontal}  />
+        </div>
         <form>
-            <div className="toDoBox_menu">
+            <div className="toDoBox_menu" >
                 <FontAwesomeIcon className="fa faList" icon={faList} 
                     onClick={() => setEditingYn(!editingYn)}/>
                 <FontAwesomeIcon className="fa faPlus" icon={faPlus} 

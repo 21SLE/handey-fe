@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { DndProvider, useDrop } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { ItemTypes } from "../common/ItemTypes";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Masonry from "react-masonry-css";
@@ -20,6 +23,7 @@ function ToDoBoxList({accessToken, userId}) {
     }, []);
 
     async function getToDoBoxList() {
+        console.log('------------getToDoBoxList------------')
         await axios
             .get("/user/" + userId + "/toDoBoxList", config)
             .then(response => {
@@ -52,6 +56,35 @@ function ToDoBoxList({accessToken, userId}) {
         setToDoBoxListData(toDoBoxListData.filter((toDoBox)=> toDoBox.id !== toDoBoxId));
     }
 
+    const findToDoBox = (toDoBoxId) => {
+        toDoBoxListData.forEach((toDoBox)=>{
+            console.log(toDoBox);
+            if(toDoBox.id === toDoBoxId)
+            return toDoBox;
+        })
+    }
+
+    const moveToDoBox = (toDoBoxId, toIndex) => {
+        console.log('옮겨지는 toDoBoxId: '+ toDoBoxId)
+        console.log('어디로 toIndex: '+ toIndex)
+        let box;
+        toDoBoxListData.forEach((toDoBox)=>{
+            console.log(toDoBox);
+            if(toDoBox.id === toDoBoxId)
+                box = toDoBox;
+        })
+        console.log(box)
+        const index = toDoBoxListData.indexOf(box);
+        let newOrder = [...toDoBoxListData];
+        newOrder.splice(index, 1);
+        console.log(box)
+        newOrder.splice(toIndex, 0, box);
+        console.log(newOrder)
+        setToDoBoxListData(newOrder)
+    };
+    
+    const [, drop] = useDrop(() => ({ accept: ItemTypes.ToDoBox }));
+
     const breakpoints = {
         default: 2
     }
@@ -63,16 +96,19 @@ function ToDoBoxList({accessToken, userId}) {
             className="todo-masonry-grid"
             columnClassName="todo-masonry-grid_column">
             {toDoBoxListData.map((toDoBox) => {
-                 return <ToDoBox 
-                        key = {toDoBox.id}
+                return <div ref={drop} key = {toDoBox.id}>
+                    <ToDoBox 
                         accessToken = {accessToken}
                         userId = {userId}
                         id = {toDoBox.id}
+                        key = {toDoBox.id}
                         title = {toDoBox.title}
+                        index = {toDoBox.index}
                         fixed = {toDoBox.fixed}
                         toDoElmList = {toDoBox.toDoElmList}
                         deleteToDoBoxOnScreen = {deleteToDoBoxOnScreen}
-                    />;
+                        moveToDoBox = {moveToDoBox}
+                    /></div>;
                 })
             }
         </Masonry>
