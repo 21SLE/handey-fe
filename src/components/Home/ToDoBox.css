@@ -103,8 +103,8 @@
 }
 
 @keyframes rotateThumbtackRight {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(30deg); }
+    from { transform: rotate(0deg); color: rgb(254, 192, 1); }
+    to { transform: rotate(30deg); color:#4b4b4b; }
   }
 
 .toDoBox__title .unfixed.rotate {
@@ -112,8 +112,8 @@
 }
 
 @keyframes rotateThumbtackLeft {
-    from { transform: rotate(30deg); }
-    to { transform: rotate(0deg); }
+    from { transform: rotate(30deg); color:#4b4b4b; }
+    to { transform: rotate(0deg); color: rgb(254, 192, 1); }
 }
 
 .toDoBox__title input {

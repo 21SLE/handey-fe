@@ -156,9 +156,9 @@ function ToDoBox({accessToken, userId, id, title, index, fixed, toDoElmList, del
             .catch((error) => {console.error(error);});
     }
 
-    return <div className="toDoBox" ref={dropRef} style={{opacity: isDragging ? '0.5' : '1',}}>
-        <div ref={previewRef}>
-            <div className="toDoBox__dragRef" ref={dragRef}>
+    return <div className="toDoBox" ref={fixedYn ? null : dropRef} style={{opacity: isDragging ? '0.5' : '1',}}>
+        <div ref={fixedYn ? null : previewRef}>
+            <div className={fixedYn ? null : "toDoBox__dragRef"} ref={fixedYn ? null : dragRef}>
             <FontAwesomeIcon className={editingYn ? "fa faTrash visible" : "fa faTrash invisible"} icon={faTrash}
                 onClick={()=> {onDeleteToDoBox();}}  />
             {/* <div >
