@@ -20,12 +20,6 @@ function AfterBoxList({accessToken, userId}, ref) {
         getAfterBoxList
     }));
 
-    // useImperativeHandle(ref, () => ({
-    //     refreshAfterList: () => {
-    //         getAfterBoxList();
-    //     }
-    //   }));
-
     async function getAfterBoxList() {
         const offset = new Date().getTimezoneOffset() * 60000;
         const todayDate = new Date(Date.now() - offset).toISOString().slice(0, 10);

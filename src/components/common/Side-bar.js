@@ -14,7 +14,9 @@ class SideBar extends React.Component {
     render() {
         const currentUrl = window.location.pathname;
         const userName = localStorage.getItem('userName');
-        var todayDate = new Date().toISOString().slice(0, 10).replace(/-/g, '.');
+        const offset = new Date().getTimezoneOffset() * 60000;
+        const todayDate = new Date(Date.now() - offset).toISOString().slice(0, 10).replace(/-/g, '.');
+        // var todayDate = new Date().toISOString().slice(0, 10).replace(/-/g, '.');
 
         return (currentUrl === "/home" || currentUrl === "/history" || currentUrl === "/setting" || currentUrl === "/trash") 
         ? <div className="sideBar">
