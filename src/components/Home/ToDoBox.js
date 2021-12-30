@@ -21,9 +21,11 @@ function ToDoBox({accessToken, userId, id, title, index, fixed, toDoElmList, del
       };
 
     const [titleTxt, setTitleTxt] = useState(title === null ? "" : title);
-    const [fixedColor, setFixedColor] = useState(fixed ? '#f5bc0f' : '#4b4b4b');
+    const [fixedYn, setFixedYn] = useState(fixed);
+    const [fixedColor, setFixedColor] = useState(fixedYn ? '#f5bc0f' : '#4b4b4b');
     const [toDoElms, setToDoElms] = useState(toDoElmList);
     const [editingYn, setEditingYn] = useState(false);
+    const [rotateYn, setRotateYn] = useState(false);
 
     const [{ isDragging }, dragRef, previewRef] = useDrag(() => ({
         type: ItemTypes.ToDoBox,
@@ -40,17 +42,17 @@ function ToDoBox({accessToken, userId, id, title, index, fixed, toDoElmList, del
         },
     }), [id, index, moveToDoBox]);
 
-    const throttleHoverItem = _.debounce((draggedId, index, shouldCallApi)=> {
+    const debounceHoverItem = _.debounce((draggedId, index, shouldCallApi)=> {
         if(draggedId === id) {
             return null;
         }
         moveToDoBox(draggedId, index, shouldCallApi)
     }, 70);
 
-    const [, drop] = useDrop({
+    const [, dropRef] = useDrop({
         accept: ItemTypes.ToDoBox,
         hover: ({ id: draggedId, index: orgIndex }) => {
-            throttleHoverItem(draggedId, index, true); 
+            debounceHoverItem(draggedId, index, true); 
         }
     })
 
@@ -66,6 +68,7 @@ function ToDoBox({accessToken, userId, id, title, index, fixed, toDoElmList, del
     }
 
     const onUpdateFixedYn = async () => {
+        setRotateYn(true);
         await axios
         .patch("/user/toDoBox/" + id, {}, config)
         .then((response) => {
@@ -153,7 +156,7 @@ function ToDoBox({accessToken, userId, id, title, index, fixed, toDoElmList, del
             .catch((error) => {console.error(error);});
     }
 
-    return <div className="toDoBox" ref={drop} style={{opacity: isDragging ? '0.5' : '1',}}>
+    return <div className="toDoBox" ref={dropRef} style={{opacity: isDragging ? '0.5' : '1',}}>
         <div ref={previewRef}>
             <div className="toDoBox__dragRef" ref={dragRef}>
             <FontAwesomeIcon className={editingYn ? "fa faTrash visible" : "fa faTrash invisible"} icon={faTrash}
@@ -170,8 +173,13 @@ function ToDoBox({accessToken, userId, id, title, index, fixed, toDoElmList, del
                 </div>
                 
                 <div className="toDoBox__title">
-                    <FontAwesomeIcon className={fixed ? "fa faThumbtack fixed" : "fa faThumbtack unfixed"} icon={faThumbtack} 
-                        onClick={()=> {onUpdateFixedYn();}} style={{color: `${fixedColor}`}}/>
+                    <FontAwesomeIcon className={
+                        rotateYn
+                        ? fixedYn ? "fa faThumbtack fixed rotate" : "fa faThumbtack unfixed rotate"
+                        : fixedYn ? "fa faThumbtack fixed" : "fa faThumbtack unfixed"
+                    } icon={faThumbtack} onClick={()=> {onUpdateFixedYn();}} 
+                    onAnimationEnd={() => {setRotateYn(false); setFixedYn(!fixedYn);}} style={{color: `${fixedColor}`}}/>
+
                     <input type="text" value={ titleTxt } 
                         onChange={changeTitleTxt} 
                         onKeyPress={onEnterKeyPressBlur}
