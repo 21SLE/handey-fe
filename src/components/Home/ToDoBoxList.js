@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useDrop } from "react-dnd";
+import { ItemTypes } from "../common/ItemTypes";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Masonry from "react-masonry-css";
@@ -23,7 +25,11 @@ function ToDoBoxList({accessToken, userId}) {
         await axios
             .get("/user/" + userId + "/toDoBoxList", config)
             .then(response => {
-                console.log(response.data);
+                var data = response.data['data'];
+                data.sort(function (a, b) { 
+                    return a.index < b.index ? -1 : a.index > b.index ? 1 : 0;  
+                });
+
                 setToDoBoxListData(response.data['data']);
             })
             .catch((error) => {
@@ -37,10 +43,10 @@ function ToDoBoxList({accessToken, userId}) {
         .then((response) => {
             console.log("todo box " + response.data['data'] + "가 생성되었습니다.");
             const box = {
-                id: response.data['data'],
+                id: response.data['data']['id'],
                 title: "",
                 fixed: false,
-                toDoElmList: []
+                toDoElmList: response.data['data']['toDoElmList']
             };
 
             setToDoBoxListData([...toDoBoxListData, box]);
@@ -51,6 +57,36 @@ function ToDoBoxList({accessToken, userId}) {
     const deleteToDoBoxOnScreen = (toDoBoxId) => {
         setToDoBoxListData(toDoBoxListData.filter((toDoBox)=> toDoBox.id !== toDoBoxId));
     }
+
+    const moveToDoBox = async (toDoBoxId, toIndex, shouldCallApi) => {
+        let box;
+        toDoBoxListData.forEach((toDoBox)=>{
+            console.log(toDoBox);
+            if(toDoBox.id === toDoBoxId)
+                box = toDoBox;
+        })
+        const index = toDoBoxListData.indexOf(box);
+        let newOrder = [...toDoBoxListData];
+        newOrder.splice(index, 1);
+        newOrder.splice(toIndex, 0, box);
+        setToDoBoxListData(newOrder)
+        if(shouldCallApi) {
+            var list = [];
+            newOrder.forEach((toDoBox, idx)=> {
+                list.push({id: toDoBox.id, index: idx})
+            });
+            await axios
+            .put("/user/"+ userId +"/toDoBox/sequence", {indexList: list}, config)
+            .then((response) => {
+                console.log(response.data);
+                
+                console.log("todobox 순서가 수정되었습니다.");
+            })
+            .catch((error) => {console.error(error);});
+        }
+    };
+    
+    const [, drop] = useDrop(() => ({ accept: ItemTypes.ToDoBox }));
 
     const breakpoints = {
         default: 2
@@ -63,16 +99,19 @@ function ToDoBoxList({accessToken, userId}) {
             className="todo-masonry-grid"
             columnClassName="todo-masonry-grid_column">
             {toDoBoxListData.map((toDoBox) => {
-                 return <ToDoBox 
-                        key = {toDoBox.id}
+                return <div ref={drop} key = {toDoBox.id}>
+                    <ToDoBox 
                         accessToken = {accessToken}
                         userId = {userId}
                         id = {toDoBox.id}
+                        key = {toDoBox.id}
                         title = {toDoBox.title}
+                        index = {toDoBox.index}
                         fixed = {toDoBox.fixed}
                         toDoElmList = {toDoBox.toDoElmList}
                         deleteToDoBoxOnScreen = {deleteToDoBoxOnScreen}
-                    />;
+                        moveToDoBox = {moveToDoBox}
+                    /></div>;
                 })
             }
         </Masonry>

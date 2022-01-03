@@ -50,12 +50,30 @@
     position: relative;
 }
 
+.toDoBox input::placeholder {
+    color: rgb(194, 194, 194);
+    font-style: italic;
+}
+
 .toDoBox .faTrash {
     position: absolute;
     bottom: 10px;
     right: 10px;
     width: 16px;
     color: #e99076;
+}
+
+.toDoBox .faGripHorizontal {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    height: 14px;
+    /* color: #b6b6b6; */
+    color: #4b4b4b;
+}
+
+.toDoBox .toDoBox__dragRef:hover {
+    cursor: all-scroll;
 }
 
 .toDoBox__title {
@@ -67,15 +85,9 @@
 .toDoBox__title .faThumbtack {
     margin-top: 3px;
     font-size: 15px;
-    transition: 0.5s;
     -ms-transform: rotate(30deg); /* IE 9 */
     -webkit-transform: rotate(30deg); /* Chrome, Safari, Opera */
     transform: rotate(30deg);
-}
-
-.faThumbtack .unfixed:hover {
-    transform: rotate(-30deg);
-    transition: transform 0.5s;
 }
 
 .toDoBox__title .fixed {
@@ -84,7 +96,24 @@
     -ms-transform: rotate(0deg); /* IE 9 */
     -webkit-transform: rotate(00deg); /* Chrome, Safari, Opera*/
     transform: rotate(00deg);
-    transition: transform 0.5s;   
+}
+
+.toDoBox__title .fixed.rotate {
+    animation: rotateThumbtackRight 0.5s;
+}
+
+@keyframes rotateThumbtackRight {
+    from { transform: rotate(0deg); color: rgb(254, 192, 1); }
+    to { transform: rotate(30deg); color:#4b4b4b; }
+  }
+
+.toDoBox__title .unfixed.rotate {
+    animation: rotateThumbtackLeft 0.5s;
+}
+
+@keyframes rotateThumbtackLeft {
+    from { transform: rotate(30deg); color:#4b4b4b; }
+    to { transform: rotate(0deg); color: rgb(254, 192, 1); }
 }
 
 .toDoBox__title input {
@@ -147,6 +176,7 @@
     width: 15px;
     left: 4px;
     color: #b6b6b6;
+    margin: 3px;
 }
 
 .toDoBox__elm-list .completed {
@@ -179,4 +209,16 @@
     outline:none;
     border: none;
     font-size: 16px;
+}
+
+.toDoBox .fa:hover {
+    cursor: pointer;
+}
+
+.toDoBox .faCheck:hover {
+    cursor: pointer;
+}
+
+.toDoBox .faMinus:hover {
+    cursor: pointer;
 }

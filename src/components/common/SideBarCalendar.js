@@ -9,7 +9,7 @@ const SideBarCalendar = () => {
         formatMonthYear={(locale, date) => dayjs(date).format('YYYY. MM')}
         formatDay ={(locale, date) => dayjs(date).format('D')}
         formatShortWeekday = {(locale, date) => dayjs(date).format('dd')}>
-    
+        
     </Calendar>
 }
 

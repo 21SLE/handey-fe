@@ -29,6 +29,11 @@
     max-height: fit-content;
 }
 
+.weeklyBox input::placeholder {
+    color: rgb(194, 194, 194);
+    font-style: italic;
+  }
+
 .weeklyBox__title {
     width: 314px;
     padding-right: 10px;
@@ -50,7 +55,6 @@
     outline:none;
     border: none;
     font-size: 12pt;
-    height: 14pt;
     border-left: 5px solid rgb(254, 192, 1);
     color: black;
 }
@@ -76,7 +80,7 @@
 }
 
 .weeklyBox__elm-list li:not(:last-child) { 
-    margin-bottom: 16px;  
+    margin-bottom: 12px;  
  }
 
 .circleBorderBtn {
@@ -122,7 +126,7 @@
 
 .weeklyBox__elm-list input {
     width: 220px;
-    height: 12pt;
+    height: 14pt;
     margin-left: 30px;
     overflow: visible;
     color: #7d7d7d;

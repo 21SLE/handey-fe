@@ -14,6 +14,7 @@ function HistoryBoxList() {
       };
     
     const [historyBoxListData, setHistoryBoxListData] = useState([]);
+    const [dataFetchedYn, SetDataFetchedYn] = useState(false);
 
     useEffect(() => {
         getHistoryBoxList();
@@ -30,6 +31,7 @@ function HistoryBoxList() {
 
                 console.log(data);
                 setHistoryBoxListData(data);
+                SetDataFetchedYn(true);
             })
             .catch((error) => {
                 console.error("ERROR: " + error);
@@ -37,7 +39,7 @@ function HistoryBoxList() {
     }
 
     return <div className="historyBoxList">
-        {   historyBoxListData == null || historyBoxListData.length === 0
+        { dataFetchedYn && (historyBoxListData == null || historyBoxListData.length === 0)
             ? <div className="noHistoryMsg">
                 <h1>지난 히스토리가 없습니다</h1>
                 <FontAwesomeIcon icon={faLaugh}/>

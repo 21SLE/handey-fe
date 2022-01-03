@@ -18,16 +18,11 @@ function AfterBoxList({accessToken, userId}, ref) {
 
     useImperativeHandle(ref, () => ({
         getAfterBoxList
-      }));
-
-    // useImperativeHandle(ref, () => ({
-    //     refreshAfterList: () => {
-    //         getAfterBoxList();
-    //     }
-    //   }));
+    }));
 
     async function getAfterBoxList() {
-        var todayDate = new Date().toISOString().slice(0, 10);
+        const offset = new Date().getTimezoneOffset() * 60000;
+        const todayDate = new Date(Date.now() - offset).toISOString().slice(0, 10);
         await axios
             .get("/user/" + userId + "/fw?dt=" + todayDate, config)
             .then(response => {
@@ -63,4 +58,3 @@ function AfterBoxList({accessToken, userId}, ref) {
     </AfterContext.Provider>;
 }
 export default forwardRef(AfterBoxList);
-// export default AfterBoxList;

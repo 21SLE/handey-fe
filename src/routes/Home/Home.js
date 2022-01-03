@@ -1,4 +1,6 @@
 import React, {useRef} from "react";
+import { DndProvider, useDrop } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import AfterBoxList from "../../components/Home/AfterBoxList";
 import ToDoBoxList from "../../components/Home/ToDoBoxList";
 import Memo from "../../components/Home/Memo";
@@ -29,10 +31,12 @@ function Home() {
                         />
                 </div>
                 <div className = "home-layout__wrap__right">
-                    <ToDoBoxList 
-                        accessToken = {accessToken}
-                        userId = {userId}
-                        />
+                    <DndProvider backend={HTML5Backend}>
+                        <ToDoBoxList 
+                            accessToken = {accessToken}
+                            userId = {userId}
+                            />
+                    </DndProvider>
                     <Memo 
                         accessToken = {accessToken}
                         userId = {userId}

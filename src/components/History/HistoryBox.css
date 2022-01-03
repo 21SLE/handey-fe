@@ -46,7 +46,7 @@
 }
 
 .toDoBox_history_title_section {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -66,14 +66,14 @@
     display: inline-block;
     color: #FDDC42;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
     margin-right: 5px;
 }
 
 .toDoElmList_history li {
     font-size: 16px;
-    padding-left: 20px;
-    margin-bottom: 5px;
+    padding-left: 11px;
+    margin-bottom: 7px;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -124,15 +124,10 @@
 
 .afterElmList_history li {
     font-size: 16px;
-    
     margin: 0px;
     margin-bottom: 5px;
     display: flex;
     justify-content: start;
     align-items: center;
     width: 240px;
-}
-
-.afterElmList_history .elm_content {
-    
 }
