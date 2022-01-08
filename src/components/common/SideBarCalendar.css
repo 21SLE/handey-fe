@@ -121,6 +121,9 @@
     color: white;
     border-radius: 20px;
     padding: 3px;
+    max-width: 25px;
+    min-width: 25px;
+    width: 25px;
     /* border: 2px solid white; */
 }
 
