@@ -89,7 +89,8 @@ function ToDoBoxList({accessToken, userId}) {
     const [, drop] = useDrop(() => ({ accept: ItemTypes.ToDoBox }));
 
     const breakpoints = {
-        default: 2,
+        default: 3,
+        1600: 2,
         1340: 1
     }
 

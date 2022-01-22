@@ -36,3 +36,9 @@ hr {
 .afterBoxList::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
 }
+
+@media screen and (min-height:1000px){ 
+    .afterSection {
+        height: 300px;
+    }
+}

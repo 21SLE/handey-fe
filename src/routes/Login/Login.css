@@ -174,3 +174,59 @@
     bottom: -320px;
     right: -100px;
  }
+
+ @media screen and (max-width:1450px){ 
+    .leftLowerCircle {
+        bottom: -30px;
+        left: 0px;
+        z-index: 0;
+    }
+
+    .rightMiddleCircle {
+        z-index: 0;
+    }
+}
+
+ @media screen and (min-width:1700px){ 
+    .login-layout__circle {
+        height: 1200px;
+        width: 1200px;
+        border-radius: 800px;
+    }
+
+    .leftUpperCircle {
+        height: 900px;
+        width: 900px;
+        border-radius: 500px;
+     }
+    
+     .leftLowerCircle {
+        height: 600px;
+        width: 600px;
+        border-radius: 300px;
+     }
+    
+     .rightUpperCircle {
+        height: 550px;
+        width: 550px;
+        border-radius: 300px;
+     }
+    
+     .rightSmallUpperCircle {
+        height: 400px;
+        width: 400px;
+        border-radius: 250px;
+     }
+    
+     .rightMiddleCircle {
+        height: 350px;
+        width: 350px;
+        border-radius: 250px;
+     }
+    
+     .rightLowerCircle {
+        height: 690px;
+        width: 690px;
+        border-radius: 350px;
+     }
+}
