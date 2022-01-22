@@ -58,3 +58,8 @@
     margin-right: -30px;
 }
 
+@media screen and (max-width: 1340px) { 
+    .todo-masonry-grid {
+        width: 380px;
+    }
+}

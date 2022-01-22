@@ -35,7 +35,10 @@ function TrashBoxList() {
     }
 
     const breakpoints = {
-        default: 3
+        default: 4,
+        1790: 3,
+        1360: 2,
+        1060: 1
     }
 
     return <div className="trashBoxList">

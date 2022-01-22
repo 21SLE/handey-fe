@@ -39,3 +39,13 @@
 .memo textarea::-webkit-scrollbar {
     display: none;
   }
+
+  @media screen and (max-width: 1340px) { 
+    .memo {
+        width: 320px;
+    }
+
+    .memo textarea {
+        width: 300px;
+    }
+}

@@ -16,7 +16,7 @@
     100%{ transform: rotate(-10deg); }
 }
 
-.WeeklyBox {
+.weeklyBox {
     align-items: center;
     justify-content: center;
     background-color: white;
