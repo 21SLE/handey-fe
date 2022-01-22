@@ -120,3 +120,12 @@
     font-weight: bold;
     margin-top: 36px;
  }
+
+ /* 모바일 미디어 쿼리 */
+@media screen and (max-width:870px) { 
+    .join-layout__circle {
+        height: 680px;
+        width: 680px;
+        border-radius: 600px;
+    }
+}

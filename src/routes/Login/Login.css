@@ -90,13 +90,13 @@
     outline:none;
     border: none;
     border-bottom: 2px solid rgb(112, 112, 112);
- }
+}
 
 .login-form__input input:focus {
     border-bottom: 2px solid #FDDC42;
- }
+}
 
- .loginButton {
+.loginButton {
     width: 100%;
     height: 52px;
     background-color: #FDDC42;
@@ -106,13 +106,13 @@
     border: none;
     font-weight: bold;
     margin-top: 40px;
- }
+}
 
- .loginButton:hover {
+.loginButton:hover {
      cursor: pointer;
- }
+}
 
- .leftUpperCircle {
+.leftUpperCircle {
     height: 750px;
     width: 750px;
     border-radius: 400px;
@@ -120,9 +120,9 @@
     position: absolute;
     top: -200px;
     left: -100px;
- }
+}
 
- .leftLowerCircle {
+.leftLowerCircle {
     height: 480px;
     width: 480px;
     border-radius: 250px;
@@ -133,7 +133,7 @@
     z-index: 2;
  }
 
- .rightUpperCircle {
+.rightUpperCircle {
     height: 440px;
     width: 440px;
     border-radius: 250px;
@@ -143,7 +143,7 @@
     right: 120px;
  }
 
- .rightSmallUpperCircle {
+.rightSmallUpperCircle {
     height: 250px;
     width: 250px;
     border-radius: 250px;
@@ -154,7 +154,7 @@
     z-index: 2;
  }
 
- .rightMiddleCircle {
+.rightMiddleCircle {
     height: 270px;
     width: 270px;
     border-radius: 250px;
@@ -163,9 +163,9 @@
     top: 340px;
     right: 110px;
     z-index: 2;
- }
+}
 
- .rightLowerCircle {
+.rightLowerCircle {
     height: 570px;
     width: 570px;
     border-radius: 300px;
@@ -173,9 +173,60 @@
     position: absolute;
     bottom: -320px;
     right: -100px;
- }
+}
 
- @media screen and (max-width:1450px){ 
+/* 모바일 미디어 쿼리 */
+@media screen and (max-width:870px) { 
+    .login-layout__circle {
+        height: 680px;
+        width: 680px;
+        border-radius: 400px;
+    }
+
+    .leftUpperCircle {
+        height: 500px;
+        width: 500px;
+        border-radius: 500px;
+        top: -50px;
+        left:-50px;
+     }
+    
+    .leftLowerCircle {
+        height: 460px;
+        width: 460px;
+        border-radius: 300px;
+        left: -150px;
+        bottom: 30px;
+    }
+
+    .rightUpperCircle {
+        height: 400px;
+        width: 400px;
+        border-radius: 300px;
+        right:-50px;
+        top: -100px;
+    }
+
+    .rightSmallUpperCircle {
+        visibility: hidden;
+    }
+
+    .rightMiddleCircle {
+        height: 250px;
+        width: 250px;
+        border-radius: 250px;
+        right: -100px;
+    }
+
+    .rightLowerCircle {
+        height: 690px;
+        width: 690px;
+        border-radius: 350px;
+        right: -150px;
+    }
+}
+
+@media screen and (min-width:877px) and (max-width:1450px){ 
     .leftLowerCircle {
         bottom: -30px;
         left: 0px;
