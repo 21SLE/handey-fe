@@ -86,3 +86,9 @@
 .trashElmList .completed {
     color: #FDDC42;
 }
+
+@media screen and (max-width: 1460px) { 
+    .trashBox {
+        width: 280px;
+    }
+}

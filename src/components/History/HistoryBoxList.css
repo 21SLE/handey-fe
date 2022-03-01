@@ -3,7 +3,7 @@
     overflow-y: scroll;
     justify-content: flex-start;
     align-items: flex-start;
-    /* width: 90%; */
+    width: 90%;
     height: 100%;
     flex-wrap: wrap;
 }

@@ -58,3 +58,20 @@
     margin-right: -30px;
 }
 
+@media screen and (max-width: 1340px) { 
+    .todo-masonry-grid {
+        width: 380px;
+    }
+}
+
+@media screen and (min-width:1600px){ 
+    .todo-masonry-grid {
+        width: 1050px;
+    }
+}
+
+@media screen and (min-height:1000px){ 
+    .todo-masonry-grid {
+        height: 592px;
+    }
+}
