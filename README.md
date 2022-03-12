@@ -16,17 +16,18 @@ We'll help you organize your working process.
 
 ## ✏️ Design
 * Development Progress <br>
-  * [비즈니스 요구사항 및 개발 진행 상황](https://docs.google.com/spreadsheets/d/1_MEKdaJV0bbH2-dRaMY48fHQEZ1tV7XaFVgwaOju_FY/edit#gid=0, "Development Progress")
+  * [비즈니스 요구사항 및 개발 진행 상황](https://docs.google.com/spreadsheets/d/1_MEKdaJV0bbH2-dRaMY48fHQEZ1tV7XaFVgwaOju_FY/edit?usp=sharing, "Development Progress")
 <br>
 
 ## 📆 Duration
+2021/08 - 2022/01
 <br>
 
 ## 🪄 Features
 * [<strong>회원가입(Sign Up)</strong>](https://github.com/hanslelee/handey-fe/tree/master/src/routes/Join)
   * 이메일 중복 확인 기능
   * 비밀번호 확인 기능
-* [<strong>로그인(Sign in)</strong>](https://github.com/hanslelee/handey-fe/tree/master/src/routes/Login)
+* [<strong>로그인(Sign In)</strong>](https://github.com/hanslelee/handey-fe/tree/master/src/routes/Login)
 * [<strong>홈 화면(Home Screen)</strong>](https://github.com/hanslelee/handey-fe/tree/master/src/components/Home)
   * Weekly: 일주일 단위로 해야할 일 정리
   * Finished Today: Weekly에서 오늘 완료한 일이 자동으로 기록
@@ -51,7 +52,27 @@ We'll help you organize your working process.
 <br>
 
 ## 🔍 Preview
-<br>
+* 로그인(Sign in)/회원가입(Sign up)<br>
+![image](https://user-images.githubusercontent.com/51855129/158018469-a2d7f559-7218-4b8b-8ab8-70dffb72a83b.png)
+![image](https://user-images.githubusercontent.com/51855129/158018466-32ef9b83-e1ed-4206-9224-e04070393dc6.png)
+
+* 홈 화면(Home)<br>
+![image](https://user-images.githubusercontent.com/51855129/158018479-40a0b0af-bf43-453d-9509-341424db4668.png)
+![img](https://user-images.githubusercontent.com/51855129/158018549-8a3d3a28-1eb4-4aee-b4a1-49f5ea479eab.gif)
+
+* 히스토리 화면(History)<br>
+![image](https://user-images.githubusercontent.com/51855129/158018481-2c094814-1538-4808-a357-2343b77b0b70.png)
+
+* 설정 화면(Settings)<br>
+![image](https://user-images.githubusercontent.com/51855129/158018486-22085f60-9ff3-4dac-9be7-01a800c8eca2.png)
+
+* 휴지통 화면(Trash)<br>
+![image](https://user-images.githubusercontent.com/51855129/158018488-2f575a98-3d1b-40fd-a725-7db9229d9379.png)
+
+## 📑 Future Plans
+* DB, Server 변경
+* 도움말 설정
+* 비밀번호 찾기 기능(이메일 전송)
 
 ## 🎈...
 처음에는 따로 리액트를 사용하지 않고 스프링과 타임리프(Thymeleaf)를 사용하여 웹을 구성하려 했지만, 프런트엔드에서 여러 기능들을 개발할 때 한계에 부딪치는 경우가 많이 생겨 리액트로 옮겨 개발하게 되었다.
