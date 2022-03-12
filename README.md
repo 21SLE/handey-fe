@@ -22,6 +22,7 @@ We'll help you organize your working process.
 ## 📆 Duration
 2021/08 - 2022/01
 <br>
+<br>
 
 ## 🪄 Features
 * [<strong>회원가입(Sign Up)</strong>](https://github.com/hanslelee/handey-fe/tree/master/src/routes/Join)
@@ -48,7 +49,6 @@ We'll help you organize your working process.
   * 홈화면에서 ToDo삭제시 휴지통 화면으로 이동
   * 일주일이 지나면 휴지통에서 삭제
   * 홈화면으로 복구 버튼을 누르면 홈 화면으로 복구
-
 <br>
 
 ## 🔍 Preview
@@ -68,13 +68,15 @@ We'll help you organize your working process.
 
 * 휴지통 화면(Trash)<br>
 ![image](https://user-images.githubusercontent.com/51855129/158018488-2f575a98-3d1b-40fd-a725-7db9229d9379.png)
+<br>
 
 ## 📑 Future Plans
 * DB, Server 변경
 * 도움말 설정
 * 비밀번호 찾기 기능(이메일 전송)
+<br>
 
 ## 🎈...
 처음에는 따로 리액트를 사용하지 않고 스프링과 타임리프(Thymeleaf)를 사용하여 웹을 구성하려 했지만, 프런트엔드에서 여러 기능들을 개발할 때 한계에 부딪치는 경우가 많이 생겨 리액트로 옮겨 개발하게 되었다.
-
-
+<br>
+<br>
